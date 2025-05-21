@@ -1,0 +1,108 @@
+{
+  "conversation_id": "f5d2aed6-f405-43fe-8269-81ad6c9e4531",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en internal_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-21T21:31:39.228304"
+    },
+    {
+      "content": "Hola",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:31:47.631155"
+    },
+    {
+      "content": "\u00a1Hola! Gracias por comunicarte conmigo. Soy m\u00e9dico especializado en medicina interna y estoy aqu\u00ed para ayudarte.\n\nCu\u00e9ntame, \u00bfqu\u00e9 te trae hoy a consulta? \u00bfTienes alg\u00fan s\u00edntoma o molestia en particular que te preocupe? Si puedes, dime desde cu\u00e1ndo lo presentas y si ha cambiado con el tiempo.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T21:31:51.540321"
+    },
+    {
+      "content": "me duele mucho el tobillo",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:32:03.300872"
+    },
+    {
+      "content": "Gracias por compartir que tienes dolor en el tobillo. Para poder ayudarte mejor, me gustar\u00eda saber un poco m\u00e1s:\n\n1. \u00bfDesde cu\u00e1ndo tienes este dolor en el tobillo y c\u00f3mo comenz\u00f3 (por ejemplo, fue despu\u00e9s de una ca\u00edda, golpe, o empez\u00f3 de manera gradual)?\n2. \u00bfEl dolor es constante o aparece solo al caminar o mover el tobillo?\n3. \u00bfHas notado hinchaz\u00f3n, enrojecimiento, calor o dificultad para mover el tobillo?\n\nCon estas respuestas podr\u00e9 orientarte mejor sobre qu\u00e9 podr\u00eda estar pasando y c\u00f3mo ayudarte.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T21:32:07.945682"
+    },
+    {
+      "content": "me duele hace un mes empezo con un golpe el dolor es sobre todo en las noches y despues de andar mucho se esta hinchado y dificultad para moverlo",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:33:27.099175"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que el dolor en el tobillo comenz\u00f3 hace un mes tras un golpe, que se intensifica por las noches y despu\u00e9s de caminar mucho, y que adem\u00e1s est\u00e1 hinchado y te cuesta moverlo.\n\nPara poder orientarte mejor, me gustar\u00eda saber:\n\n1. \u00bfHas notado alg\u00fan cambio en el color de la piel del tobillo (por ejemplo, enrojecimiento, moretones o zonas moradas)?\n2. \u00bfEl dolor ha ido empeorando, mejorando o se ha mantenido igual desde que comenz\u00f3?\n3. \u00bfHas probado alg\u00fan tratamiento hasta ahora, como reposo, hielo, medicamentos o vendas, y te ha ayudado en algo?\n\nCon estas respuestas podr\u00e9 entender mejor la evoluci\u00f3n y gravedad de tu lesi\u00f3n y darte recomendaciones m\u00e1s precisas.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T21:33:32.538392"
+    },
+    {
+      "content": "no cambios de color y el dolor cada vez peor he tomando parcetamol pero no mejora",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:34:17.991398"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que el dolor en el tobillo ha ido empeorando, que has tomado paracetamol sin mejor\u00eda, y que no has notado cambios de color en la piel.\n\nPara poder ayudarte mejor, me gustar\u00eda saber un poco m\u00e1s:\n\n1. \u00bfEl tobillo sigue hinchado todo el tiempo o solo despu\u00e9s de caminar o estar de pie?\n2. \u00bfHas notado alg\u00fan chasquido, sensaci\u00f3n de inestabilidad o que el tobillo \u201cfalla\u201d al caminar?\n3. \u00bfTienes fiebre, escalofr\u00edos o malestar general?\n\nCon estas respuestas podr\u00e9 orientarte mejor sobre la gravedad del problema y los siguientes pasos a seguir.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T21:34:22.747344"
+    },
+    {
+      "content": "en las noches sobre todo se hincha, no hay chasquido  y me duele la cabeza cuando lleva mucho tiempo doliendome",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:35:54.902178"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que la hinchaz\u00f3n del tobillo es m\u00e1s notoria en las noches y despu\u00e9s de caminar mucho, y que no hay chasquidos ni sensaci\u00f3n de inestabilidad. Tambi\u00e9n mencionas que, cuando el dolor es intenso y prolongado, te duele la cabeza.\n\nPara seguir entendiendo mejor tu situaci\u00f3n, me gustar\u00eda preguntarte:\n\n1. \u00bfLa hinchaz\u00f3n del tobillo disminuye por la ma\u00f1ana o despu\u00e9s de descansar, o permanece igual todo el d\u00eda?\n2. \u00bfHas tenido lesiones previas en ese tobillo o tienes antecedentes de problemas articulares (como esguinces, artritis, gota, etc.)?\n3. Adem\u00e1s del dolor y la hinchaz\u00f3n, \u00bfhas notado calor al tocar el tobillo o alguna rigidez importante al despertar?\n\nEsto me ayudar\u00e1 a valorar si puede haber alg\u00fan proceso inflamatorio persistente o si hay otros factores involucrados.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T21:36:02.533785"
+    },
+    {
+      "content": "si disminuye, no he tenido lesiones previas, con el calor no mejora",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:36:26.157666"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en dermatology puede responder mejor a tu consulta. Motivo: The patient mentions symptoms that may be related to the skin (lesiones previas, calor), and the lack of improvement with heat suggests a dermatological issue. No mention of systemic or neurological symptoms.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-21T21:36:29.374397"
+    },
+    {
+      "content": "Gracias por seguir compartiendo detalles. Ya veo que la hinchaz\u00f3n es m\u00e1s notoria en las noches y que no has tenido lesiones previas ni mejora con calor. Tambi\u00e9n mencionaste que el dolor de cabeza aparece cuando el dolor del tobillo es intenso y prolongado.\n\nPara poder completar la valoraci\u00f3n, me gustar\u00eda saber:\n\n1. \u00bfHas notado que el tobillo est\u00e9 caliente al tocarlo, o que est\u00e9 m\u00e1s r\u00edgido por las ma\u00f1anas al despertar?\n2. \u00bfTienes antecedentes personales de enfermedades como diabetes, hipertensi\u00f3n, problemas de circulaci\u00f3n o alguna enfermedad reum\u00e1tica (como artritis)?\n3. \u00bfActualmente tomas alg\u00fan otro medicamento de forma regular, adem\u00e1s del paracetamol?\n\nCon esta informaci\u00f3n podr\u00e9 orientarte mejor sobre la causa del dolor y la hinchaz\u00f3n, y sobre los siguientes pasos a seguir.",
+      "sender": "dermatology",
+      "timestamp": "2025-05-21T21:36:32.747811"
+    },
+    {
+      "content": "esta caliente si no tengo antecedentes",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:36:58.285843"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en internal_medicine puede responder mejor a tu consulta. Motivo: The query 'esta caliente si no tengo antecedentes' suggests the patient is experiencing a sensation of heat or fever without prior medical history. Internal medicine is best suited for evaluating non-specific symptoms such as fever in adults, especially when there are no known underlying conditions.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-21T21:36:59.838062"
+    },
+    {
+      "content": "Gracias por tu respuesta y por aclarar que no tienes antecedentes m\u00e9dicos importantes. Entiendo que el tobillo se siente caliente y que la hinchaz\u00f3n disminuye por la ma\u00f1ana, pero aumenta en la noche, especialmente despu\u00e9s de caminar.\n\nPara poder orientarte mejor, me gustar\u00eda preguntarte lo siguiente:\n\n1. \u00bfEl calor en el tobillo es constante o solo aparece cuando est\u00e1 hinchado?\n2. \u00bfHas notado enrojecimiento, cambios en la textura de la piel, o alguna herida en la zona?\n3. \u00bfHas tenido fiebre (temperatura mayor a 38\u00b0C), sudoraci\u00f3n nocturna o malestar general en los \u00faltimos d\u00edas?\n\nEstas preguntas me ayudar\u00e1n a descartar si hay alg\u00fan proceso inflamatorio o infeccioso y a decidir los siguientes pasos para tu caso.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T21:37:03.029103"
+    },
+    {
+      "content": "solo cuando esta hinchado, piel normal, sin fiebre",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:38:02.732617"
+    },
+    {
+      "content": "Perfecto, vamos a cerrar la consulta resumiendo lo m\u00e1s importante y d\u00e1ndote recomendaciones claras.\n\nRESUMEN DE LA CONSULTA:  \n- Presentas hinchaz\u00f3n en el tobillo que aumenta durante el d\u00eda y disminuye por la ma\u00f1ana.\n- El tobillo se siente caliente cuando est\u00e1 hinchado, pero la piel se ve normal (sin enrojecimiento ni lesiones).\n- No tienes antecedentes m\u00e9dicos importantes ni fiebre.\n- No tomas medicamentos de forma regular, salvo paracetamol cuando hay dolor.\n\nRECOMENDACIONES:\n\n1. **Reposo y cuidado local:**  \n   - Trata de elevar el tobillo cuando est\u00e9s sentado o acostado para ayudar a reducir la hinchaz\u00f3n.\n   - Aplica compresas fr\u00edas (no hielo directo) durante 10-15 minutos, varias veces al d\u00eda, especialmente si notas calor local.\n   - Evita estar mucho tiempo de pie o caminando largas distancias hasta que mejores.\n\n2. **Observa la evoluci\u00f3n:**  \n   - Si la hinchaz\u00f3n y el calor disminuyen con estas medidas y no aparecen otros s\u00edntomas, puedes continuar con el manejo en casa.\n   - Si necesitas tomar paracetamol para el dolor, hazlo seg\u00fan las indicaciones del envase y no excedas la dosis recomendada.\n\n3. **Consulta m\u00e9dica presencial:**  \n   - Te recomendar\u00eda acudir a consulta m\u00e9dica para una valoraci\u00f3n presencial si la hinchaz\u00f3n persiste m\u00e1s de 7 d\u00edas, si se repite con frecuencia, o si limita mucho tu movilidad. El m\u00e9dico podr\u00eda solicitar estudios de imagen (como radiograf\u00eda o ultrasonido) o an\u00e1lisis de sangre para descartar causas como problemas articulares, venosos o infecciones leves.\n\n4. **Prevenci\u00f3n:**  \n   - Mant\u00e9n un peso saludable y realiza ejercicios suaves de movilidad articular (si no hay dolor intenso).\n   - Usa calzado c\u00f3modo y adecuado para evitar lesiones.\n\n**Signos de alarma \u2013 Acude a urgencias si presentas:**\n- Dolor intenso y repentino que no mejora con reposo o analg\u00e9sicos.\n- Hinchaz\u00f3n que se extiende r\u00e1pidamente a otras partes de la pierna.\n- Enrojecimiento marcado, aparici\u00f3n de ampollas o cambios en el color de la piel.\n- Fiebre mayor a 38\u00b0C, escalofr\u00edos o malestar general importante.\n- Dificultad para mover el pie o el tobillo, o sensaci\u00f3n de adormecimiento.\n\nSi tienes alguna otra duda o los s\u00edntomas cambian, no dudes en consultarme nuevamente. \u00a1Cu\u00eddate mucho!",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T21:38:17.850413"
+    }
+  ],
+  "active_specialty": "internal_medicine",
+  "all_specialties": [
+    "internal_medicine",
+    "dermatology"
+  ],
+  "context": {},
+  "created_at": "2025-05-21T21:31:39.228278",
+  "updated_at": "2025-05-21T21:38:17.850423"
+}

@@ -1,0 +1,33 @@
+{
+  "conversation_id": "afdec3f1-bded-4a01-8e2d-fb116c85e92d",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en internal_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-21T21:52:47.304114"
+    },
+    {
+      "content": "hola me duele demasiado el tobillo",
+      "sender": "user",
+      "timestamp": "2025-05-21T21:53:00.824491"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en emergency_medicine puede responder mejor a tu consulta. Motivo: The patient reports severe ankle pain, which could indicate a fracture, sprain, or other acute injury requiring prompt evaluation and possible imaging. Emergency medicine is best suited for acute musculoskeletal injuries.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-21T21:53:02.968646"
+    },
+    {
+      "content": "Hola, mucho gusto, soy m\u00e9dico internista y estoy aqu\u00ed para ayudarte. Lamento que est\u00e9s pasando por este dolor en el tobillo. Para poder orientarte mejor, me gustar\u00eda hacerte unas preguntas:\n\n1. \u00bfDesde cu\u00e1ndo tienes el dolor en el tobillo y c\u00f3mo empez\u00f3 (fue despu\u00e9s de una ca\u00edda, torcedura, golpe, o apareci\u00f3 de repente)?\n2. \u00bfPuedes apoyar el pie y caminar, o el dolor es tan intenso que no puedes moverlo?\n3. \u00bfHas notado hinchaz\u00f3n, moretones, enrojecimiento o calor en la zona del tobillo?\n\nCon estas respuestas podr\u00e9 entender mejor tu situaci\u00f3n y darte las recomendaciones m\u00e1s adecuadas.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-21T21:53:06.810683"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "internal_medicine",
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-21T21:52:47.304070",
+  "updated_at": "2025-05-21T21:53:06.810689"
+}

@@ -76,11 +76,52 @@
         background-color: #f0fff5;
         border-left: 3px solid var(--secondary-color);
     }
+    
+    .triage-form {
+        background-color: #f8f9fa;
+        border-left: 4px solid var(--primary-color);
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+    }
+    
+    .triage-header {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container mt-4">
+    <!-- Initial Triage Form - Only shown for new conversations -->
+    {% if not conversation.messages or conversation.messages|length <= 1 %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="triage-form">
+                <h4 class="triage-header">
+                    <i class="fas fa-stethoscope"></i> Sistema de Triaje Médico
+                </h4>
+                <p class="text-muted">
+                    Por favor, describa sus síntomas o motivo de consulta para que podamos asignarle el especialista más adecuado.
+                </p>
+                <form method="POST" action="{{ url_for('interactive.interactive_chat_home') }}">
+                    <div class="mb-3">
+                        <textarea class="form-control" name="initial_symptoms" rows="3" 
+                            placeholder="Ej: Dolor de cabeza intenso desde hace 3 días, sensibilidad a la luz y náuseas ocasionales..." required></textarea>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-md"></i> Iniciar Consulta con Especialista
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <!-- Banner de Hospital IA -->
     <div class="row mb-3">
         <div class="col-12">
@@ -1012,7 +1053,59 @@
             }
         });
         
-        // Resto del código existente...
+        // Manejar generación de informes médicos
+        document.getElementById('generate-report-btn')?.addEventListener('click', async function() {
+            // Mostrar modal con indicador de carga
+            if (reportModal) {
+                reportModal.show();
+                document.getElementById('report-loading').classList.remove('d-none');
+                document.getElementById('report-content').classList.add('d-none');
+            }
+            
+            try {
+                // Llamar al endpoint para generar el informe
+                const response = await fetch('{{ url_for("interactive.generate_report") }}', {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data.success && data.report) {
+                        // Ocultar indicador de carga y mostrar informe
+                        document.getElementById('report-loading').classList.add('d-none');
+                        const reportContent = document.getElementById('report-content');
+                        reportContent.innerHTML = data.report;
+                        reportContent.classList.remove('d-none');
+                    } else {
+                        // Mostrar mensaje de error en el modal
+                        document.getElementById('report-loading').classList.add('d-none');
+                        const reportContent = document.getElementById('report-content');
+                        reportContent.innerHTML = '<div class="alert alert-danger">Error al generar el informe médico: ' 
+                            + (data.message || 'Error desconocido') + '</div>';
+                        reportContent.classList.remove('d-none');
+                    }
+                } else {
+                    // Mostrar mensaje de error en el modal
+                    document.getElementById('report-loading').classList.add('d-none');
+                    const reportContent = document.getElementById('report-content');
+                    reportContent.innerHTML = '<div class="alert alert-danger">Error de comunicación con el servidor</div>';
+                    reportContent.classList.remove('d-none');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Mostrar mensaje de error en el modal
+                document.getElementById('report-loading').classList.add('d-none');
+                const reportContent = document.getElementById('report-content');
+                reportContent.innerHTML = '<div class="alert alert-danger">Error al generar el informe médico: ' + error.message + '</div>';
+                reportContent.classList.remove('d-none');
+            }
+        });
+        
+        // Manejar descarga de informes
+        document.getElementById('download-report-btn')?.addEventListener('click', function() {
+            window.open('{{ url_for("interactive.download_report") }}', '_blank');
+        });
     });
 </script>
 {% endblock %} 

@@ -35,33 +35,58 @@ def ensure_serializable(obj):
     else:
         return obj
 
-@interactive_bp.route('/interactive', methods=['GET'])
-def interactive_chat_home():
-    """Render the interactive chat home page."""
+def ensure_string_id(conversation_id):
+    """Ensure the conversation ID is a string, not bytes."""
+    if isinstance(conversation_id, bytes):
+        return conversation_id.decode('utf-8', errors='replace')
+    elif conversation_id is not None:
+        return str(conversation_id)
+    return None
+
+@interactive_bp.route('/interactive', methods=['GET', 'POST'])
+async def interactive_chat_home():
+    """Handle the interactive chat interface."""
     try:
-        # If there's no active conversation or starting a new one
+        # Initialize conversation if not exists
         new_conversation = False
-        if 'interactive_conversation_id' not in session or request.args.get('new', False):
-            # Create a new conversation (default to internal medicine)
-            initial_specialty = request.args.get('specialty', 'internal_medicine')
-            if initial_specialty not in MEDICAL_SPECIALTIES:
-                initial_specialty = 'internal_medicine'
-                
-            conversation = conversation_service.create_conversation(initial_specialty)
-            # Asegurar que solo almacenamos el ID en la sesión
-            session['interactive_conversation_id'] = conversation.conversation_id
+        initial_symptoms = None
+        
+        # Check for initial symptoms form submission (for new conversations)
+        if request.method == 'POST' and 'initial_symptoms' in request.form:
+            initial_symptoms = request.form.get('initial_symptoms')
+            new_conversation = True
+        
+        # Safely get conversation ID from session
+        current_id = session.get('interactive_conversation_id')
+        conversation_id = ensure_string_id(current_id)
+        
+        # Check if we need a new conversation
+        if not conversation_id or request.args.get('new') or new_conversation:
+            # For new conversations with initial symptoms, use the triage feature
+            if initial_symptoms:
+                conversation = await conversation_service.create_conversation_with_triage(initial_symptoms)
+            else:
+                # Create a new conversation with default specialty if no symptoms provided
+                initial_specialty = request.args.get('specialty', 'internal_medicine')
+                if initial_specialty not in MEDICAL_SPECIALTIES:
+                    initial_specialty = 'internal_medicine'
+                    
+                conversation = conversation_service.create_conversation(initial_specialty)
+            
+            # Store the ID as a string in the session
+            session['interactive_conversation_id'] = str(conversation.conversation_id)
             new_conversation = True
         else:
             # Get the existing conversation
-            conversation = conversation_service.get_conversation(session['interactive_conversation_id'])
+            conversation = conversation_service.get_conversation(conversation_id)
             if not conversation:
                 # If conversation not found, create a new one
                 conversation = conversation_service.create_conversation()
-                session['interactive_conversation_id'] = conversation.conversation_id
+                session['interactive_conversation_id'] = str(conversation.conversation_id)
                 new_conversation = True
         
-        # Clear any report-related session data when starting a new chat
-        if new_conversation and 'report_conversation_id' in session:
+        # Clear any report-related session data when starting/viewing a conversation
+        if 'report_conversation_id' in session:
             session.pop('report_conversation_id', None)
             
         logger.info(f"Rendering interactive chat template with conversation ID: {conversation.conversation_id}")
@@ -73,6 +98,8 @@ def interactive_chat_home():
         )
     except Exception as e:
         logger.error(f"Error in interactive_chat_home: {e}")
+        import traceback
+        logger.error(traceback.format_exc())
         flash('Ha ocurrido un error al cargar la conversación interactiva. Por favor intenta nuevamente.', 'danger')
         return redirect(url_for('web.index'))
 
@@ -80,8 +107,10 @@ def interactive_chat_home():
 async def send_message():
     """Send a message in the interactive chat."""
     try:
-        # Get the conversation ID
-        conversation_id = session.get('interactive_conversation_id')
+        # Get the conversation ID and ensure it's a string
+        current_id = session.get('interactive_conversation_id')
+        conversation_id = ensure_string_id(current_id)
+        
         if not conversation_id:
             return jsonify({"error": "No active conversation"}), 400
         
@@ -114,8 +143,10 @@ async def send_message():
 def get_conversation():
     """Get the current conversation."""
     try:
-        # Get the conversation ID
-        conversation_id = session.get('interactive_conversation_id')
+        # Get the conversation ID and ensure it's a string
+        current_id = session.get('interactive_conversation_id')
+        conversation_id = ensure_string_id(current_id)
+        
         if not conversation_id:
             return jsonify({"error": "No active conversation"}), 400
         
@@ -141,8 +172,10 @@ def get_conversation():
 async def generate_report():
     """Generate a medical report for the current conversation."""
     try:
-        # Get the conversation ID
-        conversation_id = session.get('interactive_conversation_id')
+        # Get the conversation ID and ensure it's a string
+        current_id = session.get('interactive_conversation_id')
+        conversation_id = ensure_string_id(current_id)
+        
         if not conversation_id:
             return jsonify({"error": "No active conversation"}), 400
         
@@ -162,7 +195,7 @@ async def generate_report():
         # Store the report in session for download later
         # Don't store the HTML in session, it's too large and causing issues
         # Instead, store the conversation_id which we can use to regenerate it
-        session['report_conversation_id'] = conversation_id
+        session['report_conversation_id'] = str(conversation_id)
         
         # Return the report HTML
         return jsonify({
@@ -181,8 +214,13 @@ async def generate_report():
 async def download_report():
     """Download the medical report as PDF."""
     try:
-        # Get the conversation ID from session or query parameter
-        conversation_id = request.args.get('id') or session.get('report_conversation_id') or session.get('interactive_conversation_id')
+        # Get the conversation ID from session or query parameter and ensure it's a string
+        query_id = request.args.get('id')
+        report_id = session.get('report_conversation_id')
+        interactive_id = session.get('interactive_conversation_id')
+        
+        conversation_id = ensure_string_id(query_id or report_id or interactive_id)
+        
         if not conversation_id:
             logger.error("No conversation ID found for PDF generation")
             return jsonify({"error": "No active conversation found"}), 400

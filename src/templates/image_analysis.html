@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+
+{% block title %}Análisis de Imágenes Médicas | Medical AI Assistants{% endblock %}
+
+{% block extra_css %}
+<style>
+    .preview-container {
+        position: relative;
+        margin-bottom: 1rem;
+        border: 2px dashed var(--primary-color);
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    
+    .preview-container.has-image {
+        border-style: solid;
+    }
+    
+    .image-preview {
+        max-width: 100%;
+        max-height: 300px;
+        border-radius: 5px;
+        display: none;
+    }
+    
+    .drop-text {
+        color: var(--text-color);
+        opacity: 0.7;
+    }
+    
+    .image-upload-label {
+        cursor: pointer;
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+    
+    .spinner-border {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .analysis-card {
+        transition: all 0.3s ease;
+    }
+    
+    .specialty-icon {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    .finding-item {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: rgba(0,0,0,0.03);
+    }
+    
+    .finding-item h5 {
+        color: var(--primary-color);
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3>Análisis de Imágenes Médicas</h3>
+                <small class="text-white">Powered by AI Vision</small>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form action="{{ url_for('image.analyze') }}" method="post" enctype="multipart/form-data" id="imageUploadForm">
+                            <div class="mb-3">
+                                <div class="preview-container" id="previewContainer">
+                                    <div class="drop-text" id="dropText">
+                                        <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+                                        <p>Arrastra una imagen aquí o <span class="image-upload-label">selecciona un archivo</span></p>
+                                    </div>
+                                    <img id="imagePreview" class="image-preview" alt="Vista previa de la imagen">
+                                </div>
+                                <input class="form-control d-none" type="file" id="image" name="image" accept="image/*" title="Seleccionar imagen médica para analizar" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Descripción del problema</label>
+                                <textarea class="form-control" id="description" name="description" rows="3" 
+                                    placeholder="Describa sus síntomas o brinde contexto para la imagen" required></textarea>
+                                <div class="form-text">Para un mejor análisis, proporcione detalles como duración de síntomas, exposiciones relevantes, etc.</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="bodyPart" class="form-label">Área del cuerpo</label>
+                                <select class="form-select" id="bodyPart" name="bodyPart" required>
+                                    <option value="" selected disabled>Seleccione el área del cuerpo</option>
+                                    <option value="skin">Piel</option>
+                                    <option value="joint">Articulaciones/Huesos</option>
+                                    <option value="eye">Ojos</option>
+                                    <option value="mouth">Boca/Garganta</option>
+                                    <option value="chest">Tórax</option>
+                                    <option value="abdomen">Abdomen</option>
+                                    <option value="head">Cabeza</option>
+                                    <option value="other">Otro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i> 
+                                Las imágenes serán procesadas por un modelo de IA para análisis preliminar. 
+                                Este análisis no constituye un diagnóstico médico.
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" id="analyzeBtn">
+                                <i class="fas fa-microscope me-2"></i> Analizar Imagen
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="col-lg-6" id="analysisSection">
+                        {% if analysis_result %}
+                        <div class="card analysis-card" id="latestResponse">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4>Resultado del Análisis</h4>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-light copy-response" 
+                                            data-response-id="analysisContent">
+                                        <i class="fas fa-copy"></i> Copiar
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-light print-response">
+                                        <i class="fas fa-print"></i> Imprimir
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <img src="{{ image_url }}" class="img-fluid rounded" style="max-height: 250px;" alt="Imagen analizada">
+                                </div>
+                                <div id="analysisContent" class="clinical-section">
+                                    <div class="clinical-header">
+                                        Análisis Preliminar
+                                    </div>
+                                    <div class="medical-record-section">
+                                        {{ analysis_result|safe }}
+                                    </div>
+                                    <div class="alert alert-warning mt-3">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        Este análisis es preliminar y no constituye un diagnóstico médico oficial.
+                                        Consulte con un profesional de la salud para una evaluación completa.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="card text-center d-flex justify-content-center align-items-center" style="height: 100%; min-height: 300px;">
+                            <div>
+                                <i class="fas fa-image fa-4x mb-3" style="color: var(--border-color);"></i>
+                                <h4>Análisis de Imágenes</h4>
+                                <p class="text-muted">Suba una imagen para recibir un análisis médico preliminar</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center py-5">
+                <div class="spinner-border text-primary mb-4" role="status">
+                    <span class="visually-hidden">Analizando...</span>
+                </div>
+                <h5 id="loadingModalLabel">Analizando imagen médica</h5>
+                <p class="text-muted">Nuestro modelo de IA está examinando la imagen. Este proceso puede tardar unos momentos...</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('imageUploadForm');
+        const fileInput = document.getElementById('image');
+        const previewContainer = document.getElementById('previewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+        const dropText = document.getElementById('dropText');
+        const loadingModal = new bootstrap.Modal(document.getElementById('loadingModal'));
+        
+        // Click en el contenedor activa el input de archivo
+        previewContainer.addEventListener('click', function() {
+            fileInput.click();
+        });
+        
+        // Funcionalidad de arrastrar y soltar
+        previewContainer.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            previewContainer.classList.add('border-primary');
+        });
+        
+        previewContainer.addEventListener('dragleave', function() {
+            previewContainer.classList.remove('border-primary');
+        });
+        
+        previewContainer.addEventListener('drop', function(e) {
+            e.preventDefault();
+            previewContainer.classList.remove('border-primary');
+            
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                updatePreview();
+            }
+        });
+        
+        // Actualizar vista previa cuando se selecciona un archivo
+        fileInput.addEventListener('change', updatePreview);
+        
+        function updatePreview() {
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    imagePreview.style.display = 'block';
+                    imagePreview.src = e.target.result;
+                    dropText.style.display = 'none';
+                    previewContainer.classList.add('has-image');
+                }
+                
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+        
+        // Mostrar modal de carga durante el envío
+        form.addEventListener('submit', function() {
+            if (form.checkValidity()) {
+                loadingModal.show();
+            }
+        });
+        
+        // Si ya hay una imagen mostrada
+        {% if image_url %}
+        imagePreview.style.display = 'block';
+        imagePreview.src = "{{ image_url }}";
+        dropText.style.display = 'none';
+        previewContainer.classList.add('has-image');
+        {% endif %}
+    });
+</script>
+{% endblock %} 

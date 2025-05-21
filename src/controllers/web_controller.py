@@ -40,6 +40,14 @@ def ensure_serializable(obj):
     else:
         return obj
 
+def ensure_string_id(conversation_id):
+    """Ensure the conversation ID is a string, not bytes."""
+    if isinstance(conversation_id, bytes):
+        return conversation_id.decode('utf-8', errors='replace')
+    elif conversation_id is not None:
+        return str(conversation_id)
+    return None
+
 @web_bp.route('/', methods=['GET'])
 def index():
     """Render the home page."""
@@ -51,20 +59,9 @@ def chat():
     try:
         # Initialize conversation if not exists
         new_conversation = False
-        conversation_id = None
         
         # Safely get conversation ID from session
-        try:
-            if 'interactive_conversation_id' in session:
-                # Ensure the ID is a string
-                raw_id = session.get('interactive_conversation_id')
-                if isinstance(raw_id, bytes):
-                    conversation_id = raw_id.decode('utf-8')
-                else:
-                    conversation_id = str(raw_id)
-        except Exception as session_err:
-            logger.error(f"Error retrieving conversation ID from session: {session_err}")
-            conversation_id = None
+        conversation_id = ensure_string_id(session.get('interactive_conversation_id'))
         
         # Check if we need a new conversation
         if not conversation_id or request.args.get('new', False):
@@ -110,16 +107,7 @@ async def send_message():
     """Send a message in the interactive chat."""
     try:
         # Get the conversation ID safely
-        conversation_id = None
-        try:
-            if 'interactive_conversation_id' in session:
-                raw_id = session.get('interactive_conversation_id')
-                if isinstance(raw_id, bytes):
-                    conversation_id = raw_id.decode('utf-8')
-                else:
-                    conversation_id = str(raw_id)
-        except Exception as session_err:
-            logger.error(f"Error retrieving conversation ID from session: {session_err}")
+        conversation_id = ensure_string_id(session.get('interactive_conversation_id'))
         
         if not conversation_id:
             return jsonify({"error": "No active conversation"}), 400
@@ -154,16 +142,7 @@ async def switch_specialty():
     """Switch the specialty in the interactive chat."""
     try:
         # Get the conversation ID safely
-        conversation_id = None
-        try:
-            if 'interactive_conversation_id' in session:
-                raw_id = session.get('interactive_conversation_id')
-                if isinstance(raw_id, bytes):
-                    conversation_id = raw_id.decode('utf-8')
-                else:
-                    conversation_id = str(raw_id)
-        except Exception as session_err:
-            logger.error(f"Error retrieving conversation ID from session: {session_err}")
+        conversation_id = ensure_string_id(session.get('interactive_conversation_id'))
         
         if not conversation_id:
             return jsonify({"error": "No active conversation"}), 400

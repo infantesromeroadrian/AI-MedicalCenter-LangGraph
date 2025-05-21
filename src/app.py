@@ -1,98 +1,146 @@
-from flask import Flask
-from flask_session import Session
+"""
+Aplicación principal de Medical AI Assistants.
+Integra los distintos módulos y controladores del sistema.
+"""
 import os
-import logging
 from pathlib import Path
-import datetime
-import json
+import logging
+from flask import Flask, render_template, request, jsonify, session
+from flask_session import Session
+from dotenv import load_dotenv
+from datetime import datetime
 import uuid
 
-from src.config.config import FLASK_SECRET_KEY, FLASK_DEBUG, BASE_DIR
-from src.controllers.api_controller import api_bp
-from src.controllers.web_controller import web_bp
-from src.controllers.interactive_controller import interactive_bp
+# Cargar variables de entorno
+load_dotenv()
 
-# Set up logging
+# Configurar logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/app.log'),
+        logging.FileHandler("logs/app.log"),
         logging.StreamHandler()
     ]
 )
 
 logger = logging.getLogger(__name__)
 
-def create_app():
-    """Create and configure the Flask application."""
-    app = Flask(__name__, 
-                template_folder=str(BASE_DIR / "src" / "templates"),
-                static_folder=str(BASE_DIR / "src" / "static"))
-    
-    # Configure Flask
-    app.config['SECRET_KEY'] = FLASK_SECRET_KEY
-    app.config['DEBUG'] = FLASK_DEBUG
-    
-    # Force template reload
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-    
-    # Session configuration
-    app.config['SESSION_TYPE'] = 'filesystem'
-    app.config['SESSION_FILE_DIR'] = os.path.join(BASE_DIR, 'flask_session')
-    app.config['SESSION_PERMANENT'] = False
-    app.config['SESSION_USE_SIGNER'] = False  # Disable signing to avoid bytes issues
-    app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(hours=5)
-    app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
-    app.config['SESSION_COOKIE_HTTPONLY'] = True
-    
-    # Remove old session files before starting
+def init_agents(app):
+    """Inicializa los agentes médicos"""
     try:
-        import shutil
-        session_dir = os.path.join(BASE_DIR, 'flask_session')
-        if os.path.exists(session_dir):
-            shutil.rmtree(session_dir)
-            os.makedirs(session_dir, exist_ok=True)
-            logger.info("Cleared existing session files")
+        # Importar aquí para evitar carga innecesaria si no se usa
+        from src.controllers.agent_controller import AgentController
+        
+        # Almacenar el controlador en la aplicación para su uso posterior
+        app.agent_controller = AgentController()
+        logger.info("Sistema de agentes médicos inicializado correctamente")
     except Exception as e:
-        logger.error(f"Error clearing session files: {e}")
+        logger.error(f"Error al inicializar sistema de agentes: {str(e)}")
+
+def create_app():
+    """
+    Crea y configura la aplicación Flask
     
-    # Initialize session
+    Returns:
+        Flask: Aplicación Flask configurada
+    """
+    # Crear directorios necesarios si no existen
+    os.makedirs("logs", exist_ok=True)
+    os.makedirs("flask_session", exist_ok=True)
+    
+    # Inicializar la aplicación Flask
+    app = Flask(__name__)
+    
+    # Configuración de la aplicación
+    app.config.update(
+        SECRET_KEY=os.getenv("SECRET_KEY", "dev-key-12345"),
+        SESSION_TYPE="filesystem",
+        SESSION_FILE_DIR="flask_session",
+        SESSION_PERMANENT=False,
+        SESSION_USE_SIGNER=False,  # Disable signer which can cause encoding issues
+        PERMANENT_SESSION_LIFETIME=86400,  # 24 horas
+        JSON_SORT_KEYS=False,
+        MAX_CONTENT_LENGTH=16 * 1024 * 1024  # 16 MB max para cargas de archivos
+    )
+    
+    # Añadir la función now() al contexto de Jinja2
+    app.jinja_env.globals.update(now=datetime.now)
+    
+    # Inicializar extensiones
     Session(app)
     
-    # Custom JSON encoder for Flask
-    class CustomJSONEncoder(json.JSONEncoder):
-        def default(self, obj):
-            if isinstance(obj, bytes):
-                return obj.decode('utf-8', errors='replace')
-            if hasattr(obj, 'isoformat'):
-                return obj.isoformat()
-            return super().default(obj)
+    # Define middleware to sanitize session data to prevent binary values
+    @app.before_request
+    def sanitize_session():
+        if session:
+            # Ensure conversion of bytes to strings for any session value
+            for key in list(session.keys()):
+                if isinstance(session[key], bytes):
+                    try:
+                        session[key] = session[key].decode('utf-8', errors='replace')
+                    except Exception as e:
+                        # If we can't decode it, just remove it to avoid issues
+                        logger.warning(f"Removing problematic session key {key}: {e}")
+                        session.pop(key, None)
     
-    app.json_encoder = CustomJSONEncoder
+    # Registrar blueprints
+    from src.controllers.web_controller import web_bp
+    # Comentado porque no existe el archivo
+    # from src.controllers.chat_controller import chat_bp
+    from src.controllers.interactive_controller import interactive_bp
     
-    # Register blueprints
-    app.register_blueprint(api_bp, url_prefix='/api')
-    app.register_blueprint(web_bp)
-    app.register_blueprint(interactive_bp)
+    # Importar y registrar los nuevos blueprints
+    from src.controllers.image_controller import image_bp
     
-    # Create required directories
-    os.makedirs(BASE_DIR / "logs", exist_ok=True)
-    os.makedirs(BASE_DIR / "data" / "conversations", exist_ok=True)
-    os.makedirs(BASE_DIR / "flask_session", exist_ok=True)
+    app.register_blueprint(web_bp, url_prefix='/')
+    # app.register_blueprint(chat_bp, url_prefix='/chat')
+    app.register_blueprint(interactive_bp, url_prefix='/interactive')
+    app.register_blueprint(image_bp, url_prefix='/images')
     
-    # Add template context processors
-    @app.context_processor
-    def utility_processor():
-        def now():
-            return datetime.datetime.now()
-        return dict(now=now)
+    # Manejar errores HTTP comunes
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return jsonify({
+            "error": "Not Found",
+            "message": "The requested URL was not found on the server."
+        }), 404
     
-    # Log app startup
-    logger.info("Medical Agents application started")
+    @app.errorhandler(500)
+    def server_error(e):
+        logger.error(f"Error interno del servidor: {str(e)}")
+        return jsonify({
+            "error": "Internal Server Error",
+            "message": "The server encountered an internal error and was unable to complete your request."
+        }), 500
+    
+    # Inicializar el sistema de agentes directamente en lugar de usar before_first_request
+    init_agents(app)
+    
+    # Ruta para revisión de estado
+    @app.route('/health')
+    def health_check():
+        return jsonify({
+            "status": "healthy",
+            "version": os.getenv("APP_VERSION", "dev"),
+            "environment": os.getenv("FLASK_ENV", "development")
+        })
+    
+    # Añadir endpoint para health check en /api/health
+    @app.route('/api/health')
+    def api_health_check():
+        return jsonify({
+            "status": "healthy",
+            "version": os.getenv("APP_VERSION", "dev"),
+            "environment": os.getenv("FLASK_ENV", "development")
+        })
     
     return app
 
+# Crear la aplicación
+app = create_app()
+
 if __name__ == "__main__":
-    app = create_app()
-    app.run(host="0.0.0.0", port=5000, debug=FLASK_DEBUG) 
+    # Ejecutar la aplicación en modo de desarrollo
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True) 

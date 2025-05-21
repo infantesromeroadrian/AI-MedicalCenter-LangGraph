@@ -1,7 +1,7 @@
 import logging
 import asyncio
 from typing import Dict, List, Optional, Any
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import os
 import traceback
@@ -26,8 +26,11 @@ class ConversationService:
         self.conversation_dir = BASE_DIR / "data" / "conversations"
         self.llm_service = LLMService()  # Para clasificación de especialidad
         
-        # Umbral de confianza para cambios automáticos de especialidad (ajustado a un valor más permisivo)
-        self.specialty_confidence_threshold = 0.6
+        # Umbral de confianza para cambios automáticos de especialidad (ajustado a un valor más estricto)
+        self.specialty_confidence_threshold = 0.85
+        
+        # Tracking para cambios de especialidad
+        self.specialty_changes = {}  # Dict[conversation_id, Dict[info]]
         
         # Ensure directory exists
         os.makedirs(self.conversation_dir, exist_ok=True)
@@ -122,6 +125,74 @@ class ConversationService:
         
         return conversation
     
+    async def create_conversation_with_triage(self, initial_query: str = None) -> InteractiveConversation:
+        """Create a new conversation with initial triage to determine the best specialty."""
+        conversation_id = generate_id()
+        
+        # Default to internal_medicine if no initial query
+        initial_specialty = "internal_medicine"
+        
+        # If there's an initial query, use triage to determine the best specialty
+        if initial_query:
+            try:
+                specialty_classification = await self.llm_service.classify_specialty(initial_query)
+                recommended_specialty = specialty_classification["recommended_specialty"]
+                confidence = specialty_classification["confidence"]
+                
+                # Only use the recommended specialty if confidence is high enough
+                if confidence >= 0.7:
+                    initial_specialty = recommended_specialty
+                    logger.info(f"Triage inicial recomendó especialidad {initial_specialty} con confianza {confidence}")
+            except Exception as e:
+                logger.error(f"Error en triaje inicial: {e}")
+        
+        # Create the conversation with the determined specialty
+        conversation = InteractiveConversation(
+            conversation_id=conversation_id,
+            active_specialty=initial_specialty,
+            all_specialties=[initial_specialty]
+        )
+        
+        # Add welcome message
+        conversation.add_message(
+            content=f"Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en {initial_specialty}. "
+                   f"¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+            sender="system"
+        )
+        
+        # If there was an initial query, add it to the conversation as user message
+        if initial_query:
+            conversation.add_message(content=initial_query, sender="user")
+            
+            # Process the message to get the initial response from the specialist
+            try:
+                specialty = conversation.active_specialty
+                agent = self._get_agent(specialty)
+                
+                # Create context of the conversation
+                context = {
+                    "conversation_history": [conversation.messages[0].dict()]  # Only the welcome message
+                }
+                
+                # Process the query with the current specialist
+                response = await agent.process_query(initial_query, context=context)
+                agent_message = response.response
+                
+                # Add specialist's response
+                conversation.add_message(content=agent_message, sender=specialty)
+            except Exception as e:
+                logger.error(f"Error processing initial query: {e}")
+                # Add a generic response if there's an error
+                conversation.add_message(
+                    content=f"Como especialista en {initial_specialty}, estoy listo para ayudarte. Por favor, cuéntame más sobre tu consulta.",
+                    sender=initial_specialty
+                )
+        
+        self.conversations[conversation_id] = conversation
+        self._save_conversation(conversation_id)
+        
+        return conversation
+    
     def get_conversation(self, conversation_id: str) -> Optional[InteractiveConversation]:
         """Get a conversation by ID."""
         return self.conversations.get(conversation_id)
@@ -153,10 +224,37 @@ class ConversationService:
             
             logger.info(f"Clasificación especialidad: {recommended_specialty} (confianza: {confidence}) - Razonamiento: {reasoning}")
             
+            # Verificar si hubo cambios recientes de especialidad para evitar cambios rápidos
+            can_switch = True
+            last_switch_time = None
+            
+            if conversation_id in self.specialty_changes:
+                changes = self.specialty_changes[conversation_id]
+                last_switch_time = changes.get('last_switch_time')
+                switch_count = changes.get('count', 0)
+                
+                # No permitir más de 2 cambios en los últimos 5 minutos
+                if last_switch_time and (datetime.now() - last_switch_time) < timedelta(minutes=5):
+                    if switch_count >= 2:
+                        can_switch = False
+                        logger.info(f"Bloqueando cambio automático de especialidad - demasiados cambios recientes")
+            
             # Si el especialista recomendado es diferente al actual y hay buena confianza, hacer un cambio
-            # Usamos el umbral configurado en self.specialty_confidence_threshold (ahora 0.6)
-            if recommended_specialty != current_specialty and confidence >= self.specialty_confidence_threshold:
+            # Usamos el umbral configurado en self.specialty_confidence_threshold (ahora 0.85)
+            if recommended_specialty != current_specialty and confidence >= self.specialty_confidence_threshold and can_switch:
                 logger.info(f"Orquestador cambiando automáticamente de {current_specialty} a {recommended_specialty} (confianza: {confidence})")
+                
+                # Registrar el cambio de especialidad
+                now = datetime.now()
+                if conversation_id not in self.specialty_changes:
+                    self.specialty_changes[conversation_id] = {'count': 1, 'last_switch_time': now}
+                else:
+                    # Reiniciar contador si pasaron más de 10 minutos desde el último cambio
+                    if last_switch_time and (now - last_switch_time) > timedelta(minutes=10):
+                        self.specialty_changes[conversation_id] = {'count': 1, 'last_switch_time': now}
+                    else:
+                        self.specialty_changes[conversation_id]['count'] = self.specialty_changes[conversation_id].get('count', 0) + 1
+                        self.specialty_changes[conversation_id]['last_switch_time'] = now
                 
                 # Añadir mensaje del sistema explicando el cambio
                 conversation.add_message(

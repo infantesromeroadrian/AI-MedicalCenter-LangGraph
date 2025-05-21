@@ -29,7 +29,8 @@ MEDICAL_SPECIALTIES = [
     "dermatology",
     "psychiatry",
     "internal_medicine",
-    "emergency_medicine"
+    "emergency_medicine",
+    "traumatology"
 ]
 
 # Agent configuration
