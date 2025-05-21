@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  medical-ai-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3567:3567"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./src/templates:/app/src/templates
+    environment:
+      - FLASK_APP=src.app
+      - FLASK_DEBUG=0
+      - USE_LANGGRAPH=True
+      - LLM_PROVIDER=openai
+      - TEMPLATES_AUTO_RELOAD=True
+      # Las claves API se cargarán desde el archivo .env
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3567/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 

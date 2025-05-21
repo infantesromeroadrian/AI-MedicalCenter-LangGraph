@@ -1,0 +1,53 @@
+{
+  "conversation_id": "0fe9227e-29c7-4882-994b-017ec08ec524",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en internal_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-21T10:35:23.258593"
+    },
+    {
+      "content": "hola",
+      "sender": "user",
+      "timestamp": "2025-05-21T10:35:26.521733"
+    },
+    {
+      "content": "\u00a1Hola! Soy un asistente m\u00e9dico especializado en medicina interna. \u00bfEn qu\u00e9 puedo ayudarte hoy? Si tienes alg\u00fan s\u00edntoma o preocupaci\u00f3n de salud, por favor cu\u00e9ntame un poco m\u00e1s para poder orientarte mejor.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T10:35:31.191184"
+    },
+    {
+      "content": "me pica el brazo",
+      "sender": "user",
+      "timestamp": "2025-05-21T10:35:43.650000"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en dermatology puede responder mejor a tu consulta. Motivo: The query 'me pica el brazo' translates to 'my arm itches', which is typically related to skin issues. Dermatology specializes in skin conditions, making it the most appropriate specialty.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-21T10:35:46.439539"
+    },
+    {
+      "content": "Hola, gracias por venir a consulta. Soy un m\u00e9dico especializado en medicina interna y estoy aqu\u00ed para ayudarte. Entiendo que tienes picaz\u00f3n en el brazo. Me gustar\u00eda hacerte algunas preguntas para entender mejor tu situaci\u00f3n.\n\n1. \u00bfCu\u00e1ndo comenz\u00f3 la picaz\u00f3n en tu brazo? \u00bfHa sido constante o intermitente?\n2. \u00bfHas notado alg\u00fan enrojecimiento, erupci\u00f3n o cambios en la piel donde sientes la picaz\u00f3n?\n3. \u00bfHay algo que parezca empeorar o mejorar la picaz\u00f3n, como el calor, el fr\u00edo, alguna crema o loci\u00f3n?\n\nCon esta informaci\u00f3n, podr\u00e9 orientarte mejor sobre qu\u00e9 podr\u00eda estar causando la picaz\u00f3n y qu\u00e9 pasos seguir a continuaci\u00f3n.",
+      "sender": "dermatology",
+      "timestamp": "2025-05-21T10:35:50.312116"
+    },
+    {
+      "content": "el picazon comenzo hace unos meses, solo  pica cuando hace calor o hago deporte, si se enrojece,",
+      "sender": "user",
+      "timestamp": "2025-05-21T10:38:24.271004"
+    },
+    {
+      "content": "Hola, gracias por compartir tu preocupaci\u00f3n conmigo. Soy un asistente m\u00e9dico y estoy aqu\u00ed para ayudarte. Vamos a tratar de entender mejor lo que est\u00e1 ocurriendo con tu picaz\u00f3n.\n\nPara comenzar, me gustar\u00eda hacerte algunas preguntas:\n\n1. \u00bfEn qu\u00e9 partes del cuerpo sientes m\u00e1s la picaz\u00f3n? \u00bfEs en \u00e1reas espec\u00edficas o en todo el cuerpo?\n2. \u00bfHas notado alg\u00fan otro s\u00edntoma asociado, como sarpullido, hinchaz\u00f3n o descamaci\u00f3n de la piel?\n3. \u00bfTienes antecedentes de alergias o alguna condici\u00f3n de la piel, como eczema o psoriasis?\n\nCon esta informaci\u00f3n, podr\u00e9 orientarte mejor sobre lo que podr\u00eda estar ocurriendo y qu\u00e9 pasos seguir.",
+      "sender": "dermatology",
+      "timestamp": "2025-05-21T10:38:29.685275"
+    }
+  ],
+  "active_specialty": "dermatology",
+  "all_specialties": [
+    "internal_medicine",
+    "dermatology"
+  ],
+  "context": {},
+  "created_at": "2025-05-21T10:35:23.258569",
+  "updated_at": "2025-05-21T10:38:29.685282"
+}

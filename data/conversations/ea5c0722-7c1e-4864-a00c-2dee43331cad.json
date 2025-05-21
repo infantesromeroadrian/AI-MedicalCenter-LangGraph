@@ -1,0 +1,88 @@
+{
+  "conversation_id": "ea5c0722-7c1e-4864-a00c-2dee43331cad",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en internal_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-21T14:36:49.116765"
+    },
+    {
+      "content": "Hola",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:37:11.019504"
+    },
+    {
+      "content": "\u00a1Hola! Bienvenido a la consulta. Soy un m\u00e9dico especializado en medicina interna. \u00bfEn qu\u00e9 puedo ayudarte hoy? \u00bfTienes alg\u00fan s\u00edntoma o preocupaci\u00f3n espec\u00edfica que te gustar\u00eda discutir?",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:37:16.199417"
+    },
+    {
+      "content": "me duele la nariz despues de un balonazo en ella jugando futbol",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:37:39.411265"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en emergency_medicine puede responder mejor a tu consulta. Motivo: The patient is experiencing acute pain in the nose after a direct impact, which may require immediate assessment for fractures or other injuries.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-21T14:37:41.512566"
+    },
+    {
+      "content": "\u00a1Hola! Lamento escuchar que te duele la nariz despu\u00e9s de un balonazo. Para entender mejor tu situaci\u00f3n, me gustar\u00eda hacerte algunas preguntas:\n\n1. \u00bfCu\u00e1ndo ocurri\u00f3 el golpe y desde entonces, has notado alg\u00fan cambio en el dolor, como si ha aumentado o disminuido?\n2. \u00bfHas tenido alg\u00fan sangrado nasal o dificultad para respirar por la nariz desde el impacto?\n3. \u00bfPuedes describir si hay hinchaz\u00f3n visible o moretones alrededor de la nariz?\n\nCon esta informaci\u00f3n, podr\u00e9 orientarte mejor sobre los pasos a seguir.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-21T14:37:44.402392"
+    },
+    {
+      "content": "hace una semana, y cada dia duele mas no deja de sangrar cada x horas",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:38:39.018834"
+    },
+    {
+      "content": "Hola de nuevo. Gracias por la informaci\u00f3n que ya has compartido. Vamos a profundizar un poco m\u00e1s para entender mejor tu situaci\u00f3n. \n\n1. Mencionaste que el dolor ha ido aumentando y que hay sangrado cada ciertas horas. \u00bfPodr\u00edas decirme si el sangrado es abundante o m\u00e1s bien leve? \u00bfCu\u00e1nto tiempo dura cada episodio de sangrado?\n\n2. Adem\u00e1s del dolor y el sangrado, \u00bfhas notado alg\u00fan otro s\u00edntoma, como dificultad para respirar, cambios en el sentido del olfato, o visi\u00f3n borrosa?\n\n3. \u00bfHas tomado alg\u00fan medicamento para el dolor o el sangrado? Si es as\u00ed, \u00bfha sido efectivo?\n\nCon esta informaci\u00f3n, podr\u00e9 darte recomendaciones m\u00e1s precisas sobre c\u00f3mo proceder.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-21T14:38:46.216925"
+    },
+    {
+      "content": "es abundante el sangrado , y dura como una hora, si perdi el olfato bastante y me lloran los ojos, he tomado parcetamol, no ha sido efectivo.",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:40:12.222970"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en internal_medicine puede responder mejor a tu consulta. Motivo: The symptoms described, including heavy bleeding, loss of smell, and eye watering, suggest a systemic issue that could be related to an infection or other internal condition. Internal medicine specialists are well-equipped to handle a broad range of symptoms and can provide a comprehensive evaluation.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-21T14:40:16.577553"
+    },
+    {
+      "content": "Gracias por compartir m\u00e1s detalles sobre tu situaci\u00f3n. Vamos a seguir explorando para entender mejor lo que est\u00e1 ocurriendo.\n\n1. Adem\u00e1s de la p\u00e9rdida del olfato y el lagrimeo de los ojos, \u00bfhas notado alg\u00fan otro s\u00edntoma como fiebre, dolor de cabeza intenso, o congesti\u00f3n nasal?\n\n2. \u00bfTienes antecedentes de alergias, sinusitis u otros problemas respiratorios que puedan estar relacionados con estos s\u00edntomas?\n\n3. \u00bfHas tenido alguna lesi\u00f3n previa en la nariz o cirug\u00edas que puedan influir en tu situaci\u00f3n actual?\n\nCon esta informaci\u00f3n adicional, podr\u00e9 ofrecerte recomendaciones m\u00e1s precisas.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:40:19.707773"
+    },
+    {
+      "content": "algo de fiebre en las noches y dolor de cabeza si tengo sinusitis no he tenido cirugias previas",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:41:01.188786"
+    },
+    {
+      "content": "\u00a1Hola! Gracias por la informaci\u00f3n adicional que has compartido. Vamos a seguir explorando algunos aspectos para entender mejor tu situaci\u00f3n.\n\n1. Mencionaste que tienes fiebre por las noches. \u00bfPodr\u00edas decirme si has medido tu temperatura y, de ser as\u00ed, cu\u00e1l ha sido la temperatura m\u00e1s alta que has registrado?\n\n2. Adem\u00e1s del paracetamol, \u00bfhas intentado alg\u00fan otro tratamiento o remedio para aliviar los s\u00edntomas, como descongestionantes nasales o antihistam\u00ednicos?\n\nCon esta informaci\u00f3n, podr\u00e9 ofrecerte recomendaciones m\u00e1s precisas sobre c\u00f3mo proceder.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:41:08.459349"
+    },
+    {
+      "content": "39 grados en la noche pero en la m\u00f1ana se va solo parcetamol",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:41:46.029004"
+    },
+    {
+      "content": "Gracias por compartir toda esta informaci\u00f3n. Vamos a resumir lo que hemos discutido y te dar\u00e9 algunas recomendaciones para seguir adelante.\n\n**Resumen de la consulta:**\n- Tienes fiebre por las noches, alcanzando hasta 39 grados, que disminuye por la ma\u00f1ana.\n- Has experimentado sangrado nasal abundante que dura aproximadamente una hora.\n- Has perdido el sentido del olfato y tienes lagrimeo en los ojos.\n- Tienes antecedentes de sinusitis, pero no has tenido cirug\u00edas previas en la nariz.\n- Has estado tomando paracetamol, pero no ha sido efectivo para aliviar todos los s\u00edntomas.\n\n**RECOMENDACIONES:**\n1. **Consulta m\u00e9dica presencial:** Dado el sangrado nasal abundante y la p\u00e9rdida del olfato, te recomendar\u00eda que busques atenci\u00f3n m\u00e9dica lo antes posible. Estos s\u00edntomas podr\u00edan indicar una infecci\u00f3n o una complicaci\u00f3n de tu sinusitis que necesita ser evaluada en persona.\n\n2. **Hidrataci\u00f3n y descanso:** Aseg\u00farate de mantenerte bien hidratado y descansar lo suficiente. La fiebre puede deshidratarte, as\u00ed que bebe l\u00edquidos regularmente.\n\n3. **Control de la fiebre:** Contin\u00faa usando paracetamol para controlar la fiebre, pero sigue las instrucciones de dosificaci\u00f3n adecuadas. Si la fiebre persiste o empeora, es importante que lo informes a un m\u00e9dico.\n\n4. **Evitar irritantes:** Trata de evitar el humo, el polvo y otros irritantes que puedan empeorar los s\u00edntomas nasales.\n\n5. **Descongestionantes nasales:** Considera el uso de descongestionantes nasales o antihistam\u00ednicos, pero consulta con un m\u00e9dico o farmac\u00e9utico antes de usarlos, especialmente si tienes otras condiciones m\u00e9dicas.\n\n**Signos de alarma:**\n- Si el sangrado nasal no se detiene o se vuelve m\u00e1s frecuente.\n- Si la fiebre supera los 39 grados y no baja con paracetamol.\n- Si experimentas dificultad para respirar o dolor de cabeza muy intenso.\n\nEs importante que sigas estas recomendaciones y busques atenci\u00f3n m\u00e9dica para una evaluaci\u00f3n m\u00e1s detallada. Espero que te sientas mejor pronto.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:42:08.180854"
+    }
+  ],
+  "active_specialty": "internal_medicine",
+  "all_specialties": [
+    "internal_medicine",
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-21T14:36:49.116741",
+  "updated_at": "2025-05-21T14:42:08.180861"
+}

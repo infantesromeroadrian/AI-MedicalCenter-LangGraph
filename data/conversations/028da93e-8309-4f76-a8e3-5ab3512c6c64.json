@@ -1,0 +1,17 @@
+{
+  "conversation_id": "028da93e-8309-4f76-a8e3-5ab3512c6c64",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en internal_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-21T14:12:36.459250"
+    }
+  ],
+  "active_specialty": "internal_medicine",
+  "all_specialties": [
+    "internal_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-21T14:12:36.459228",
+  "updated_at": "2025-05-21T14:12:36.459254"
+}

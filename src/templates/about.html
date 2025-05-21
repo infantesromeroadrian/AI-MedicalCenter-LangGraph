@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Medical AI Assistants - About{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">About Medical AI Assistants</h3>
+            </div>
+            <div class="card-body">
+                <h4 class="mb-3">Our Mission</h4>
+                <p>
+                    Medical AI Assistants is a platform designed to provide AI-powered medical information from multiple specialist perspectives. 
+                    Our system utilizes advanced language models and a multi-agent approach to analyze medical queries from different medical specialties.
+                </p>
+                
+                <h4 class="mb-3 mt-4">How It Works</h4>
+                <p>
+                    When you submit a question, our system performs the following steps:
+                </p>
+                
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ol class="mb-0">
+                            <li class="mb-3">
+                                <strong>Emergency Detection:</strong> First, we scan for potential medical emergencies and provide appropriate warnings if detected.
+                            </li>
+                            <li class="mb-3">
+                                <strong>Medical Triage:</strong> Our AI determines which medical specialties are most relevant to your question.
+                            </li>
+                            <li class="mb-3">
+                                <strong>Multi-Specialist Consultation:</strong> We route your question to AI agents specialized in the relevant medical fields.
+                            </li>
+                            <li class="mb-3">
+                                <strong>Consensus Building:</strong> The responses from different specialists are combined into a comprehensive answer.
+                            </li>
+                            <li>
+                                <strong>Recommendations:</strong> Practical advice and next steps are provided based on the collective expertise.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <h4 class="mb-3">Technology</h4>
+                <p>
+                    Our platform is built using LangGraph, a framework for creating AI agent systems with the following components:
+                </p>
+                
+                <ul>
+                    <li>Advanced large language models from Groq for generating responses</li>
+                    <li>LangGraph for coordinating multiple specialized agents</li>
+                    <li>Flask web framework for the user interface</li>
+                </ul>
+                
+                <div class="alert alert-warning mt-4">
+                    <h5><i class="fas fa-exclamation-triangle"></i> Important Disclaimer</h5>
+                    <p>
+                        This system is for informational purposes only and is not a replacement for professional medical advice or treatment.
+                        The AI assistants provide general information based on their training data, but cannot diagnose conditions or prescribe treatments.
+                    </p>
+                    <p class="mb-0">
+                        Always consult with qualified healthcare professionals for medical concerns.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">Development Team</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    This project was developed as a demonstration of multi-agent AI systems in healthcare.
+                    It showcases how multiple specialized AI agents can collaborate to provide more comprehensive information.
+                </p>
+                
+                <h5 class="mt-4">Technologies Used</h5>
+                <div class="row mt-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-project-diagram fa-2x text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-0">LangGraph</h6>
+                                <small class="text-muted">Agent coordination framework</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-brain fa-2x text-danger me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Groq LLMs</h6>
+                                <small class="text-muted">Advanced language models</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-flask fa-2x text-success me-3"></i>
+                            <div>
+                                <h6 class="mb-0">Flask</h6>
+                                <small class="text-muted">Web framework</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

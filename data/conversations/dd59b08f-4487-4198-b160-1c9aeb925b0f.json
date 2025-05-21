@@ -1,0 +1,88 @@
+{
+  "conversation_id": "dd59b08f-4487-4198-b160-1c9aeb925b0f",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en internal_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-21T14:53:27.490651"
+    },
+    {
+      "content": "Hola",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:53:32.818992"
+    },
+    {
+      "content": "\u00a1Hola! Es un placer saludarte. Para poder ayudarte mejor, me gustar\u00eda saber un poco m\u00e1s sobre c\u00f3mo te sientes. \u00bfPodr\u00edas contarme qu\u00e9 s\u00edntomas est\u00e1s experimentando? \u00bfCu\u00e1ndo comenzaron estos s\u00edntomas?",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:53:37.727267"
+    },
+    {
+      "content": "me duele la nariz y me sangra despues de un golpe de balon",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:54:05.564077"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en emergency_medicine puede responder mejor a tu consulta. Motivo: The patient is experiencing pain and bleeding from the nose after a trauma, which may require immediate assessment and treatment to rule out fractures or other serious injuries.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-21T14:54:08.046809"
+    },
+    {
+      "content": "Lamento escuchar que te encuentras con dolor y sangrado en la nariz. Para poder ayudarte mejor, me gustar\u00eda hacerte algunas preguntas:\n\n1. \u00bfCu\u00e1ndo ocurri\u00f3 el golpe con el bal\u00f3n y cu\u00e1nto tiempo ha pasado desde entonces?\n2. \u00bfHas notado si el sangrado es abundante o si se detiene r\u00e1pidamente?\n3. \u00bfSientes alg\u00fan otro s\u00edntoma, como hinchaz\u00f3n, dificultad para respirar por la nariz o cambios en la forma de la nariz?\n\nCon esta informaci\u00f3n podr\u00e9 orientarte mejor sobre los siguientes pasos a seguir.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-21T14:54:12.011802"
+    },
+    {
+      "content": "hace 2 meses, el sangrado es abundante me sangra cada hora y durante una hora, me da fiebre en las noches de 39 grados por la noche",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:55:01.312991"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en internal_medicine puede responder mejor a tu consulta. Motivo: The symptoms described include abnormal bleeding and fever, which could indicate a systemic issue that requires a broad diagnostic approach. Internal medicine specialists are well-equipped to handle such cases and can coordinate further specialized care if needed.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-21T14:55:04.071590"
+    },
+    {
+      "content": "\u00a1Hola de nuevo! Lamento que est\u00e9s pasando por esto. Quisiera hacerte algunas preguntas m\u00e1s para entender mejor tu situaci\u00f3n:\n\n1. \u00bfHas notado alg\u00fan otro s\u00edntoma adem\u00e1s del sangrado y la fiebre, como dolor de cabeza, mareos o fatiga?\n2. \u00bfTienes antecedentes de problemas de sangrado o alguna condici\u00f3n m\u00e9dica que pueda afectar la coagulaci\u00f3n de la sangre?\n3. \u00bfEst\u00e1s tomando alg\u00fan medicamento, como anticoagulantes o aspirina, que pueda estar afectando el sangrado?\n\nCon esta informaci\u00f3n, podr\u00e9 orientarte mejor sobre los siguientes pasos a seguir.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:55:09.034323"
+    },
+    {
+      "content": "no nada mas",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:55:21.668906"
+    },
+    {
+      "content": "\u00a1Hola de nuevo! Gracias por la informaci\u00f3n que ya me has proporcionado. Me gustar\u00eda hacerte algunas preguntas m\u00e1s para entender mejor tu situaci\u00f3n:\n\n1. \u00bfHas tenido alg\u00fan cambio en tu peso recientemente, sin raz\u00f3n aparente?\n2. \u00bfHas notado moretones en otras partes del cuerpo sin haber tenido golpes o lesiones?\n3. \u00bfTienes antecedentes familiares de problemas de sangrado o enfermedades hematol\u00f3gicas?\n\nCon esta informaci\u00f3n, podr\u00e9 orientarte mejor sobre los siguientes pasos a seguir.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:55:29.568234"
+    },
+    {
+      "content": "si baje de peso, no nada mas",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:55:46.228487"
+    },
+    {
+      "content": "\u00a1Hola de nuevo! Gracias por seguir compartiendo informaci\u00f3n conmigo. Entiendo que has mencionado una p\u00e9rdida de peso. Me gustar\u00eda explorar un poco m\u00e1s sobre esto y otros aspectos que podr\u00edan estar relacionados con tus s\u00edntomas. Aqu\u00ed van algunas preguntas adicionales:\n\n1. \u00bfCu\u00e1nto peso has perdido y en qu\u00e9 periodo de tiempo ocurri\u00f3 esta p\u00e9rdida?\n2. \u00bfHas notado alg\u00fan cambio en tu apetito o en tus h\u00e1bitos alimenticios?\n3. \u00bfHas experimentado sudoraciones nocturnas o cambios en tus patrones de sue\u00f1o?\n\nCon esta informaci\u00f3n, podr\u00e9 tener una mejor idea de lo que podr\u00eda estar ocurriendo y c\u00f3mo podemos proceder.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:55:52.440638"
+    },
+    {
+      "content": "30 kilos en 1 mes he comido exactamente igual y si he sudado en las noches",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:56:17.566850"
+    },
+    {
+      "content": "Gracias por compartir toda esta informaci\u00f3n. Vamos a resumir lo que hemos discutido y te proporcionar\u00e9 algunas recomendaciones y un plan de acci\u00f3n.\n\n**RESUMEN DE LA CONSULTA:**\n- Has experimentado una p\u00e9rdida de peso significativa de 30 kilos en un mes sin cambios en tu dieta.\n- Has mencionado sudoraciones nocturnas.\n- No has reportado otros s\u00edntomas como moretones inexplicables o antecedentes familiares de problemas de sangrado.\n\n**RECOMENDACIONES:**\n1. **Consulta M\u00e9dica Inmediata:** Te recomendar\u00eda que busques atenci\u00f3n m\u00e9dica lo antes posible. La p\u00e9rdida de peso r\u00e1pida y las sudoraciones nocturnas pueden ser signos de una condici\u00f3n m\u00e9dica subyacente que necesita ser evaluada por un profesional de salud.\n   \n2. **Pruebas Diagn\u00f3sticas:** Es probable que tu m\u00e9dico te recomiende realizar algunas pruebas de laboratorio, como an\u00e1lisis de sangre completos, para evaluar tu estado general de salud y descartar condiciones como infecciones, problemas hormonales o trastornos hematol\u00f3gicos.\n\n3. **Registro de S\u00edntomas:** Lleva un registro diario de cualquier otro s\u00edntoma que puedas experimentar, como cambios en el apetito, energ\u00eda, o cualquier otro cambio f\u00edsico. Esto puede ser \u00fatil para tu m\u00e9dico.\n\n4. **Estilo de Vida:** Mientras esperas tu consulta m\u00e9dica, intenta mantener una dieta equilibrada y aseg\u00farate de descansar adecuadamente.\n\n**SIGNOS DE ALARMA:**\n- Si experimentas fiebre alta persistente, mareos intensos, debilidad extrema, o cualquier otro s\u00edntoma preocupante, busca atenci\u00f3n m\u00e9dica de urgencia.\n\nEspero que esta informaci\u00f3n te sea \u00fatil y te deseo lo mejor en tu camino hacia el diagn\u00f3stico y tratamiento adecuado. No dudes en buscar atenci\u00f3n m\u00e9dica pronto para abordar estos s\u00edntomas.",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:56:31.305682"
+    }
+  ],
+  "active_specialty": "internal_medicine",
+  "all_specialties": [
+    "internal_medicine",
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-21T14:53:27.490618",
+  "updated_at": "2025-05-21T14:56:31.305688"
+}

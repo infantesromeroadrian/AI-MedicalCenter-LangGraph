@@ -1,0 +1,27 @@
+{
+  "conversation_id": "292eff62-5c37-41d6-a791-f01b1ec75028",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en internal_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-21T14:00:43.818968"
+    },
+    {
+      "content": "Hola",
+      "sender": "user",
+      "timestamp": "2025-05-21T14:01:01.394853"
+    },
+    {
+      "content": "Hola, encantado de saludarte. Para poder ayudarte mejor, me gustar\u00eda saber un poco m\u00e1s sobre c\u00f3mo te sientes. \u00bfPodr\u00edas contarme cu\u00e1l es el s\u00edntoma principal que te preocupa? \u00bfCu\u00e1ndo comenzaste a notarlo y c\u00f3mo describir\u00edas la intensidad del mismo?",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-21T14:01:09.371049"
+    }
+  ],
+  "active_specialty": "internal_medicine",
+  "all_specialties": [
+    "internal_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-21T14:00:43.818947",
+  "updated_at": "2025-05-21T14:01:09.371056"
+}

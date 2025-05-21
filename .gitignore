@@ -1,0 +1,54 @@
+# Environment variables
+.env
+.env.*
+
+# Python virtual environment
+venv/
+env/
+langchain-bootcamp-venv/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Flask session files
+flask_session/
+instance/
+
+# Logs
+logs/
+*.log
+
+# Local development
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Database files
+*.db
+*.sqlite3
+*.sqlite
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Temporary files
+tmp/
+temp/ 

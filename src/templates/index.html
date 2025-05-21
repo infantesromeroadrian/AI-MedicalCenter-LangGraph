@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Medical AI Assistants - Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center mb-4">
+        <h1 class="display-4">
+            <i class="fas fa-stethoscope text-primary"></i> Medical AI Assistants
+        </h1>
+        <p class="lead">
+            Expert AI Consultations from Multiple Medical Specialties
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3 class="mb-0">How It Works</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">1</div>
+                    <div>
+                        <h5 class="mb-0">Ask a Medical Question</h5>
+                        <p class="text-muted">Describe your symptoms or ask a health-related question</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">2</div>
+                    <div>
+                        <h5 class="mb-0">AI Medical Triage</h5>
+                        <p class="text-muted">Our system determines which medical specialties are most relevant</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">3</div>
+                    <div>
+                        <h5 class="mb-0">Expert Consultation</h5>
+                        <p class="text-muted">AI specialists in relevant fields analyze your question</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">4</div>
+                    <div>
+                        <h5 class="mb-0">Comprehensive Response</h5>
+                        <p class="text-muted">Receive insights from multiple medical perspectives</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <a href="{{ url_for('web.chat') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-comment-medical"></i> Iniciar Chat con Especialistas
+                </a>
+                <a href="{{ url_for('interactive.interactive_chat_home') }}" class="btn btn-success btn-lg ms-2">
+                    <i class="fas fa-file-medical"></i> Chat Interactivo Avanzado
+                </a>
+                <p class="mt-2 mb-0 text-muted">Chat interactivo - puedes conversar directamente con médicos especialistas</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3 class="mb-0">Available Medical Specialties</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for specialty in specialties %}
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                {% if specialty == "cardiology" %}
+                                    <i class="fas fa-heartbeat text-danger fa-2x"></i>
+                                {% elif specialty == "neurology" %}
+                                    <i class="fas fa-brain text-info fa-2x"></i>
+                                {% elif specialty == "pediatrics" %}
+                                    <i class="fas fa-child text-success fa-2x"></i>
+                                {% elif specialty == "oncology" %}
+                                    <i class="fas fa-hospital-user text-warning fa-2x"></i>
+                                {% elif specialty == "dermatology" %}
+                                    <i class="fas fa-allergies text-primary fa-2x"></i>
+                                {% elif specialty == "psychiatry" %}
+                                    <i class="fas fa-comments text-secondary fa-2x"></i>
+                                {% elif specialty == "internal_medicine" %}
+                                    <i class="fas fa-stethoscope text-dark fa-2x"></i>
+                                {% elif specialty == "emergency_medicine" %}
+                                    <i class="fas fa-ambulance text-danger fa-2x"></i>
+                                {% else %}
+                                    <i class="fas fa-user-md text-primary fa-2x"></i>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <h5 class="mb-0 text-capitalize">{{ specialty.replace('_', ' ') }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <p class="mb-0">
+                    <i class="fas fa-info-circle"></i> Our AI system will automatically select the most appropriate specialties for your question.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">Important Disclaimer</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <h5><i class="fas fa-exclamation-triangle"></i> Not a Substitute for Professional Medical Advice</h5>
+                    <p>
+                        The information provided by Medical AI Assistants is not intended to be a substitute for professional medical advice, diagnosis, or treatment. 
+                        Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+                    </p>
+                    <p>
+                        <strong>In case of emergency:</strong> If you think you may have a medical emergency, call your doctor or emergency services immediately.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
