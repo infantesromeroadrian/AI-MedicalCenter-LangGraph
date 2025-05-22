@@ -166,6 +166,11 @@ class InteractiveConversation(BaseModel):
         self.active_specialty = new_specialty
         self.updated_at = datetime.now()
     
+    def add_system_note(self, content: str) -> None:
+        """Add a system note to the conversation."""
+        self.messages.append(MessageType(content=content, sender='system'))
+        self.updated_at = datetime.now()
+    
     def dict(self, **kwargs):
         """Custom dict method to handle datetime serialization."""
         data = super().dict(**kwargs)

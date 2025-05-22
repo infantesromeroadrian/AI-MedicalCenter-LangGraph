@@ -180,6 +180,7 @@ def api_analyze():
         # Obtener datos del formulario
         description = request.form.get('description', '')
         specialty = request.form.get('specialty', 'medicina_general')
+        conversation_id = request.form.get('conversation_id', None)
         
         # Analizar la imagen
         analysis_result = image_analyzer.analyze_image(
@@ -190,6 +191,30 @@ def api_analyze():
         
         # URL para la imagen
         image_url = url_for('static', filename=f'uploads/images/{filename}', _external=True)
+        
+        # Si hay un ID de conversación, intentar agregar el análisis al historial de la conversación
+        if conversation_id:
+            try:
+                from src.services.conversation_service import ConversationService
+                conversation_service = ConversationService()
+                
+                # Obtener la conversación actual
+                conversation = conversation_service.get_conversation(conversation_id)
+                
+                if conversation:
+                    # Crear un mensaje de sistema con la información del análisis
+                    system_message = f"[Sistema] El paciente ha compartido una imagen médica que ha sido analizada. La imagen está disponible en: {image_url}"
+                    
+                    # Agregar el mensaje a la conversación como nota de sistema
+                    conversation.add_system_note(system_message)
+                    
+                    # Guardar la conversación actualizada
+                    conversation_service.save_conversation(conversation)
+                    
+                    logger.info(f"Análisis de imagen agregado a la conversación {conversation_id}")
+            except Exception as conv_err:
+                logger.error(f"Error al agregar el análisis de imagen a la conversación: {str(conv_err)}")
+                # No devolvemos error al usuario, solo lo registramos
         
         return jsonify({
             'success': True,

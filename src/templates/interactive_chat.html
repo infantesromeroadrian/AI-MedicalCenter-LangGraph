@@ -903,7 +903,185 @@
         });
         
         document.getElementById('upload-image-btn')?.addEventListener('click', function() {
-            alert('Funcionalidad de carga de imágenes médicas en desarrollo');
+            // Crear un input de tipo archivo invisible
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            fileInput.style.display = 'none';
+            document.body.appendChild(fileInput);
+            
+            // Activar el diálogo de selección de archivo
+            fileInput.click();
+            
+            // Manejar la selección de archivos
+            fileInput.addEventListener('change', async function() {
+                if (fileInput.files && fileInput.files[0]) {
+                    const file = fileInput.files[0];
+                    
+                    // Verificar que sea una imagen
+                    if (!file.type.match('image.*')) {
+                        alert('Por favor, seleccione una imagen válida');
+                        document.body.removeChild(fileInput);
+                        return;
+                    }
+                    
+                    // Mostrar la imagen seleccionada en el chat
+                    const reader = new FileReader();
+                    reader.onload = async function(e) {
+                        // Crear un mensaje con la imagen
+                        const imagePreview = `<div class="mt-2 mb-2 text-center">
+                                              <img src="${e.target.result}" alt="Imagen médica" style="max-width: 100%; max-height: 300px; border-radius: 8px;">
+                                              <div class="mt-1 small text-muted">Imagen subida para diagnóstico</div>
+                                            </div>`;
+                        
+                        // Añadir la imagen como mensaje del usuario
+                        const messagesContainer = document.getElementById('chat-messages');
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'message mb-3 text-end';
+                        messageDiv.innerHTML = `
+                            <div class="message-content p-3 rounded patient-message float-end" style="max-width: 85%; display: inline-block;">
+                                <div>He subido esta imagen como complemento a mi consulta. Sé que el diagnóstico requerirá conversación adicional:</div>
+                                ${imagePreview}
+                            </div>
+                            <div class="clearfix"></div>
+                            <small class="text-muted text-end d-block mt-1">
+                                <i class="fas fa-user"></i> Paciente - ${new Date().toLocaleString()}
+                            </small>
+                        `;
+                        messagesContainer.appendChild(messageDiv);
+                        
+                        // Desplazarse al último mensaje
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                        
+                        try {
+                            // Preparar la imagen para enviar al servidor
+                            const formData = new FormData();
+                            formData.append('image', file);
+                            formData.append('conversation_id', '{{ conversation.conversation_id }}');
+                            formData.append('specialty', document.getElementById('active-specialty').textContent.toLowerCase());
+                            formData.append('description', 'Imagen compartida durante la consulta como complemento a la conversación.');
+                            
+                            // Mostrar indicador de procesamiento
+                            const processingDiv = document.createElement('div');
+                            processingDiv.className = 'message mb-3';
+                            processingDiv.innerHTML = `
+                                <div class="message-content p-3 rounded system-message" style="max-width: 85%; display: inline-block;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="spinner-border spinner-border-sm text-primary me-2" role="status">
+                                            <span class="visually-hidden">Procesando imagen...</span>
+                                        </div>
+                                        Analizando imagen médica...
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <small class="text-muted d-block mt-1">
+                                    <i class="fas fa-cog"></i> Sistema - ${new Date().toLocaleString()}
+                                </small>
+                            `;
+                            messagesContainer.appendChild(processingDiv);
+                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            
+                            // Enviar la imagen al servidor
+                            const response = await fetch('{{ url_for("image.api_analyze") }}', {
+                                method: 'POST',
+                                body: formData
+                            });
+                            
+                            // Eliminar el indicador de procesamiento
+                            messagesContainer.removeChild(processingDiv);
+                            
+                            if (response.ok) {
+                                const data = await response.json();
+                                
+                                // Añadir la respuesta del análisis de imagen
+                                const analysisDiv = document.createElement('div');
+                                analysisDiv.className = 'message mb-3';
+                                
+                                if (data.success) {
+                                    analysisDiv.innerHTML = `
+                                        <div class="message-content p-3 rounded doctor-message" style="max-width: 85%; display: inline-block;">
+                                            <div class="mb-2">
+                                                <strong>Análisis complementario de imagen:</strong>
+                                                <div class="alert alert-info py-1 px-2 mt-1 mb-2" style="font-size: 0.85rem;">
+                                                    <i class="fas fa-info-circle me-1"></i> Este análisis visual es solo un complemento a nuestra conversación, no un diagnóstico completo.
+                                                </div>
+                                            </div>
+                                            <div>${data.analysis || 'Imagen analizada correctamente.'}</div>
+                                            <div class="mt-2 text-primary">
+                                                <i class="fas fa-comment-medical me-1"></i> <strong>Por favor, continúe describiendo sus síntomas y detalles adicionales para complementar esta imagen.</strong>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <small class="text-muted d-block mt-1">
+                                            <i class="fas fa-user-md"></i> Dr. ${document.getElementById('active-specialty').textContent} - ${new Date().toLocaleString()}
+                                        </small>
+                                    `;
+                                } else {
+                                    analysisDiv.innerHTML = `
+                                        <div class="message-content p-3 rounded system-message" style="max-width: 85%; display: inline-block;">
+                                            <div class="text-danger">
+                                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                                Error al analizar la imagen: ${data.error || 'Error desconocido'}
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <small class="text-muted d-block mt-1">
+                                            <i class="fas fa-cog"></i> Sistema - ${new Date().toLocaleString()}
+                                        </small>
+                                    `;
+                                }
+                                
+                                messagesContainer.appendChild(analysisDiv);
+                                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            } else {
+                                // Mostrar error
+                                const errorDiv = document.createElement('div');
+                                errorDiv.className = 'message mb-3';
+                                errorDiv.innerHTML = `
+                                    <div class="message-content p-3 rounded system-message" style="max-width: 85%; display: inline-block;">
+                                        <div class="text-danger">
+                                            <i class="fas fa-exclamation-triangle me-2"></i>
+                                            Error de comunicación con el servidor al procesar la imagen.
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <small class="text-muted d-block mt-1">
+                                        <i class="fas fa-cog"></i> Sistema - ${new Date().toLocaleString()}
+                                    </small>
+                                `;
+                                messagesContainer.appendChild(errorDiv);
+                                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            }
+                        } catch (error) {
+                            console.error('Error al procesar la imagen:', error);
+                            
+                            // Mostrar error
+                            const errorDiv = document.createElement('div');
+                            errorDiv.className = 'message mb-3';
+                            errorDiv.innerHTML = `
+                                <div class="message-content p-3 rounded system-message" style="max-width: 85%; display: inline-block;">
+                                    <div class="text-danger">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        Error al procesar la imagen: ${error.message || 'Error desconocido'}
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <small class="text-muted d-block mt-1">
+                                    <i class="fas fa-cog"></i> Sistema - ${new Date().toLocaleString()}
+                                </small>
+                            `;
+                            messagesContainer.appendChild(errorDiv);
+                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                        }
+                    };
+                    
+                    // Leer el archivo como URL de datos
+                    reader.readAsDataURL(file);
+                }
+                
+                // Eliminar el input después de usarlo
+                document.body.removeChild(fileInput);
+            });
         });
         
         // Inicializar la página
