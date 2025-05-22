@@ -7,10 +7,13 @@ import io
 import os
 from pathlib import Path
 import traceback
+from functools import wraps
 
 from src.services.conversation_service import ConversationService
 from src.services.report_service import generate_medical_report, generate_pdf_report
 from src.config.config import MEDICAL_SPECIALTIES, BASE_DIR
+from src.utils.auth_middleware import login_required
+from src.utils.async_utils import async_route
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +47,8 @@ def ensure_string_id(conversation_id):
     return None
 
 @interactive_bp.route('/interactive', methods=['GET', 'POST'])
+@login_required
+@async_route
 async def interactive_chat_home():
     """Handle the interactive chat interface."""
     try:
@@ -104,6 +109,8 @@ async def interactive_chat_home():
         return redirect(url_for('web.index'))
 
 @interactive_bp.route('/interactive/message', methods=['POST'])
+@login_required
+@async_route
 async def send_message():
     """Send a message in the interactive chat."""
     try:
@@ -140,6 +147,7 @@ async def send_message():
         }), 500
 
 @interactive_bp.route('/interactive/conversation', methods=['GET'])
+@login_required
 def get_conversation():
     """Get the current conversation."""
     try:
@@ -169,6 +177,8 @@ def get_conversation():
         }), 500
 
 @interactive_bp.route('/interactive/generate_report', methods=['GET'])
+@login_required
+@async_route
 async def generate_report():
     """Generate a medical report for the current conversation."""
     try:
@@ -211,6 +221,8 @@ async def generate_report():
         }), 500
 
 @interactive_bp.route('/interactive/download_report', methods=['GET'])
+@login_required
+@async_route
 async def download_report():
     """Download the medical report as PDF."""
     try:

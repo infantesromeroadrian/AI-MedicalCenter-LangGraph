@@ -9,6 +9,7 @@ import logging
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app, jsonify
 from werkzeug.utils import secure_filename
 from src.services.image_analysis_service import MedicalImageAnalyzer
+from src.utils.auth_middleware import login_required
 
 # Configurar logging
 logging.basicConfig(
@@ -58,11 +59,13 @@ def get_upload_folder():
     return upload_folder
 
 @image_bp.route('/', methods=['GET'])
+@login_required
 def index():
     """Página principal para análisis de imágenes médicas"""
     return render_template('image_analysis.html')
 
 @image_bp.route('/analyze', methods=['GET', 'POST'])
+@login_required
 def analyze():
     """Endpoint para analizar imágenes médicas"""
     if request.method == 'POST':
@@ -155,6 +158,7 @@ def analyze():
     return render_template('image_analysis.html')
 
 @image_bp.route('/api/analyze', methods=['POST'])
+@login_required
 def api_analyze():
     """API endpoint para análisis de imágenes (JSON)"""
     if 'image' not in request.files:
@@ -197,31 +201,20 @@ def api_analyze():
             try:
                 from src.services.conversation_service import ConversationService
                 conversation_service = ConversationService()
-                
-                # Obtener la conversación actual
                 conversation = conversation_service.get_conversation(conversation_id)
-                
                 if conversation:
-                    # Crear un mensaje de sistema con la información del análisis
-                    system_message = f"[Sistema] El paciente ha compartido una imagen médica que ha sido analizada. La imagen está disponible en: {image_url}"
-                    
-                    # Agregar el mensaje a la conversación como nota de sistema
-                    conversation.add_system_note(system_message)
-                    
-                    # Guardar la conversación actualizada
+                    system_message = f"[IMAGEN ANALIZADA] {analysis_result}"
+                    conversation.add_system_message(system_message)
                     conversation_service.save_conversation(conversation)
-                    
-                    logger.info(f"Análisis de imagen agregado a la conversación {conversation_id}")
-            except Exception as conv_err:
-                logger.error(f"Error al agregar el análisis de imagen a la conversación: {str(conv_err)}")
-                # No devolvemos error al usuario, solo lo registramos
+            except Exception as e:
+                logger.error(f"Error al agregar análisis a la conversación: {e}")
         
         return jsonify({
             'success': True,
-            'image_url': image_url,
-            'analysis': analysis_result
+            'analysis': analysis_result,
+            'image_url': image_url
         })
         
     except Exception as e:
-        logger.error(f"API error: {str(e)}")
-        return jsonify({'error': str(e)}), 500 
+        logger.error(f"Error durante el análisis de imagen API: {str(e)}")
+        return jsonify({'error': f'Error en el análisis: {str(e)}'}), 500 

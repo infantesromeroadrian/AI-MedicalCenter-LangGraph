@@ -8,7 +8,7 @@ import logging
 from flask import Flask, render_template, request, jsonify, session
 from flask_session import Session
 from dotenv import load_dotenv
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 
 # Cargar variables de entorno
@@ -59,7 +59,7 @@ def create_app():
         SESSION_FILE_DIR="flask_session",
         SESSION_PERMANENT=False,
         SESSION_USE_SIGNER=False,  # Disable signer which can cause encoding issues
-        PERMANENT_SESSION_LIFETIME=86400,  # 24 horas
+        PERMANENT_SESSION_LIFETIME=timedelta(days=30),  # 30 días para sesiones permanentes (remember me)
         JSON_SORT_KEYS=False,
         MAX_CONTENT_LENGTH=16 * 1024 * 1024  # 16 MB max para cargas de archivos
     )

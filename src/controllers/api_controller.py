@@ -3,12 +3,14 @@ import logging
 from typing import Dict, Any, Optional
 import json
 import asyncio
+from functools import wraps
 
 from src.models.data_models import UserQuery, ConsensusResponse
 from src.agents.medical_agent_graph import MedicalAgentGraph
 from src.agents.langgraph_medical_agent import LangGraphMedicalAgent
 from src.utils.helpers import generate_id, log_conversation
 from src.config.config import USE_LANGGRAPH
+from src.utils.async_utils import async_route
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +31,7 @@ def health_check():
     return jsonify({"status": "healthy", "message": "Medical Agents API is running"}), 200
 
 @api_bp.route('/query', methods=['POST'])
+@async_route
 async def process_query():
     """Process a medical query through the agent system."""
     try:
