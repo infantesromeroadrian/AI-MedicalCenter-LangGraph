@@ -1017,12 +1017,53 @@
                                         </small>
                                     `;
                                 } else {
+                                    // Mensaje de error más detallado
+                                    let errorMessage = data.error || 'Error desconocido';
+                                    let errorDetails = data.details || '';
+                                    let troubleshootingTips = '';
+                                    
+                                    // Agregar consejos específicos según el tipo de error
+                                    if (errorMessage.includes('API key') || errorMessage.includes('configuración')) {
+                                        troubleshootingTips = `
+                                            <div class="mt-2 small">
+                                                <strong>💡 Para solucionarlo:</strong><br>
+                                                1. Verifique que existe el archivo .env en la raíz del proyecto<br>
+                                                2. Configure su OPENAI_API_KEY en el archivo .env<br>
+                                                3. Reinicie el servidor después de la configuración
+                                            </div>`;
+                                    } else if (errorMessage.includes('médico')) {
+                                        troubleshootingTips = `
+                                            <div class="mt-2 small">
+                                                <strong>💡 Intente con:</strong><br>
+                                                • Imagen de síntomas visibles (erupciones, heridas, etc.)<br>
+                                                • Radiografías o estudios médicos<br>
+                                                • Fotografías de medicamentos o recetas
+                                            </div>`;
+                                    } else if (errorMessage.includes('formato') || errorMessage.includes('no permitido')) {
+                                        let supportedFormats = 'PNG, JPG, JPEG, GIF, BMP, TIFF, WEBP';
+                                        if (data.details && data.details.includes('Extensiones soportadas:')) {
+                                            const match = data.details.match(/Extensiones soportadas: ([^,]+(?:, [^,]+)*)/);
+                                            if (match) {
+                                                supportedFormats = match[1].toUpperCase();
+                                            }
+                                        }
+                                        troubleshootingTips = `
+                                            <div class="mt-2 small">
+                                                <strong>💡 Formatos soportados:</strong> ${supportedFormats}<br>
+                                                <strong>Tamaño máximo:</strong> 16 MB<br>
+                                                ${data.received_filename ? `<strong>Archivo recibido:</strong> ${data.received_filename}<br>` : ''}
+                                                ${data.received_content_type ? `<strong>Tipo MIME:</strong> ${data.received_content_type}` : ''}
+                                            </div>`;
+                                    }
+                                    
                                     analysisDiv.innerHTML = `
                                         <div class="message-content p-3 rounded system-message" style="max-width: 85%; display: inline-block;">
                                             <div class="text-danger">
                                                 <i class="fas fa-exclamation-triangle me-2"></i>
-                                                Error al analizar la imagen: ${data.error || 'Error desconocido'}
+                                                <strong>Error al analizar la imagen:</strong> ${errorMessage}
                                             </div>
+                                            ${errorDetails ? `<div class="mt-1 small text-muted">${errorDetails}</div>` : ''}
+                                            ${troubleshootingTips}
                                         </div>
                                         <div class="clearfix"></div>
                                         <small class="text-muted d-block mt-1">
@@ -1034,14 +1075,32 @@
                                 messagesContainer.appendChild(analysisDiv);
                                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
                             } else {
-                                // Mostrar error
+                                // Mostrar error detallado del servidor
+                                let errorText = 'Error de comunicación con el servidor';
+                                try {
+                                    const errorData = await response.json();
+                                    errorText = errorData.error || errorText;
+                                    if (errorData.details) {
+                                        errorText += ': ' + errorData.details;
+                                    }
+                                } catch (parseError) {
+                                    errorText += ` (Status: ${response.status})`;
+                                }
+                                
                                 const errorDiv = document.createElement('div');
                                 errorDiv.className = 'message mb-3';
                                 errorDiv.innerHTML = `
                                     <div class="message-content p-3 rounded system-message" style="max-width: 85%; display: inline-block;">
                                         <div class="text-danger">
                                             <i class="fas fa-exclamation-triangle me-2"></i>
-                                            Error de comunicación con el servidor al procesar la imagen.
+                                            ${errorText}
+                                        </div>
+                                        <div class="mt-2 small">
+                                            <strong>💡 Posibles soluciones:</strong><br>
+                                            • Verifique su conexión a internet<br>
+                                            • Asegúrese de que el archivo .env está configurado<br>
+                                            • Intente reiniciar el servidor<br>
+                                            • Visite <a href="/images/status" target="_blank">/images/status</a> para diagnóstico
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>

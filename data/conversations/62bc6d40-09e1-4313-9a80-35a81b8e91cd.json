@@ -1,0 +1,57 @@
+{
+  "conversation_id": "62bc6d40-09e1-4313-9a80-35a81b8e91cd",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-25T18:55:05.402623"
+    },
+    {
+      "content": "Me he cortado el dedo ",
+      "sender": "user",
+      "timestamp": "2025-05-25T18:55:05.402633"
+    },
+    {
+      "content": "Hola, gracias por confiar en m\u00ed para ayudarte. Soy m\u00e9dico internista y me gustar\u00eda entender mejor tu situaci\u00f3n para poder orientarte adecuadamente.\n\n\u00bfPodr\u00edas contarme hace cu\u00e1nto tiempo te cortaste el dedo y con qu\u00e9 objeto fue el corte?  \nAdem\u00e1s, \u00bfla herida sangra mucho o ya ha dejado de sangrar?",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-25T18:55:07.135319"
+    },
+    {
+      "content": "me corte hace 2 dias y no deja de sangrar mucho",
+      "sender": "user",
+      "timestamp": "2025-05-25T18:57:34.845831"
+    },
+    {
+      "content": "Gracias por contarme m\u00e1s detalles. Entiendo que te cortaste hace 2 d\u00edas y que la herida sigue sangrando bastante. Me gustar\u00eda hacerte unas preguntas para poder ayudarte mejor:\n\n1. \u00bfQu\u00e9 tan grande y profunda es la herida? (Por ejemplo, \u00bfes solo un rasgu\u00f1o superficial o parece un corte profundo?)\n2. \u00bfHas intentado hacer presi\u00f3n directa sobre la herida o usar alg\u00fan tipo de vendaje para detener el sangrado? Si es as\u00ed, \u00bfqu\u00e9 has hecho exactamente?\n3. \u00bfNotas otros s\u00edntomas en el dedo, como entumecimiento, dificultad para moverlo, enrojecimiento intenso, calor o pus?\n\nEsto me ayudar\u00e1 a orientarte mejor sobre los siguientes pasos.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-25T18:57:41.410000"
+    },
+    {
+      "content": "la herida es profunda , he usado vendaje pero no deja de sangrar, siento entumecimiento,",
+      "sender": "user",
+      "timestamp": "2025-05-25T18:58:31.099046"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Me preocupa que la herida siga sangrando despu\u00e9s de dos d\u00edas y que ahora sientas entumecimiento. Esto puede indicar que la lesi\u00f3n ha afectado estructuras m\u00e1s profundas, como nervios o vasos sangu\u00edneos.\n\nPara poder orientarte mejor, necesito saber lo siguiente:\n\n1. \u00bfHas notado que el sangrado es constante o solo ocurre cuando mueves el dedo o cambias el vendaje?\n2. \u00bfEl entumecimiento es solo en la zona del corte o se extiende a todo el dedo o incluso a la mano?\n3. \u00bfHas notado otros signos como hinchaz\u00f3n importante, enrojecimiento que se extiende, calor en la zona, fiebre o salida de pus?\n\nCon esta informaci\u00f3n podr\u00e9 darte una recomendaci\u00f3n m\u00e1s precisa sobre los siguientes pasos.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-25T18:58:36.912397"
+    },
+    {
+      "content": "sangrado constante, entumecimiento en toda la mano e hinchazon",
+      "sender": "user",
+      "timestamp": "2025-05-25T18:59:09.903614"
+    },
+    {
+      "content": "Gracias por toda la informaci\u00f3n que me has dado. Entiendo que te cortaste el dedo hace dos d\u00edas, la herida es profunda, el sangrado no se detiene a pesar del vendaje, y ahora tienes entumecimiento en toda la mano junto con hinchaz\u00f3n. Estos s\u00edntomas son importantes y requieren atenci\u00f3n.\n\nPOSIBLES CAUSAS (en lenguaje sencillo):\n\n1. **Lesi\u00f3n de un vaso sangu\u00edneo importante:**  \nEl hecho de que el sangrado no se detenga despu\u00e9s de dos d\u00edas sugiere que podr\u00edas haber cortado una arteria o vena importante en el dedo. Esto puede impedir que la herida cicatrice y mantener el sangrado constante.\n\n2. **Da\u00f1o a nervios:**  \nEl entumecimiento que sientes en toda la mano puede indicar que el corte afect\u00f3 alg\u00fan nervio, lo que puede causar p\u00e9rdida de sensibilidad o incluso dificultad para mover los dedos.\n\n3. **Infecci\u00f3n o inflamaci\u00f3n:**  \nLa hinchaz\u00f3n y el sangrado persistente tambi\u00e9n pueden ser signos de que la herida se est\u00e1 infectando o inflamando. Si la infecci\u00f3n avanza, puede extenderse a la mano y causar s\u00edntomas m\u00e1s graves.\n\n4. **Compromiso de la circulaci\u00f3n:**  \nLa combinaci\u00f3n de hinchaz\u00f3n, entumecimiento y sangrado puede indicar que la circulaci\u00f3n sangu\u00ednea en la mano est\u00e1 comprometida, lo cual es una situaci\u00f3n seria.\n\nPR\u00d3XIMOS PASOS Y PRUEBAS NECESARIAS:\n\n- **Evaluaci\u00f3n m\u00e9dica urgente:**  \nPor la gravedad de los s\u00edntomas, te recomendar\u00eda acudir a un servicio de urgencias lo antes posible. Es importante que un m\u00e9dico valore la herida en persona, ya que podr\u00edas necesitar sutura, revisi\u00f3n de vasos sangu\u00edneos y nervios, y posiblemente antibi\u00f3ticos o incluso cirug\u00eda menor.\n\n- **Pruebas que podr\u00edan ser necesarias:**  \n  - Revisi\u00f3n f\u00edsica detallada de la herida y la mano.\n  - Pruebas de sensibilidad y movimiento para evaluar da\u00f1o nervioso.\n  - Examen de la circulaci\u00f3n (pulsos, color, temperatura).\n  - En algunos casos, una radiograf\u00eda para descartar da\u00f1o \u00f3seo o cuerpos extra\u00f1os.\n\nRECOMENDACIONES:\n\n1. **Acude a urgencias de inmediato.** El sangrado persistente, la hinchaz\u00f3n y el entumecimiento son se\u00f1ales de alarma que no deben esperar.\n2. **Mant\u00e9n la mano elevada** para reducir el sangrado y la hinchaz\u00f3n mientras te trasladas.\n3. **No retires el vendaje actual** si est\u00e1 empapado de sangre; en vez de eso, coloca otro vendaje limpio encima y aplica presi\u00f3n suave.\n4. **No intentes manipular la herida** ni introducir objetos para limpiarla en casa.\n5. **Lleva contigo informaci\u00f3n sobre tu estado de salud** (alergias, medicamentos que tomas, enfermedades previas) al acudir a urgencias.\n\nSi tienes fiebre, dolor intenso, cambios de color en la mano (palidez o color azul), incapacidad para mover los dedos, o si el sangrado aumenta, esto es a\u00fan m\u00e1s urgente.\n\n\u00bfTienes alguna otra pregunta o necesitas ayuda para saber c\u00f3mo llegar al centro m\u00e9dico m\u00e1s cercano?",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-25T18:59:48.141125"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-25T18:55:05.402608",
+  "updated_at": "2025-05-25T18:59:48.141131"
+}

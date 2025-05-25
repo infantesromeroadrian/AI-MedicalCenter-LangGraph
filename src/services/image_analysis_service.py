@@ -26,27 +26,51 @@ class MedicalImageAnalyzer:
     Analizador de imágenes médicas utilizando modelos multimodales de LLM
     con capacidades de visión.
     """
-    def __init__(self, model_name="gpt-4.1"):
+    def __init__(self, model_name=None):
         """
         Inicializa el analizador de imágenes médicas
         
         Args:
             model_name: Nombre del modelo con capacidades de visión a utilizar
         """
+        # Usar modelo por defecto si no se especifica uno
+        if model_name is None:
+            model_name = os.getenv("DEFAULT_MODEL", "gpt-4o")
+        
         self.model_name = model_name
+        self.backup_model = os.getenv("BACKUP_MODEL", "gpt-4-vision-preview")
+        
+        # Verificar que tenemos API key
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            logger.error("OPENAI_API_KEY no está configurada en las variables de entorno")
+            raise RuntimeError("Falta configuración de OPENAI_API_KEY. Por favor, configure su API key en el archivo .env")
         
         # Inicializar el modelo
         try:
             self.llm = ChatOpenAI(
                 model=model_name,
-                temperature=0.2,
-                api_key=os.getenv("OPENAI_API_KEY"),
-                max_tokens=1000
+                temperature=float(os.getenv("MODEL_TEMPERATURE", "0.2")),
+                api_key=api_key,
+                max_tokens=int(os.getenv("MAX_TOKENS", "1000"))
             )
             logger.info(f"Analizador de imágenes médicas iniciado con modelo: {model_name}")
         except Exception as e:
             logger.error(f"Error al inicializar el modelo de visión: {str(e)}")
-            raise RuntimeError(f"No se pudo inicializar el modelo de visión: {str(e)}")
+            # Intentar con modelo de respaldo
+            try:
+                logger.info(f"Intentando con modelo de respaldo: {self.backup_model}")
+                self.llm = ChatOpenAI(
+                    model=self.backup_model,
+                    temperature=float(os.getenv("MODEL_TEMPERATURE", "0.2")),
+                    api_key=api_key,
+                    max_tokens=int(os.getenv("MAX_TOKENS", "1000"))
+                )
+                self.model_name = self.backup_model
+                logger.info(f"Modelo de respaldo inicializado correctamente: {self.backup_model}")
+            except Exception as backup_error:
+                logger.error(f"Error también con modelo de respaldo: {str(backup_error)}")
+                raise RuntimeError(f"No se pudo inicializar ningún modelo de visión. Error principal: {str(e)}, Error respaldo: {str(backup_error)}")
 
         # Prompt para análisis de imágenes médicas
         self.image_analysis_template = """

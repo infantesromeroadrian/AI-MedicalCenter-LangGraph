@@ -1,0 +1,27 @@
+{
+  "conversation_id": "c30d83d0-d2f3-44d9-b173-8b83b4f15cd1",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-25T19:14:06.326541"
+    },
+    {
+      "content": "me corte la mano\r\n",
+      "sender": "user",
+      "timestamp": "2025-05-25T19:14:06.326551"
+    },
+    {
+      "content": "Hola, gracias por consultarme. Soy m\u00e9dico internista y estoy aqu\u00ed para ayudarte. Lamento que te hayas cortado la mano. Para poder orientarte mejor, necesito saber un poco m\u00e1s:\n\n1. \u00bfHace cu\u00e1nto tiempo ocurri\u00f3 el corte y qu\u00e9 tan profundo crees que es? (\u00bfVes grasa, m\u00fasculo o hueso, o solo sangra superficialmente?)\n2. \u00bfLa herida sigue sangrando o ya lograste detener el sangrado?  \n3. \u00bfPuedes mover bien los dedos de esa mano y sientes normalmente en toda la zona?\n\nCon esta informaci\u00f3n podr\u00e9 guiarte mejor sobre los siguientes pasos.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-25T19:14:09.758442"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-25T19:14:06.326526",
+  "updated_at": "2025-05-25T19:14:09.758447"
+}

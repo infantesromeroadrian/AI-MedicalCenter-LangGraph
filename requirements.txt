@@ -40,6 +40,7 @@ numpy==2.2.6
 tiktoken==0.9.0
 orjson==3.10.18
 PyYAML==6.0.2
+Pillow==10.4.0
 
 # UI and formatting
 jinja2==3.1.6
