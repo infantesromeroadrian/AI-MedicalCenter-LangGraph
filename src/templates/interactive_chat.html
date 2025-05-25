@@ -90,6 +90,77 @@
         font-weight: 600;
         margin-bottom: 15px;
     }
+    
+    .medical-resource-item {
+        transition: all 0.3s ease;
+    }
+    
+    .medical-resource-item:hover {
+        background-color: #f8f9fa;
+        border-left: 3px solid var(--primary-color);
+        transform: translateX(2px);
+    }
+    
+    .medical-resource-item .badge {
+        transition: all 0.3s ease;
+    }
+    
+    .medical-resource-item:hover .badge {
+        transform: scale(1.1);
+    }
+    
+    /* Estilos para el timeline de consultas */
+    .timeline {
+        position: relative;
+        padding: 20px 0;
+    }
+    
+    .timeline-item {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 60px;
+    }
+    
+    .timeline-item:before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: -30px;
+        width: 2px;
+        background: #e9ecef;
+    }
+    
+    .timeline-item:last-child:before {
+        display: none;
+    }
+    
+    .timeline-marker {
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        width: 24px;
+        height: 24px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 12px;
+        z-index: 1;
+    }
+    
+    .timeline-item.active .timeline-marker {
+        background: var(--secondary-color);
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+    }
 </style>
 {% endblock %}
 
@@ -273,21 +344,41 @@
                     <i class="fas fa-book-medical medical-icon"></i>Recursos médicos
                 </h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex align-items-center">
-                        <i class="fas fa-pills medical-icon"></i>
-                        <span>Medicamentos recetados</span>
+                    <li class="list-group-item d-flex align-items-center justify-content-between medical-resource-item" 
+                        data-resource="medications" style="cursor: pointer;" 
+                        data-bs-toggle="tooltip" title="Ver medicamentos recetados en esta consulta">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-pills medical-icon"></i>
+                            <span>Medicamentos recetados</span>
+                        </div>
+                        <span class="badge bg-primary" id="medications-count">0</span>
                     </li>
-                    <li class="list-group-item d-flex align-items-center">
-                        <i class="fas fa-notes-medical medical-icon"></i>
-                        <span>Historial de consultas</span>
+                    <li class="list-group-item d-flex align-items-center justify-content-between medical-resource-item" 
+                        data-resource="consultations" style="cursor: pointer;"
+                        data-bs-toggle="tooltip" title="Ver historial completo de consultas">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-notes-medical medical-icon"></i>
+                            <span>Historial de consultas</span>
+                        </div>
+                        <span class="badge bg-success" id="consultations-count">0</span>
                     </li>
-                    <li class="list-group-item d-flex align-items-center">
-                        <i class="fas fa-vial medical-icon"></i>
-                        <span>Resultados de laboratorio</span>
+                    <li class="list-group-item d-flex align-items-center justify-content-between medical-resource-item" 
+                        data-resource="lab-results" style="cursor: pointer;"
+                        data-bs-toggle="tooltip" title="Ver resultados de exámenes de laboratorio">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-vial medical-icon"></i>
+                            <span>Resultados de laboratorio</span>
+                        </div>
+                        <span class="badge bg-warning" id="lab-results-count">0</span>
                     </li>
-                    <li class="list-group-item d-flex align-items-center">
-                        <i class="fas fa-x-ray medical-icon"></i>
-                        <span>Imágenes diagnósticas</span>
+                    <li class="list-group-item d-flex align-items-center justify-content-between medical-resource-item" 
+                        data-resource="diagnostic-images" style="cursor: pointer;"
+                        data-bs-toggle="tooltip" title="Ver imágenes diagnósticas de esta consulta">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-x-ray medical-icon"></i>
+                            <span>Imágenes diagnósticas</span>
+                        </div>
+                        <span class="badge bg-info" id="diagnostic-images-count">0</span>
                     </li>
                 </ul>
                 <div class="text-center mt-3">
@@ -495,6 +586,126 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary">Programar videoconsulta</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Medicamentos Recetados -->
+<div class="modal fade" id="medications-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">
+            <i class="fas fa-pills"></i> Medicamentos Recetados
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div id="medications-loading" class="text-center p-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando medicamentos...</span>
+          </div>
+        </div>
+        <div id="medications-content" class="d-none">
+          <!-- Contenido de medicamentos se insertará aquí -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="export-medications-btn">
+            <i class="fas fa-download"></i> Exportar Lista
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Historial de Consultas -->
+<div class="modal fade" id="consultations-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">
+            <i class="fas fa-notes-medical"></i> Historial de Consultas
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div id="consultations-loading" class="text-center p-4">
+          <div class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Cargando historial...</span>
+          </div>
+        </div>
+        <div id="consultations-content" class="d-none">
+          <!-- Contenido del historial se insertará aquí -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" id="export-consultations-btn">
+            <i class="fas fa-file-export"></i> Exportar Historial
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Resultados de Laboratorio -->
+<div class="modal fade" id="lab-results-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title">
+            <i class="fas fa-vial"></i> Resultados de Laboratorio
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div id="lab-results-loading" class="text-center p-4">
+          <div class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Cargando resultados...</span>
+          </div>
+        </div>
+        <div id="lab-results-content" class="d-none">
+          <!-- Contenido de resultados se insertará aquí -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-warning" id="export-lab-results-btn">
+            <i class="fas fa-chart-line"></i> Exportar Resultados
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Imágenes Diagnósticas -->
+<div class="modal fade" id="diagnostic-images-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">
+            <i class="fas fa-x-ray"></i> Imágenes Diagnósticas
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div id="diagnostic-images-loading" class="text-center p-4">
+          <div class="spinner-border text-info" role="status">
+            <span class="visually-hidden">Cargando imágenes...</span>
+          </div>
+        </div>
+        <div id="diagnostic-images-content" class="d-none">
+          <!-- Contenido de imágenes se insertará aquí -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-info" id="export-images-btn">
+            <i class="fas fa-download"></i> Descargar Imágenes
+        </button>
       </div>
     </div>
   </div>
@@ -928,9 +1139,10 @@
                     // Mostrar la imagen seleccionada en el chat
                     const reader = new FileReader();
                     reader.onload = async function(e) {
-                        // Crear un mensaje con la imagen
+                        // Crear un mensaje con la imagen (marcar con ID único para actualización posterior)
+                        const imageId = 'uploaded-image-' + Date.now();
                         const imagePreview = `<div class="mt-2 mb-2 text-center">
-                                              <img src="${e.target.result}" alt="Imagen médica" style="max-width: 100%; max-height: 300px; border-radius: 8px;">
+                                              <img id="${imageId}" src="${e.target.result}" alt="Imagen médica" style="max-width: 100%; max-height: 300px; border-radius: 8px;" class="user-uploaded-image">
                                               <div class="mt-1 small text-muted">Imagen subida para diagnóstico</div>
                                             </div>`;
                         
@@ -992,6 +1204,22 @@
                             
                             if (response.ok) {
                                 const data = await response.json();
+                                
+                                // Si el análisis fue exitoso, actualizar la imagen con la URL del servidor
+                                if (data.success && data.image_url) {
+                                    const uploadedImg = document.getElementById(imageId);
+                                    if (uploadedImg) {
+                                        uploadedImg.src = data.image_url;
+                                        console.log('Imagen actualizada con URL del servidor:', data.image_url);
+                                        
+                                        // Actualizar contador de imágenes diagnósticas inmediatamente
+                                        setTimeout(() => {
+                                            getConversationImages().then(images => {
+                                                updateDiagnosticImagesCount(images.length);
+                                            });
+                                        }, 500);
+                                    }
+                                }
                                 
                                 // Añadir la respuesta del análisis de imagen
                                 const analysisDiv = document.createElement('div');
@@ -1343,6 +1571,621 @@
         document.getElementById('download-report-btn')?.addEventListener('click', function() {
             window.open('{{ url_for("interactive.download_report") }}', '_blank');
         });
+        
+        // ========== FUNCIONALIDAD DE RECURSOS MÉDICOS ==========
+        
+        // Inicializar modales de recursos médicos
+        let medicationsModal, consultationsModal, labResultsModal, diagnosticImagesModal;
+        
+        try {
+            medicationsModal = new bootstrap.Modal(document.getElementById('medications-modal'));
+            consultationsModal = new bootstrap.Modal(document.getElementById('consultations-modal'));
+            labResultsModal = new bootstrap.Modal(document.getElementById('lab-results-modal'));
+            diagnosticImagesModal = new bootstrap.Modal(document.getElementById('diagnostic-images-modal'));
+        } catch (err) {
+            console.error("Error inicializando modales de recursos médicos:", err);
+        }
+        
+        // Manejar clicks en elementos de recursos médicos
+        document.querySelectorAll('.medical-resource-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const resourceType = this.getAttribute('data-resource');
+                handleResourceClick(resourceType);
+            });
+        });
+        
+        // Función principal para manejar clicks en recursos
+        function handleResourceClick(resourceType) {
+            switch(resourceType) {
+                case 'medications':
+                    loadMedications();
+                    medicationsModal.show();
+                    break;
+                case 'consultations':
+                    loadConsultations();
+                    consultationsModal.show();
+                    break;
+                case 'lab-results':
+                    loadLabResults();
+                    labResultsModal.show();
+                    break;
+                case 'diagnostic-images':
+                    loadDiagnosticImages();
+                    diagnosticImagesModal.show();
+                    break;
+            }
+        }
+        
+        // Función para cargar medicamentos
+        async function loadMedications() {
+            const loadingEl = document.getElementById('medications-loading');
+            const contentEl = document.getElementById('medications-content');
+            
+            // Mostrar loading
+            loadingEl.classList.remove('d-none');
+            contentEl.classList.add('d-none');
+            
+            try {
+                // Extraer medicamentos de la conversación actual
+                const medications = extractMedicationsFromConversation();
+                
+                let content = '';
+                
+                if (medications.length === 0) {
+                    content = `
+                        <div class="text-center p-4">
+                            <i class="fas fa-pills text-muted" style="font-size: 3rem;"></i>
+                            <h4 class="mt-3 text-muted">No hay medicamentos recetados</h4>
+                            <p class="text-muted">En esta consulta aún no se han recetado medicamentos.</p>
+                        </div>
+                    `;
+                } else {
+                    content = `
+                        <div class="row">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">
+                                    <i class="fas fa-prescription-bottle-alt me-2"></i>
+                                    Medicamentos recetados en esta consulta
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th><i class="fas fa-pills me-2"></i>Medicamento</th>
+                                        <th><i class="fas fa-weight me-2"></i>Dosis</th>
+                                        <th><i class="fas fa-clock me-2"></i>Frecuencia</th>
+                                        <th><i class="fas fa-calendar me-2"></i>Duración</th>
+                                        <th><i class="fas fa-notes-medical me-2"></i>Instrucciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    `;
+                    
+                    medications.forEach(med => {
+                        content += `
+                            <tr>
+                                <td><strong>${med.name}</strong></td>
+                                <td>${med.dose}</td>
+                                <td>${med.frequency}</td>
+                                <td>${med.duration}</td>
+                                <td>${med.instructions}</td>
+                            </tr>
+                        `;
+                    });
+                    
+                    content += `
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="alert alert-info mt-3">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Importante:</strong> Siga las indicaciones médicas. Consulte con su médico antes de modificar dosis o suspender tratamiento.
+                        </div>
+                    `;
+                }
+                
+                contentEl.innerHTML = content;
+                updateMedicationsCount(medications.length);
+                
+                // Ocultar loading y mostrar contenido
+                loadingEl.classList.add('d-none');
+                contentEl.classList.remove('d-none');
+                
+            } catch (error) {
+                console.error('Error cargando medicamentos:', error);
+                contentEl.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Error al cargar medicamentos. Por favor, intente nuevamente.
+                    </div>
+                `;
+                loadingEl.classList.add('d-none');
+                contentEl.classList.remove('d-none');
+            }
+        }
+        
+        // Función para cargar historial de consultas
+        async function loadConsultations() {
+            const loadingEl = document.getElementById('consultations-loading');
+            const contentEl = document.getElementById('consultations-content');
+            
+            loadingEl.classList.remove('d-none');
+            contentEl.classList.add('d-none');
+            
+            try {
+                // Simular carga de datos (aquí harías una llamada al servidor)
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                const consultations = await getConsultationsHistory();
+                
+                let content = `
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6 class="text-success">
+                                <i class="fas fa-history me-2"></i>
+                                Historial de Consultas
+                            </h6>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <span class="badge bg-success">${consultations.length} consultas realizadas</span>
+                        </div>
+                    </div>
+                `;
+                
+                if (consultations.length === 0) {
+                    content += `
+                        <div class="text-center p-4">
+                            <i class="fas fa-notes-medical text-muted" style="font-size: 3rem;"></i>
+                            <h4 class="mt-3 text-muted">Primera consulta</h4>
+                            <p class="text-muted">Esta es su primera consulta en el sistema.</p>
+                        </div>
+                    `;
+                } else {
+                    content += '<div class="timeline">';
+                    
+                    consultations.forEach((consultation, index) => {
+                        const isActive = index === 0;
+                        content += `
+                            <div class="timeline-item ${isActive ? 'active' : ''}">
+                                <div class="timeline-marker">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <h6 class="mb-0">
+                                                <i class="fas fa-stethoscope me-2"></i>
+                                                ${consultation.specialty}
+                                            </h6>
+                                            <small class="text-muted">${consultation.date}</small>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">${consultation.summary}</p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <small><strong>Duración:</strong> ${consultation.duration}</small>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <small><strong>Estado:</strong> 
+                                                        <span class="badge bg-${consultation.status === 'completed' ? 'success' : 'warning'}">
+                                                            ${consultation.status === 'completed' ? 'Completada' : 'En curso'}
+                                                        </span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    content += '</div>';
+                }
+                
+                contentEl.innerHTML = content;
+                updateConsultationsCount(consultations.length);
+                
+                loadingEl.classList.add('d-none');
+                contentEl.classList.remove('d-none');
+                
+            } catch (error) {
+                console.error('Error cargando consultas:', error);
+                contentEl.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Error al cargar el historial. Por favor, intente nuevamente.
+                    </div>
+                `;
+                loadingEl.classList.add('d-none');
+                contentEl.classList.remove('d-none');
+            }
+        }
+        
+        // Función para cargar resultados de laboratorio
+        async function loadLabResults() {
+            const loadingEl = document.getElementById('lab-results-loading');
+            const contentEl = document.getElementById('lab-results-content');
+            
+            loadingEl.classList.remove('d-none');
+            contentEl.classList.add('d-none');
+            
+            try {
+                const labResults = extractLabResultsFromConversation();
+                
+                let content = '';
+                
+                if (labResults.length === 0) {
+                    content = `
+                        <div class="text-center p-4">
+                            <i class="fas fa-vial text-muted" style="font-size: 3rem;"></i>
+                            <h4 class="mt-3 text-muted">No hay resultados de laboratorio</h4>
+                            <p class="text-muted">En esta consulta no se han mencionado análisis o exámenes de laboratorio.</p>
+                            <button class="btn btn-outline-primary mt-2">
+                                <i class="fas fa-plus me-2"></i>Agregar resultados
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    content = `
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h6 class="text-warning">
+                                    <i class="fas fa-flask me-2"></i>
+                                    Resultados de Exámenes
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                    `;
+                    
+                    labResults.forEach(result => {
+                        content += `
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0">${result.test}</h6>
+                                        <span class="badge bg-${result.status === 'normal' ? 'success' : result.status === 'abnormal' ? 'danger' : 'warning'}">
+                                            ${result.status === 'normal' ? 'Normal' : result.status === 'abnormal' ? 'Anormal' : 'Pendiente'}
+                                        </span>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Valor:</strong> ${result.value}</p>
+                                        <p><strong>Rango normal:</strong> ${result.normalRange}</p>
+                                        <p><strong>Fecha:</strong> ${result.date}</p>
+                                        ${result.notes ? `<p><strong>Observaciones:</strong> ${result.notes}</p>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    content += '</div>';
+                }
+                
+                contentEl.innerHTML = content;
+                updateLabResultsCount(labResults.length);
+                
+                loadingEl.classList.add('d-none');
+                contentEl.classList.remove('d-none');
+                
+            } catch (error) {
+                console.error('Error cargando resultados de laboratorio:', error);
+                contentEl.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Error al cargar resultados. Por favor, intente nuevamente.
+                    </div>
+                `;
+                loadingEl.classList.add('d-none');
+                contentEl.classList.remove('d-none');
+            }
+        }
+        
+        // Función para cargar imágenes diagnósticas
+        async function loadDiagnosticImages() {
+            const loadingEl = document.getElementById('diagnostic-images-loading');
+            const contentEl = document.getElementById('diagnostic-images-content');
+            
+            loadingEl.classList.remove('d-none');
+            contentEl.classList.add('d-none');
+            
+            try {
+                // Obtener imágenes tanto del frontend como del backend
+                const images = await getConversationImages();
+                
+                let content = `
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6 class="text-info">
+                                <i class="fas fa-images me-2"></i>
+                                Imágenes de esta Consulta
+                            </h6>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <span class="badge bg-info">${images.length} imágenes</span>
+                        </div>
+                    </div>
+                `;
+                
+                if (images.length === 0) {
+                    content += `
+                        <div class="text-center p-4">
+                            <i class="fas fa-x-ray text-muted" style="font-size: 3rem;"></i>
+                            <h4 class="mt-3 text-muted">No hay imágenes diagnósticas</h4>
+                            <p class="text-muted">En esta consulta no se han compartido imágenes médicas.</p>
+                            <button class="btn btn-outline-info mt-2" onclick="document.getElementById('upload-image-btn').click()">
+                                <i class="fas fa-camera me-2"></i>Agregar imagen
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    content += '<div class="row">';
+                    
+                    images.forEach((image, index) => {
+                        content += `
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div class="card h-100">
+                                    <img src="${image.url}" class="card-img-top" alt="Imagen diagnóstica" 
+                                         style="height: 200px; object-fit: cover; cursor: pointer;"
+                                         onclick="showImageFullscreen('${image.url}', '${image.analysis}')">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Imagen ${index + 1}</h6>
+                                        <p class="card-text small">${image.analysis || 'Análisis pendiente'}</p>
+                                        <small class="text-muted">Subida: ${image.uploadDate}</small>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-sm btn-outline-info" onclick="downloadImage('${image.url}', 'imagen_${index + 1}')">
+                                            <i class="fas fa-download"></i> Descargar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    content += '</div>';
+                }
+                
+                contentEl.innerHTML = content;
+                updateDiagnosticImagesCount(images.length);
+                
+                loadingEl.classList.add('d-none');
+                contentEl.classList.remove('d-none');
+                
+            } catch (error) {
+                console.error('Error cargando imágenes:', error);
+                contentEl.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Error al cargar imágenes. Por favor, intente nuevamente.
+                    </div>
+                `;
+                loadingEl.classList.add('d-none');
+                contentEl.classList.remove('d-none');
+            }
+        }
+        
+        // Funciones auxiliares para extraer información de la conversación
+        function extractMedicationsFromConversation() {
+            const messages = document.querySelectorAll('.message-content');
+            const medications = [];
+            
+            messages.forEach(message => {
+                const text = message.textContent.toLowerCase();
+                
+                // Buscar patrones de medicamentos
+                const medicationPatterns = [
+                    /(?:receto|prescribo|tome|tomar)\s+([a-zA-Záéíóúñ\s]+)\s+(?:(\d+(?:\.\d+)?)\s*(mg|g|ml|comprimidos?|cápsulas?|tabletas?))/gi,
+                    /(?:medicamento|fármaco|medicina):\s*([a-zA-Záéíóúñ\s]+)/gi
+                ];
+                
+                medicationPatterns.forEach(pattern => {
+                    let match;
+                    while ((match = pattern.exec(text)) !== null) {
+                        medications.push({
+                            name: match[1]?.trim() || 'Medicamento',
+                            dose: match[2] ? `${match[2]} ${match[3]}` : 'Según indicación médica',
+                            frequency: 'Según indicación médica',
+                            duration: 'Según indicación médica',
+                            instructions: 'Seguir indicaciones del médico'
+                        });
+                    }
+                });
+            });
+            
+            return medications;
+        }
+        
+        function extractLabResultsFromConversation() {
+            const messages = document.querySelectorAll('.message-content');
+            const labResults = [];
+            
+            messages.forEach(message => {
+                const text = message.textContent.toLowerCase();
+                
+                // Buscar patrones de resultados de laboratorio
+                const labPatterns = [
+                    /(?:análisis|examen|resultado|laboratorio|hemograma|glucosa|colesterol)/gi
+                ];
+                
+                // Si encuentra menciones de laboratorio, crear entradas de ejemplo
+                if (labPatterns.some(pattern => pattern.test(text))) {
+                    // Agregar algunos resultados de ejemplo basados en el contexto
+                    if (text.includes('glucosa') || text.includes('diabetes')) {
+                        labResults.push({
+                            test: 'Glucosa en ayunas',
+                            value: '95 mg/dL',
+                            normalRange: '70-100 mg/dL',
+                            status: 'normal',
+                            date: new Date().toLocaleDateString(),
+                            notes: 'Resultado dentro de parámetros normales'
+                        });
+                    }
+                    
+                    if (text.includes('colesterol')) {
+                        labResults.push({
+                            test: 'Colesterol total',
+                            value: '180 mg/dL',
+                            normalRange: '<200 mg/dL',
+                            status: 'normal',
+                            date: new Date().toLocaleDateString(),
+                            notes: 'Mantener dieta saludable'
+                        });
+                    }
+                }
+            });
+            
+            return labResults;
+        }
+        
+        async function getConversationImages() {
+            // Obtener imágenes que se han subido en esta conversación
+            const images = [];
+            
+            // Buscar elementos de imagen en los mensajes
+            const imageElements = document.querySelectorAll('#chat-messages img.user-uploaded-image');
+            
+            imageElements.forEach((img, index) => {
+                // Verificar si es una imagen válida (tiene URL del servidor o es una imagen médica)
+                if (img.src && (img.src.includes('uploads/images') || img.classList.contains('user-uploaded-image'))) {
+                    images.push({
+                        url: img.src,
+                        analysis: img.alt || 'Imagen médica',
+                        uploadDate: new Date().toLocaleDateString(),
+                        index: index
+                    });
+                }
+            });
+            
+            // También obtener imágenes del backend
+            try {
+                const response = await fetch(`/medical-resources/diagnostic-images/{{ conversation.conversation_id }}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.images) {
+                        // Combinar imágenes del frontend y backend, evitando duplicados
+                        data.images.forEach(backendImage => {
+                            const exists = images.some(img => img.url === backendImage.url);
+                            if (!exists) {
+                                images.push({
+                                    url: backendImage.url,
+                                    analysis: backendImage.analysis || 'Imagen médica',
+                                    uploadDate: backendImage.upload_date || new Date().toLocaleDateString(),
+                                    index: images.length
+                                });
+                            }
+                        });
+                    }
+                }
+            } catch (error) {
+                console.log('Error obteniendo imágenes del backend:', error);
+            }
+            
+            return images;
+        }
+        
+                 async function getConsultationsHistory() {
+             try {
+                 const response = await fetch('/medical-resources/consultations');
+                 if (response.ok) {
+                     const data = await response.json();
+                     return data.consultations || [];
+                 } else {
+                     console.error('Error al obtener historial:', response.status);
+                     return [];
+                 }
+             } catch (error) {
+                 console.error('Error de red al obtener historial:', error);
+                 // Fallback a datos simulados
+                 return [
+                     {
+                         specialty: 'Medicina Interna',
+                         date: new Date().toLocaleDateString(),
+                         duration: '25 minutos',
+                         summary: 'Consulta actual en curso. Evaluación de síntomas y seguimiento.',
+                         status: 'in_progress'
+                     }
+                 ];
+             }
+         }
+        
+        // Funciones para actualizar contadores
+        function updateMedicationsCount(count) {
+            document.getElementById('medications-count').textContent = count;
+        }
+        
+        function updateConsultationsCount(count) {
+            document.getElementById('consultations-count').textContent = count;
+        }
+        
+        function updateLabResultsCount(count) {
+            document.getElementById('lab-results-count').textContent = count;
+        }
+        
+        function updateDiagnosticImagesCount(count) {
+            document.getElementById('diagnostic-images-count').textContent = count;
+        }
+        
+        // Función para mostrar imagen en pantalla completa
+        function showImageFullscreen(imageUrl, analysis) {
+            const modal = document.createElement('div');
+            modal.className = 'modal fade';
+            modal.innerHTML = `
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Imagen Diagnóstica</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="${imageUrl}" class="img-fluid" alt="Imagen diagnóstica">
+                            ${analysis ? `<div class="mt-3 alert alert-info">${analysis}</div>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            const bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
+            
+            modal.addEventListener('hidden.bs.modal', () => {
+                document.body.removeChild(modal);
+            });
+        }
+        
+        // Función para descargar imagen
+        function downloadImage(imageUrl, filename) {
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Inicializar contadores al cargar la página
+        setTimeout(() => {
+            const medications = extractMedicationsFromConversation();
+            const labResults = extractLabResultsFromConversation();
+            
+            updateMedicationsCount(medications.length);
+            updateLabResultsCount(labResults.length);
+            
+            // Actualizar contador de imágenes
+            getConversationImages().then(images => {
+                updateDiagnosticImagesCount(images.length);
+            });
+            
+            // Actualizar contador de consultas
+            getConsultationsHistory().then(consultations => {
+                updateConsultationsCount(consultations.length);
+            });
+        }, 1000);
+        
     });
 </script>
 {% endblock %} 

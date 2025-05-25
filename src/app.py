@@ -92,11 +92,13 @@ def create_app():
     
     # Importar y registrar los nuevos blueprints
     from src.controllers.image_controller import image_bp
+    from src.controllers.medical_resources_controller import medical_resources_bp
     
     app.register_blueprint(web_bp, url_prefix='/')
     # app.register_blueprint(chat_bp, url_prefix='/chat')
     app.register_blueprint(interactive_bp, url_prefix='/interactive')
     app.register_blueprint(image_bp, url_prefix='/images')
+    app.register_blueprint(medical_resources_bp, url_prefix='/medical-resources')
     
     # Manejar errores HTTP comunes
     @app.errorhandler(404)

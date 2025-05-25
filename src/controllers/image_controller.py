@@ -327,10 +327,11 @@ def api_analyze():
                 conversation_service = ConversationService()
                 conversation = conversation_service.get_conversation(conversation_id)
                 if conversation:
-                    system_message = f"[IMAGEN ANALIZADA] {analysis_result}"
+                    # Guardar tanto el análisis como la URL de la imagen
+                    system_message = f"[IMAGEN ANALIZADA:{image_url}] {analysis_result}"
                     conversation.add_system_message(system_message)
                     conversation_service.save_conversation(conversation)
-                    logger.info(f"Análisis de imagen agregado a conversación: {conversation_id}")
+                    logger.info(f"Análisis de imagen agregado a conversación: {conversation_id} con URL: {image_url}")
             except Exception as conv_error:
                 logger.error(f"Error al agregar análisis a la conversación: {conv_error}")
                 # No falla la operación si no se puede guardar en la conversación
