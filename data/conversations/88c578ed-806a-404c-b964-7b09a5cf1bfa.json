@@ -1,0 +1,77 @@
+{
+  "conversation_id": "88c578ed-806a-404c-b964-7b09a5cf1bfa",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en neurology. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T15:24:00.729206"
+    },
+    {
+      "content": "Me duele la cabeza",
+      "sender": "user",
+      "timestamp": "2025-05-27T15:24:00.729221"
+    },
+    {
+      "content": "As a Neurology specialist, Hola, soy el neur\u00f3logo que te atender\u00e1 hoy. Entiendo que vienes porque tienes dolor de cabeza, y quiero ayudarte a entender mejor lo que est\u00e1 pasando.\n\nPara empezar, \u00bfpodr\u00edas contarme desde cu\u00e1ndo tienes este dolor de cabeza y cu\u00e1nto tiempo suele durar cada episodio? Adem\u00e1s, \u00bfel dolor es en toda la cabeza o en una zona espec\u00edfica (por ejemplo, solo un lado, la frente, la nuca)? \n\nCon esta informaci\u00f3n podr\u00e9 orientarte mejor y seguir preguntando lo necesario para ayudarte.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T15:24:05.256825"
+    },
+    {
+      "content": "Hace una semana que me duele la cabeza, constantemente, el dolor es tipo punzada en la frente",
+      "sender": "user",
+      "timestamp": "2025-05-27T15:24:51.179440"
+    },
+    {
+      "content": "Hola, soy el neur\u00f3logo que te atender\u00e1 hoy. Gracias por contarme sobre tu dolor de cabeza, entiendo que puede ser muy molesto.\n\nPara poder ayudarte mejor, me gustar\u00eda preguntarte algunas cosas m\u00e1s:\n\n1. \u00bfEl dolor de cabeza es constante durante todo el d\u00eda o hay momentos en que desaparece?\n2. \u00bfHas notado si algo lo empeora o lo mejora, como la luz, el ruido, el esfuerzo f\u00edsico, o tomar alg\u00fan medicamento?\n\nEsto me ayudar\u00e1 a entender mejor tu situaci\u00f3n y orientarte de la mejor manera posible.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T15:24:55.991062"
+    },
+    {
+      "content": "el dolor es todo el dia, sigue igual no para",
+      "sender": "user",
+      "timestamp": "2025-05-27T15:25:30.508419"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n que me has dado hasta ahora, entiendo que el dolor de cabeza es constante, tipo punzada y localizado en la frente desde hace una semana.\n\nPara poder orientarte mejor, me gustar\u00eda preguntarte:\n\n1. \u00bfHay algo que haga que el dolor empeore o mejore? Por ejemplo, \u00bfempeora con la luz, el ruido, al agacharte, o con el esfuerzo f\u00edsico?\n2. \u00bfHas notado otros s\u00edntomas acompa\u00f1antes, como n\u00e1useas, v\u00f3mitos, visi\u00f3n borrosa, fiebre, debilidad en alguna parte del cuerpo, dificultad para hablar o mareos?\n\nEsto me ayudar\u00e1 a entender mejor la causa y gravedad de tu dolor de cabeza.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T15:25:36.475722"
+    },
+    {
+      "content": "nada lo hace mejorar ni el parcetamol, tengo algo de vision borrosa,",
+      "sender": "user",
+      "timestamp": "2025-05-27T15:26:04.743944"
+    },
+    {
+      "content": "Gracias por compartir que el dolor de cabeza no mejora con paracetamol y que ahora tienes algo de visi\u00f3n borrosa. Entiendo que esto puede ser preocupante, as\u00ed que quiero asegurarme de obtener toda la informaci\u00f3n necesaria para orientarte bien.\n\nMe gustar\u00eda preguntarte:\n\n1. \u00bfLa visi\u00f3n borrosa es en ambos ojos o solo en uno? \u00bfEs constante o aparece y desaparece?\n2. \u00bfHas notado otros s\u00edntomas acompa\u00f1antes como n\u00e1useas, v\u00f3mitos, fiebre, debilidad en alguna parte del cuerpo, dificultad para hablar o para mover alguna extremidad?\n3. \u00bfHas tenido fiebre, rigidez en el cuello, o sensibilidad a la luz?\n\nTu respuesta me ayudar\u00e1 a saber si hay signos de alarma que requieran atenci\u00f3n m\u00e9dica urgente o si podemos seguir explorando otras causas.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T15:26:11.656982"
+    },
+    {
+      "content": "es mas del ojo izquierdo la vision borrosa, ningun sintoma mas, ",
+      "sender": "user",
+      "timestamp": "2025-05-27T15:26:38.141092"
+    },
+    {
+      "content": "Lo siento, ha ocurrido un error al procesar tu mensaje. Como especialista en neurology, puedo intentar responder si reformulas tu pregunta de otra manera.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T15:26:39.704110"
+    },
+    {
+      "content": "es mas del ojo izquierdo la vision borrosa, ningun sintoma mas,\r\n",
+      "sender": "user",
+      "timestamp": "2025-05-27T15:27:57.922820"
+    },
+    {
+      "content": "Lo siento, La consulta no parece contener informaci\u00f3n m\u00e9dica espec\u00edfica. Por favor, proporciona m\u00e1s detalles sobre tu consulta m\u00e9dica.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T15:28:00.910752"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T15:24:00.729184",
+  "updated_at": "2025-05-27T15:28:00.910754"
+}

@@ -1,0 +1,27 @@
+{
+  "conversation_id": "667a3256-a5ba-492f-9931-c29c3cee1152",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en neurology. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T15:21:17.749186"
+    },
+    {
+      "content": "Me duele mucho la cabeza\r\n",
+      "sender": "user",
+      "timestamp": "2025-05-27T15:21:17.749200"
+    },
+    {
+      "content": "Como especialista en neurology, estoy experimentando problemas t\u00e9cnicos para responder a tu consulta. Por favor, intenta reformular tu pregunta o intenta m\u00e1s tarde. Si es urgente, te recomiendo contactar directamente con un profesional m\u00e9dico.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T15:21:21.172579"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T15:21:17.749165",
+  "updated_at": "2025-05-27T15:21:21.172599"
+}

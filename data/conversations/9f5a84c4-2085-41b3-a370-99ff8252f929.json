@@ -1,0 +1,32 @@
+{
+  "conversation_id": "9f5a84c4-2085-41b3-a370-99ff8252f929",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T13:56:13.376725"
+    },
+    {
+      "content": "me ha mordido un perro\r\n",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:56:13.376736"
+    },
+    {
+      "content": "Hola, gracias por contarme lo que te ha pasado. Soy m\u00e9dico internista y estoy aqu\u00ed para ayudarte. Entiendo que una mordedura de perro puede ser preocupante, as\u00ed que quiero hacerte algunas preguntas para saber c\u00f3mo proceder mejor:\n\n1. \u00bfCu\u00e1ndo ocurri\u00f3 la mordedura y en qu\u00e9 parte del cuerpo fue?\n2. \u00bfLa herida sangra mucho, es profunda o ves que falta alg\u00fan trozo de piel?\n3. \u00bfConoces el estado de vacunaci\u00f3n del perro (si est\u00e1 vacunado contra la rabia) y si es un animal dom\u00e9stico o callejero?\n\nCon estas respuestas podr\u00e9 orientarte mejor sobre los siguientes pasos.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:56:16.139037"
+    },
+    {
+      "content": "[IMAGEN ANALIZADA:http://127.0.0.1:3567/static/uploads/images/0d3bdbca48524ee888e12c2e258a7904_fig1.webp] 1. **Descripci\u00f3n de lo que observo en la imagen:**  \nSe observa una herida profunda y lacerante en la base del pulgar de la mano, con bordes irregulares y sangrado activo. La lesi\u00f3n parece comprometer piel, tejido subcut\u00e1neo y posiblemente estructuras m\u00e1s profundas.\n\n2. **Posibles observaciones relevantes desde el punto de vista m\u00e9dico:**  \n- La herida podr\u00eda comprometer tendones, nervios o vasos sangu\u00edneos de la regi\u00f3n tenar.\n- Existe riesgo de infecci\u00f3n debido a la exposici\u00f3n de tejidos profundos.\n- Puede haber afectaci\u00f3n funcional del pulgar (movilidad, sensibilidad).\n- La cantidad de sangrado sugiere posible lesi\u00f3n vascular.\n- Es importante descartar cuerpos extra\u00f1os en la herida.\n\n3. **Sugerencias de informaci\u00f3n adicional que el paciente deber\u00eda proporcionar verbalmente para complementar esta imagen:**  \n- Mecanismo de la lesi\u00f3n (c\u00f3mo ocurri\u00f3, objeto involucrado).\n- Hora exacta o tiempo transcurrido desde la lesi\u00f3n.\n- Presencia de dolor, p\u00e9rdida de sensibilidad o movilidad en el pulgar o la mano.\n- Estado de vacunaci\u00f3n antitet\u00e1nica.\n- Antecedentes m\u00e9dicos relevantes (diabetes, inmunosupresi\u00f3n, alergias).\n- Si ha intentado limpiar o manipular la herida previamente.\n\n4. **Limitaciones claras de este an\u00e1lisis visual:**  \n- No es posible evaluar profundidad real ni compromiso de estructuras internas solo con la imagen.\n- No se puede determinar el estado neurovascular ni la funcionalidad del pulgar.\n- No se puede descartar la presencia de cuerpos extra\u00f1os o fracturas \u00f3seas.\n- La imagen no permite evaluar signos sist\u00e9micos de infecci\u00f3n o shock.\n\n---\n\n**IMPORTANTE:**  \nEsta imagen es \u00fanicamente un complemento y NO sustituye una evaluaci\u00f3n m\u00e9dica completa. El diagn\u00f3stico final y el manejo adecuado requerir\u00e1n una conversaci\u00f3n adicional con el paciente, exploraci\u00f3n f\u00edsica directa y, posiblemente, estudios complementarios.  \n**Se recomienda que el paciente contin\u00fae describiendo verbalmente sus s\u00edntomas, antecedentes y detalles relevantes de la lesi\u00f3n.**  \n**Este es SOLO un an\u00e1lisis preliminar, no un diagn\u00f3stico definitivo.**",
+      "sender": "system",
+      "timestamp": "2025-05-27T13:56:50.029914"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T13:56:13.376708",
+  "updated_at": "2025-05-27T13:56:50.029932"
+}

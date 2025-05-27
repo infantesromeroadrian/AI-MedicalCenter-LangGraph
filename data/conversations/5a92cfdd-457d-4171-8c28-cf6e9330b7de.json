@@ -1,0 +1,37 @@
+{
+  "conversation_id": "5a92cfdd-457d-4171-8c28-cf6e9330b7de",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T13:49:45.208712"
+    },
+    {
+      "content": "me ha mordido un perro en la mano",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:49:45.208727"
+    },
+    {
+      "content": "Hola, gracias por contarme lo que te ha pasado. Soy m\u00e9dico internista y te ayudar\u00e9 a valorar la situaci\u00f3n.\n\nPara entender mejor tu caso, me gustar\u00eda saber:\n\n1. \u00bfHace cu\u00e1nto tiempo ocurri\u00f3 la mordedura y c\u00f3mo se ve la herida (hay sangrado, enrojecimiento, hinchaz\u00f3n, secreci\u00f3n)?\n2. \u00bfConoces el estado de vacunaci\u00f3n del perro (si est\u00e1 vacunado contra la rabia y si es un animal dom\u00e9stico o callejero)?\n3. \u00bfTienes fiebre, dolor intenso, dificultad para mover la mano o alg\u00fan otro s\u00edntoma asociado?\n\nCon esta informaci\u00f3n podr\u00e9 orientarte mejor sobre los siguientes pasos.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:49:47.876693"
+    },
+    {
+      "content": "me mordido hace 1 dia, no conozco el estado de vacunacion del perro, tengo algo de dificultad al mover la mano,",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:50:41.066246"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que la mordedura fue hace un d\u00eda, no conoces el estado de vacunaci\u00f3n del perro y tienes algo de dificultad para mover la mano. Para poder ayudarte mejor, necesito saber un poco m\u00e1s:\n\n1. \u00bfC\u00f3mo se ve la herida en este momento? \u00bfEst\u00e1 roja, hinchada, caliente, sale pus o alg\u00fan l\u00edquido?\n2. \u00bfEl dolor ha ido aumentando desde que ocurri\u00f3 la mordedura o ha permanecido igual?\n3. \u00bfHas notado fiebre, escalofr\u00edos o malestar general desde el incidente?\n\nCon estas respuestas podr\u00e9 orientarte sobre la gravedad y los siguientes pasos a seguir.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:50:47.822726"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T13:49:45.208687",
+  "updated_at": "2025-05-27T13:50:47.822735"
+}

@@ -1,0 +1,37 @@
+{
+  "conversation_id": "3dc44118-4fb1-4345-b4a3-3e183c462cc4",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T13:25:38.583285"
+    },
+    {
+      "content": "Me he cortado la mano",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:25:38.583298"
+    },
+    {
+      "content": "Hola, gracias por contarme lo que te ha pasado. Soy m\u00e9dico internista y estoy aqu\u00ed para ayudarte.\n\nPara poder orientarte mejor, me gustar\u00eda saber un poco m\u00e1s sobre tu corte en la mano:\n\n1. \u00bfHace cu\u00e1nto tiempo te cortaste la mano y con qu\u00e9 objeto fue?\n2. \u00bfQu\u00e9 tan profundo es el corte? \u00bfEst\u00e1 sangrando mucho o ya lograste detener el sangrado?\n3. \u00bfHas notado alg\u00fan otro s\u00edntoma, como dolor intenso, dificultad para mover los dedos, adormecimiento o enrojecimiento alrededor del corte?\n\nCon esta informaci\u00f3n podr\u00e9 darte recomendaciones m\u00e1s precisas y saber si necesitas atenci\u00f3n m\u00e9dica urgente.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:25:41.165940"
+    },
+    {
+      "content": "me corte esta ma\u00f1ana no para de sangrar fue un mordisco de una persona, el corte es profundo y tengo dolor intenso y dificultad de mover los dedos ",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:26:31.374873"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que el corte fue por un mordisco de una persona, es profundo, tienes dolor intenso, sigue sangrando y tienes dificultad para mover los dedos. Esto es una situaci\u00f3n seria y puede requerir atenci\u00f3n m\u00e9dica urgente.\n\nPara poder ayudarte mejor, necesito saber:\n\n1. \u00bfEl sangrado es abundante (empapa vendas o no se detiene con presi\u00f3n directa)?\n2. \u00bfNotas que la zona alrededor del corte est\u00e1 muy hinchada, caliente, roja o sale pus?\n3. \u00bfTienes fiebre o te sientes mal en general (escalofr\u00edos, sudoraci\u00f3n, debilidad)?\n\nCon estas respuestas podr\u00e9 orientarte sobre los siguientes pasos y la urgencia de la situaci\u00f3n.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:26:36.623001"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T13:25:38.583264",
+  "updated_at": "2025-05-27T13:26:36.623010"
+}

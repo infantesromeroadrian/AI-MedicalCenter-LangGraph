@@ -1,0 +1,27 @@
+{
+  "conversation_id": "52d292bf-6067-46fd-8ba6-9f442349c8c5",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en neurology. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T12:12:26.876404"
+    },
+    {
+      "content": "me duele la cabeza",
+      "sender": "user",
+      "timestamp": "2025-05-27T12:12:26.876424"
+    },
+    {
+      "content": "Hola, soy neur\u00f3logo y estoy aqu\u00ed para ayudarte con tu dolor de cabeza. Para poder entender mejor lo que te est\u00e1 pasando, me gustar\u00eda hacerte unas preguntas:\n\n1. \u00bfDesde cu\u00e1ndo tienes este dolor de cabeza y con qu\u00e9 frecuencia aparece (es algo reciente, lleva d\u00edas, semanas, meses, o es la primera vez)?\n2. \u00bfPodr\u00edas describir c\u00f3mo es el dolor? Por ejemplo, \u00bfes punzante, opresivo, puls\u00e1til (como latidos), o de otra forma? \u00bfD\u00f3nde lo sientes exactamente (en un lado, en toda la cabeza, en la frente, detr\u00e1s de los ojos, etc.)?\n3. \u00bfHas notado alg\u00fan otro s\u00edntoma junto con el dolor de cabeza, como n\u00e1useas, v\u00f3mitos, visi\u00f3n borrosa, debilidad, dificultad para hablar o mareos?\n\nCon tus respuestas podr\u00e9 orientarte mejor y ver si es necesario hacer m\u00e1s preguntas o darte algunas recomendaciones.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T12:12:30.160168"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T12:12:26.876378",
+  "updated_at": "2025-05-27T12:12:30.160180"
+}

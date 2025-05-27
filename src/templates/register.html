@@ -1,37 +1,601 @@
-{% extends 'base.html' %}
+{% extends 'auth_base.html' %}
 
-{% block title %}Register - AI Medical Center{% endblock %}
+{% block title %}Crear Cuenta - AI Medical Center{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    
+    :root {
+        --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        --secondary-gradient: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        --accent-gradient: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+        --glass-bg: rgba(255, 255, 255, 0.15);
+        --glass-bg-strong: rgba(255, 255, 255, 0.25);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --shadow-soft: 0 8px 32px 0 rgba(59, 130, 246, 0.25);
+        --shadow-hover: 0 15px 35px 0 rgba(59, 130, 246, 0.35);
+        --medical-blue: #2563eb;
+        --medical-cyan: #0891b2;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #3b82f6 0%, #1e40af 40%, #06b6d4 80%, #0891b2 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Register Container */
+    .register-container {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .register-card {
+        background: var(--glass-bg-strong);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        width: 100%;
+        max-width: 500px;
+        animation: slideIn 0.6s ease-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .register-header {
+        background: var(--secondary-gradient);
+        padding: 2.5rem 2rem 2rem;
+        text-align: center;
+        color: white;
+    }
+
+    .register-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        background: var(--glass-bg-strong);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .register-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .register-subtitle {
+        font-size: 0.95rem;
+        opacity: 0.9;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    .register-body {
+        padding: 2.5rem 2rem;
+    }
+
+    /* Form Styles */
+    .form-floating {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .form-floating > .form-control {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 1rem 1rem 1rem 3rem;
+        font-size: 1rem;
+        color: var(--medical-blue);
+        box-shadow: inset 0 2px 4px rgba(59, 130, 246, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .form-floating > .form-control:focus {
+        background: rgba(255, 255, 255, 1);
+        border-color: var(--medical-blue);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), inset 0 2px 4px rgba(59, 130, 246, 0.1);
+        outline: none;
+    }
+
+    .form-floating > label {
+        color: rgba(59, 130, 246, 0.7);
+        font-weight: 500;
+        padding-left: 3rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--medical-cyan);
+        font-size: 1.1rem;
+        z-index: 10;
+    }
+
+    /* Password Strength Indicator */
+    .password-strength {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .strength-bar {
+        height: 4px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .strength-fill {
+        height: 100%;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .strength-weak .strength-fill {
+        width: 25%;
+        background: #ef4444;
+    }
+
+    .strength-medium .strength-fill {
+        width: 50%;
+        background: #f59e0b;
+    }
+
+    .strength-good .strength-fill {
+        width: 75%;
+        background: #3b82f6;
+    }
+
+    .strength-strong .strength-fill {
+        width: 100%;
+        background: #10b981;
+    }
+
+    .strength-text {
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Terms checkbox */
+    .terms-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        border: 1px solid var(--glass-border);
+    }
+
+    .terms-check input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--medical-blue);
+        cursor: pointer;
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+
+    .terms-check label {
+        color: white;
+        font-weight: 400;
+        cursor: pointer;
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .terms-check a {
+        color: #60a5fa;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .terms-check a:hover {
+        text-decoration: underline;
+        color: white;
+    }
+
+    /* Button Styles */
+    .register-btn {
+        background: var(--secondary-gradient);
+        border: none;
+        border-radius: 12px;
+        padding: 1rem 2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: white;
+        width: 100%;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+    }
+
+    .register-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+        color: white;
+    }
+
+    .register-btn:focus {
+        box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.3);
+        outline: none;
+    }
+
+    .register-btn:active {
+        transform: translateY(0);
+    }
+
+    .register-btn:disabled {
+        opacity: 0.6;
+        transform: none;
+        cursor: not-allowed;
+    }
+
+    /* Footer Links */
+    .register-footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .register-footer p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .register-footer a {
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+    }
+
+    .register-footer a:hover {
+        color: #60a5fa;
+        border-bottom-color: #60a5fa;
+        text-decoration: none;
+    }
+
+    /* Alert Styles */
+    .alert {
+        border-radius: 12px;
+        border: none;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .alert-danger {
+        background: rgba(239, 68, 68, 0.1);
+        color: #dc2626;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .alert-success {
+        background: rgba(34, 197, 94, 0.1);
+        color: #15803d;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 576px) {
+        .register-container {
+            padding: 1rem;
+        }
+        
+        .register-header {
+            padding: 2rem 1.5rem 1.5rem;
+        }
+        
+        .register-body {
+            padding: 2rem 1.5rem;
+        }
+        
+        .register-title {
+            font-size: 1.6rem;
+        }
+        
+        .register-logo {
+            width: 70px;
+            height: 70px;
+            font-size: 1.75rem;
+        }
+    }
+
+    /* Loading Animation */
+    .btn-loading {
+        position: relative;
+        pointer-events: none;
+    }
+
+    .btn-loading::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        border: 2px solid transparent;
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="mb-0">Register</h3>
+<div class="register-container">
+    <div class="register-card">
+        <div class="register-header">
+            <div class="register-logo">
+                <i class="fas fa-user-plus"></i>
             </div>
-            <div class="card-body">
-                <form method="POST" action="{{ url_for('web.register') }}">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
+            <h1 class="register-title">Crear Nueva Cuenta</h1>
+            <p class="register-subtitle">Únete a nuestra plataforma de telemedicina</p>
+        </div>
+        
+        <div class="register-body">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form method="POST" action="{{ url_for('web.register') }}" id="register-form">
+                <div class="form-floating">
+                    <i class="fas fa-user form-icon"></i>
+                    <input type="text" class="form-control" id="username" name="username" 
+                           placeholder="Nombre de usuario" required autocomplete="username">
+                    <label for="username">Nombre de Usuario</label>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                
+                <div class="form-floating">
+                    <i class="fas fa-lock form-icon"></i>
+                    <input type="password" class="form-control" id="password" name="password" 
+                           placeholder="Contraseña" required autocomplete="new-password">
+                    <label for="password">Contraseña</label>
                     </div>
-                    <div class="mb-3">
-                        <label for="confirm_password" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                
+                <div class="password-strength" id="password-strength" style="display: none;">
+                    <div class="strength-bar">
+                        <div class="strength-fill"></div>
                     </div>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Register</button>
+                    <div class="strength-text"></div>
+                </div>
+                
+                <div class="form-floating">
+                    <i class="fas fa-lock form-icon"></i>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" 
+                           placeholder="Confirmar contraseña" required autocomplete="new-password">
+                    <label for="confirm_password">Confirmar Contraseña</label>
                     </div>
-                    <div class="mt-3 text-center">
-                        <p>Already have an account? <a href="{{ url_for('web.login') }}">Login</a></p>
+                
+                <div class="terms-check">
+                    <input type="checkbox" id="terms" name="terms" class="form-check-input" required>
+                    <label for="terms" class="form-check-label">
+                        Acepto los <a href="#" onclick="alert('Términos de servicio - En desarrollo')">Términos de Servicio</a> 
+                        y la <a href="#" onclick="alert('Política de privacidad - En desarrollo')">Política de Privacidad</a> 
+                        de AI Medical Center
+                    </label>
                     </div>
+                
+                <button type="submit" class="register-btn" id="register-button" disabled>
+                    <i class="fas fa-user-plus"></i>
+                    Crear Mi Cuenta
+                </button>
                 </form>
+            
+            <div class="register-footer">
+                <p>¿Ya tienes una cuenta?</p>
+                <a href="{{ url_for('web.login') }}">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </a>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const registerForm = document.getElementById('register-form');
+    const registerButton = document.getElementById('register-button');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirm_password');
+    const termsCheckbox = document.getElementById('terms');
+    const passwordStrength = document.getElementById('password-strength');
+    
+    // Validar fortaleza de contraseña
+    function checkPasswordStrength(password) {
+        let strength = 0;
+        let feedback = '';
+        
+        if (password.length >= 8) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        
+        passwordStrength.style.display = password.length > 0 ? 'block' : 'none';
+        
+        const strengthBar = passwordStrength.querySelector('.strength-bar');
+        const strengthText = passwordStrength.querySelector('.strength-text');
+        
+        strengthBar.className = 'strength-bar';
+        
+        switch (strength) {
+            case 0:
+            case 1:
+                strengthBar.classList.add('strength-weak');
+                feedback = 'Contraseña muy débil';
+                break;
+            case 2:
+                strengthBar.classList.add('strength-weak');
+                feedback = 'Contraseña débil';
+                break;
+            case 3:
+                strengthBar.classList.add('strength-medium');
+                feedback = 'Contraseña aceptable';
+                break;
+            case 4:
+                strengthBar.classList.add('strength-good');
+                feedback = 'Contraseña buena';
+                break;
+            case 5:
+                strengthBar.classList.add('strength-strong');
+                feedback = 'Contraseña muy segura';
+                break;
+        }
+        
+        strengthText.textContent = feedback;
+        return strength >= 3;
+    }
+    
+    // Validar que las contraseñas coincidan
+    function checkPasswordMatch() {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+        
+        if (confirmPassword.length > 0) {
+            if (password === confirmPassword) {
+                confirmPasswordInput.setCustomValidity('');
+                confirmPasswordInput.classList.remove('is-invalid');
+                confirmPasswordInput.classList.add('is-valid');
+                return true;
+            } else {
+                confirmPasswordInput.setCustomValidity('Las contraseñas no coinciden');
+                confirmPasswordInput.classList.remove('is-valid');
+                confirmPasswordInput.classList.add('is-invalid');
+                return false;
+            }
+        }
+        return false;
+    }
+    
+    // Habilitar/deshabilitar botón de registro
+    function updateRegisterButton() {
+        const isPasswordStrong = checkPasswordStrength(passwordInput.value);
+        const isPasswordMatch = checkPasswordMatch();
+        const isTermsAccepted = termsCheckbox.checked;
+        const isUsernameValid = document.getElementById('username').value.length >= 3;
+        
+        const isFormValid = isPasswordStrong && isPasswordMatch && isTermsAccepted && isUsernameValid;
+        
+        registerButton.disabled = !isFormValid;
+        registerButton.style.opacity = isFormValid ? '1' : '0.6';
+    }
+    
+    // Event listeners
+    passwordInput.addEventListener('input', function() {
+        updateRegisterButton();
+    });
+    
+    confirmPasswordInput.addEventListener('input', function() {
+        updateRegisterButton();
+    });
+    
+    termsCheckbox.addEventListener('change', function() {
+        updateRegisterButton();
+    });
+    
+    document.getElementById('username').addEventListener('input', function() {
+        updateRegisterButton();
+    });
+    
+    // Manejar envío del formulario
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+            if (!checkPasswordStrength(passwordInput.value)) {
+                e.preventDefault();
+                alert('Por favor, use una contraseña más segura');
+                return false;
+            }
+            
+            if (!checkPasswordMatch()) {
+                e.preventDefault();
+                alert('Las contraseñas no coinciden');
+                return false;
+            }
+            
+            // Mostrar estado de carga
+            registerButton.classList.add('btn-loading');
+            registerButton.innerHTML = '<span style="opacity: 0;">Creando cuenta...</span>';
+            registerButton.disabled = true;
+            
+            // Opcional: revertir si hay error
+            setTimeout(() => {
+                if (window.location.pathname === '/register') {
+                    registerButton.classList.remove('btn-loading');
+                    registerButton.innerHTML = '<i class="fas fa-user-plus"></i> Crear Mi Cuenta';
+                    updateRegisterButton();
+                }
+            }, 5000);
+        });
+    }
+    
+    // Auto-focus en el primer campo
+    const usernameInput = document.getElementById('username');
+    if (usernameInput) {
+        usernameInput.focus();
+    }
+    
+    // Inicializar estado del botón
+    updateRegisterButton();
+});
+</script>
 {% endblock %} 

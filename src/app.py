@@ -137,6 +137,19 @@ def create_app():
             "environment": os.getenv("FLASK_ENV", "development")
         })
     
+    # Endpoint de debug para verificar rutas
+    @app.route('/debug/routes')
+    def debug_routes():
+        """Debug endpoint para mostrar todas las rutas disponibles"""
+        routes = []
+        for rule in app.url_map.iter_rules():
+            routes.append({
+                'endpoint': rule.endpoint,
+                'methods': list(rule.methods),
+                'rule': str(rule)
+            })
+        return jsonify({"routes": sorted(routes, key=lambda x: x['rule'])})
+    
     return app
 
 # Crear la aplicación

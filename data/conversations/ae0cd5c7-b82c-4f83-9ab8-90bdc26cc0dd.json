@@ -1,0 +1,42 @@
+{
+  "conversation_id": "ae0cd5c7-b82c-4f83-9ab8-90bdc26cc0dd",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T14:08:19.968901"
+    },
+    {
+      "content": "me ha mordido un perro",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:08:19.968915"
+    },
+    {
+      "content": "Hola, gracias por contarme lo que te ha pasado. Soy m\u00e9dico internista y te ayudar\u00e9 a valorar la situaci\u00f3n.\n\nPara poder orientarte mejor, necesito saber un poco m\u00e1s sobre la mordedura:\n\n1. \u00bfCu\u00e1ndo ocurri\u00f3 la mordedura (hace cu\u00e1ntas horas o d\u00edas)?\n2. \u00bfLa herida sangra mucho, es profunda o superficial? \u00bfPuedes describir c\u00f3mo se ve?\n3. \u00bfSabes si el perro est\u00e1 vacunado contra la rabia y si es un animal conocido para ti?\n\nCon esta informaci\u00f3n podr\u00e9 guiarte mejor sobre los siguientes pasos a seguir.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T14:08:23.099138"
+    },
+    {
+      "content": "me ha mordido hace unas horas, la herida sangra bastante, no se si el perro esta vacunado",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:09:14.153860"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que la mordedura fue hace unas horas, la herida sangra bastante y no tienes certeza sobre el estado de vacunaci\u00f3n del perro.\n\nPara poder ayudarte mejor, necesito saber un poco m\u00e1s:\n\n1. \u00bfD\u00f3nde tienes la herida (en qu\u00e9 parte del cuerpo)?\n2. \u00bfHas hecho algo para limpiar la herida desde que ocurri\u00f3 la mordedura (por ejemplo, lavarla con agua y jab\u00f3n)?\n3. \u00bfNotas enrojecimiento, hinchaz\u00f3n, calor o pus alrededor de la herida, o tienes fiebre o malestar general?\n\nCon estas respuestas podr\u00e9 orientarte sobre los cuidados inmediatos y si es necesario que acudas a un centro m\u00e9dico.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T14:09:19.113515"
+    },
+    {
+      "content": "[IMAGEN ANALIZADA:http://127.0.0.1:3567/static/uploads/images/fac1a548197e4554ad6ea370143d23ae_fig1.webp] **An\u00e1lisis de imagen m\u00e9dica (contexto: medicina de urgencias)**\n\n1. **Descripci\u00f3n breve de la imagen:**\n   - Se observa una herida profunda y lacerante en la base del pulgar de la mano, con bordes irregulares y presencia de sangrado activo. La lesi\u00f3n parece comprometer piel, tejido subcut\u00e1neo y posiblemente estructuras m\u00e1s profundas.\n\n2. **Posibles observaciones m\u00e9dicas relevantes:**\n   - La herida es extensa y podr\u00eda comprometer tendones, nervios o vasos sangu\u00edneos de la regi\u00f3n tenar.\n   - Existe riesgo de infecci\u00f3n debido a la exposici\u00f3n del tejido.\n   - Es posible que haya afectaci\u00f3n funcional del pulgar, lo que podr\u00eda limitar la movilidad o la fuerza de prensi\u00f3n.\n   - La cantidad de sangrado sugiere posible lesi\u00f3n vascular.\n   - La localizaci\u00f3n y profundidad requieren valoraci\u00f3n urgente para descartar da\u00f1o a estructuras cr\u00edticas.\n\n3. **Informaci\u00f3n adicional que el paciente deber\u00eda proporcionar verbalmente:**\n   - Mecanismo de la lesi\u00f3n (\u00bfc\u00f3mo ocurri\u00f3? \u00bfobjeto cortante, accidente, mordedura, etc.?).\n   - Hora exacta de la lesi\u00f3n.\n   - Estado de vacunaci\u00f3n antitet\u00e1nica.\n   - Presencia de dolor, entumecimiento, hormigueo o incapacidad para mover el pulgar o los dedos.\n   - Antecedentes m\u00e9dicos relevantes (diabetes, inmunosupresi\u00f3n, alergias, etc.).\n   - Si ha intentado alg\u00fan tipo de limpieza o tratamiento previo.\n   - S\u00edntomas sist\u00e9micos (fiebre, malestar general).\n\n4. **Limitaciones claras de este an\u00e1lisis visual:**\n   - **Esta imagen es solo un complemento y NO sustituye una evaluaci\u00f3n m\u00e9dica completa.**\n   - No es posible valorar la profundidad real de la herida ni el compromiso de estructuras internas solo con la imagen.\n   - No se puede determinar el estado neurovascular ni la funcionalidad de la mano sin exploraci\u00f3n f\u00edsica.\n   - El diagn\u00f3stico final requerir\u00e1 conversaci\u00f3n adicional con el paciente y, probablemente, estudios complementarios (radiograf\u00edas, exploraci\u00f3n quir\u00fargica).\n   - La imagen no permite evaluar signos de infecci\u00f3n temprana ni la evoluci\u00f3n de la herida.\n\n**IMPORTANTE:**  \nEste an\u00e1lisis es SOLO PRELIMINAR y debe ser complementado con una evaluaci\u00f3n m\u00e9dica presencial. Es fundamental que el paciente contin\u00fae describiendo verbalmente sus s\u00edntomas, antecedentes y detalles del accidente. El diagn\u00f3stico definitivo y el tratamiento adecuado solo pueden establecerse tras una valoraci\u00f3n cl\u00ednica completa por un profesional de la salud.",
+      "sender": "system",
+      "timestamp": "2025-05-27T14:09:57.176187"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T14:08:19.968877",
+  "updated_at": "2025-05-27T14:09:57.176204"
+}

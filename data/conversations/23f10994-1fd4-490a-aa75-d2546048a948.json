@@ -1,0 +1,43 @@
+{
+  "conversation_id": "23f10994-1fd4-490a-aa75-d2546048a948",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en internal_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T14:11:50.477842"
+    },
+    {
+      "content": "me duele la cabeza",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:11:50.477857"
+    },
+    {
+      "content": "Hola, gracias por confiar en m\u00ed para ayudarte. Soy m\u00e9dico internista y estoy aqu\u00ed para escucharte y orientarte.\n\nPara entender mejor tu dolor de cabeza, me gustar\u00eda preguntarte:\n\n1. \u00bfDesde cu\u00e1ndo tienes este dolor de cabeza y con qu\u00e9 frecuencia aparece?\n2. \u00bfPodr\u00edas describir c\u00f3mo es el dolor (por ejemplo, punzante, opresivo, en una zona espec\u00edfica o en toda la cabeza)?\n3. \u00bfHay algo que haga que el dolor mejore o empeore (por ejemplo, la luz, el ruido, el movimiento, el descanso)?",
+      "sender": "internal_medicine",
+      "timestamp": "2025-05-27T14:11:53.755549"
+    },
+    {
+      "content": "me duele la cabeza hace una semana, es un dolor intenso en la frente tipo punzada",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:13:18.636868"
+    },
+    {
+      "content": "\u2695\ufe0f El orquestador m\u00e9dico ha determinado que un especialista en neurology puede responder mejor a tu consulta. Motivo: The patient reports an intense, stabbing headache in the forehead lasting for a week. Persistent and severe headaches may indicate a neurological issue that requires evaluation for possible migraine, cluster headache, or other neurological causes.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-05-27T14:13:20.725032"
+    },
+    {
+      "content": "Hola, soy neur\u00f3logo y estoy aqu\u00ed para ayudarte a entender mejor lo que te est\u00e1 pasando. Gracias por compartir que tienes un dolor de cabeza intenso en la frente, tipo punzada, desde hace una semana. Para poder orientarte mejor, me gustar\u00eda hacerte unas preguntas m\u00e1s espec\u00edficas:\n\n1. \u00bfEl dolor es constante durante todo el d\u00eda o aparece en ciertos momentos? \u00bfHa ido aumentando, disminuyendo o se mantiene igual desde que empez\u00f3?\n2. \u00bfHas notado otros s\u00edntomas acompa\u00f1ando al dolor, como visi\u00f3n borrosa, n\u00e1useas, v\u00f3mitos, fiebre, debilidad en alguna parte del cuerpo, dificultad para hablar o mareos?\n3. \u00bfHay algo que parezca desencadenar el dolor o que lo alivie, como el reposo, la luz, el ruido, o tomar alg\u00fan medicamento?\n\nCon tus respuestas podr\u00e9 entender mejor tu situaci\u00f3n y orientarte de la mejor manera posible.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T14:13:24.013732"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "internal_medicine",
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T14:11:50.477819",
+  "updated_at": "2025-05-27T14:13:24.013741"
+}

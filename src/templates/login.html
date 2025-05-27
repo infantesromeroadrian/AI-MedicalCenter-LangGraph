@@ -1,37 +1,409 @@
-{% extends 'base.html' %}
+{% extends 'auth_base.html' %}
 
-{% block title %}Login - AI Medical Center{% endblock %}
+{% block title %}Iniciar Sesión - AI Medical Center{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    
+    :root {
+        --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        --secondary-gradient: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        --accent-gradient: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+        --glass-bg: rgba(255, 255, 255, 0.15);
+        --glass-bg-strong: rgba(255, 255, 255, 0.25);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --shadow-soft: 0 8px 32px 0 rgba(59, 130, 246, 0.25);
+        --shadow-hover: 0 15px 35px 0 rgba(59, 130, 246, 0.35);
+        --medical-blue: #2563eb;
+        --medical-cyan: #0891b2;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #3b82f6 0%, #1e40af 40%, #06b6d4 80%, #0891b2 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Login Container */
+    .login-container {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .login-card {
+        background: var(--glass-bg-strong);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        width: 100%;
+        max-width: 450px;
+        animation: slideIn 0.6s ease-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .login-header {
+        background: var(--primary-gradient);
+        padding: 2.5rem 2rem 2rem;
+        text-align: center;
+        color: white;
+    }
+
+    .login-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        background: var(--glass-bg-strong);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-subtitle {
+        font-size: 1rem;
+        opacity: 0.9;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    .login-body {
+        padding: 2.5rem 2rem;
+    }
+
+    /* Form Styles */
+    .form-floating {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .form-floating > .form-control {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 1rem 1rem 1rem 3rem;
+        font-size: 1rem;
+        color: var(--medical-blue);
+        box-shadow: inset 0 2px 4px rgba(59, 130, 246, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .form-floating > .form-control:focus {
+        background: rgba(255, 255, 255, 1);
+        border-color: var(--medical-blue);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), inset 0 2px 4px rgba(59, 130, 246, 0.1);
+        outline: none;
+    }
+
+    .form-floating > label {
+        color: rgba(59, 130, 246, 0.7);
+        font-weight: 500;
+        padding-left: 3rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--medical-cyan);
+        font-size: 1.1rem;
+        z-index: 10;
+    }
+
+    .remember-check {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        border: 1px solid var(--glass-border);
+    }
+
+    .remember-check input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--medical-blue);
+        cursor: pointer;
+    }
+
+    .remember-check label {
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    /* Button Styles */
+    .login-btn {
+        background: var(--accent-gradient);
+        border: none;
+        border-radius: 12px;
+        padding: 1rem 2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: white;
+        width: 100%;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+    }
+
+    .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+        color: white;
+    }
+
+    .login-btn:focus {
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+        outline: none;
+    }
+
+    .login-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Footer Links */
+    .login-footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .login-footer p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .login-footer a {
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+    }
+
+    .login-footer a:hover {
+        color: #60a5fa;
+        border-bottom-color: #60a5fa;
+        text-decoration: none;
+    }
+
+    /* Alert Styles */
+    .alert {
+        border-radius: 12px;
+        border: none;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .alert-danger {
+        background: rgba(239, 68, 68, 0.1);
+        color: #dc2626;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .alert-success {
+        background: rgba(34, 197, 94, 0.1);
+        color: #15803d;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 576px) {
+        .login-container {
+            padding: 1rem;
+        }
+        
+        .login-header {
+            padding: 2rem 1.5rem 1.5rem;
+        }
+        
+        .login-body {
+            padding: 2rem 1.5rem;
+        }
+        
+        .login-title {
+            font-size: 1.75rem;
+        }
+        
+        .login-logo {
+            width: 70px;
+            height: 70px;
+            font-size: 1.75rem;
+        }
+    }
+
+    /* Loading Animation */
+    .btn-loading {
+        position: relative;
+        pointer-events: none;
+    }
+
+    .btn-loading::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        border: 2px solid transparent;
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="mb-0">Login</h3>
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-logo">
+                <i class="fas fa-user-md"></i>
             </div>
-            <div class="card-body">
-                <form method="POST" action="{{ url_for('web.login') }}">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
+            <h1 class="login-title">AI Medical Center</h1>
+            <p class="login-subtitle">Plataforma de Telemedicina Inteligente</p>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+        
+        <div class="login-body">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ message }}
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                        <label class="form-check-label" for="remember">Remember me</label>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form method="POST" action="{{ url_for('web.login') }}" id="login-form">
+                <div class="form-floating">
+                    <i class="fas fa-user form-icon"></i>
+                    <input type="text" class="form-control" id="username" name="username" 
+                           placeholder="Nombre de usuario" required autocomplete="username">
+                    <label for="username">Nombre de Usuario</label>
                     </div>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                
+                <div class="form-floating">
+                    <i class="fas fa-lock form-icon"></i>
+                    <input type="password" class="form-control" id="password" name="password" 
+                           placeholder="Contraseña" required autocomplete="current-password">
+                    <label for="password">Contraseña</label>
                     </div>
-                    <div class="mt-3 text-center">
-                        <p>Don't have an account? <a href="{{ url_for('web.register') }}">Register</a></p>
+                
+                <div class="remember-check">
+                    <input type="checkbox" id="remember" name="remember" class="form-check-input">
+                    <label for="remember" class="form-check-label">Recordar mis datos</label>
                     </div>
+                
+                <button type="submit" class="login-btn" id="login-button">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </button>
                 </form>
+            
+            <div class="login-footer">
+                <p>¿No tienes una cuenta?</p>
+                <a href="{{ url_for('web.register') }}">
+                    <i class="fas fa-user-plus"></i>
+                    Crear Cuenta Nueva
+                </a>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('login-form');
+    const loginButton = document.getElementById('login-button');
+    
+    // Manejar envío del formulario
+    if (loginForm) {
+        loginForm.addEventListener('submit', function() {
+            // Mostrar estado de carga
+            loginButton.classList.add('btn-loading');
+            loginButton.innerHTML = '<span style="opacity: 0;">Iniciando sesión...</span>';
+            loginButton.disabled = true;
+            
+            // Opcional: revertir si hay error
+            setTimeout(() => {
+                if (window.location.pathname === '/login') {
+                    loginButton.classList.remove('btn-loading');
+                    loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
+                    loginButton.disabled = false;
+                }
+            }, 5000);
+        });
+    }
+    
+    // Auto-focus en el primer campo
+    const usernameInput = document.getElementById('username');
+    if (usernameInput) {
+        usernameInput.focus();
+    }
+    
+    // Mejorar experiencia con Enter
+    const passwordInput = document.getElementById('password');
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginForm.submit();
+            }
+        });
+    }
+});
+</script>
 {% endblock %} 

@@ -1,0 +1,67 @@
+{
+  "conversation_id": "2e83b061-4797-4c22-a55d-21de987e4221",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T09:26:07.985447"
+    },
+    {
+      "content": "me he cortado la mano",
+      "sender": "user",
+      "timestamp": "2025-05-27T09:26:07.985463"
+    },
+    {
+      "content": "Hola, gracias por confiar en m\u00ed para ayudarte. Soy m\u00e9dico de medicina interna y me gustar\u00eda entender mejor tu situaci\u00f3n para poder orientarte bien.\n\n\u00bfPodr\u00edas contarme c\u00f3mo fue que te cortaste la mano?  \n\u00bfLa herida es profunda o superficial, y est\u00e1 sangrando mucho en este momento?  \n\u00bfHas notado si puedes mover bien los dedos y la mano, o sientes alg\u00fan adormecimiento o debilidad?\n\nCon esta informaci\u00f3n podr\u00e9 orientarte mejor sobre los siguientes pasos.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T09:26:10.464040"
+    },
+    {
+      "content": "me mordio un perro la herida es profunda si sangra bastante",
+      "sender": "user",
+      "timestamp": "2025-05-27T09:27:49.681000"
+    },
+    {
+      "content": "Gracias por contarme lo que te pas\u00f3. Entiendo que la situaci\u00f3n puede ser preocupante. Para poder ayudarte mejor, necesito saber un poco m\u00e1s:\n\n1. \u00bfHace cu\u00e1nto tiempo te mordi\u00f3 el perro y en qu\u00e9 parte del cuerpo fue la mordida?\n2. \u00bfHas logrado detener el sangrado aplicando presi\u00f3n directa sobre la herida, o sigue sangrando mucho?\n3. \u00bfSabes si el perro tiene due\u00f1o y si est\u00e1 vacunado contra la rabia?\n\nCon estas respuestas podr\u00e9 orientarte sobre los pasos m\u00e1s adecuados a seguir.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T09:27:55.815074"
+    },
+    {
+      "content": "me mordio hace 1 dia no logro parar el sangrado y el perro si esta vacunado",
+      "sender": "user",
+      "timestamp": "2025-05-27T09:28:19.675378"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que la mordida fue hace un d\u00eda, la herida es profunda, sigue sangrando y el perro est\u00e1 vacunado. Para poder orientarte mejor, necesito saber un poco m\u00e1s sobre tu situaci\u00f3n actual:\n\n1. \u00bfHas limpiado la herida con agua y jab\u00f3n o has aplicado alg\u00fan tipo de desinfectante?\n2. \u00bfLa herida presenta enrojecimiento, hinchaz\u00f3n, calor, pus o mal olor?\n3. \u00bfTienes fiebre, dolor intenso, dificultad para mover la mano o los dedos, o notas adormecimiento en la zona?\n\nCon estas respuestas podr\u00e9 guiarte mejor sobre los siguientes pasos a seguir.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T09:28:24.859469"
+    },
+    {
+      "content": "si la he limpiado con agua y jabon la herida esta hinchada y tengo mareos",
+      "sender": "user",
+      "timestamp": "2025-05-27T09:28:52.060359"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Veo que la herida est\u00e1 hinchada y tienes mareos, lo cual es importante. Para entender mejor tu situaci\u00f3n y poder ayudarte, necesito saber lo siguiente:\n\n1. \u00bfHas notado si la herida ha cambiado de color (por ejemplo, se ha puesto m\u00e1s roja, morada o tiene zonas negras)?\n2. \u00bfTienes fiebre (temperatura mayor a 38\u00b0C) o escalofr\u00edos?\n3. \u00bfHas recibido la vacuna antitet\u00e1nica en los \u00faltimos 5 a\u00f1os?\n\nEsto me ayudar\u00e1 a valorar el riesgo de infecci\u00f3n y otras complicaciones.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T09:28:56.219953"
+    },
+    {
+      "content": "la herida no ha cambiado de color no tengo fiebre y aun no me he vacunado",
+      "sender": "user",
+      "timestamp": "2025-05-27T09:29:15.214591"
+    },
+    {
+      "content": "Gracias por responder todas mis preguntas y por tu paciencia durante la consulta. Para resumir, me comentaste que:\n\n- Sufriste una mordida de perro profunda hace un d\u00eda.\n- La herida sigue sangrando, est\u00e1 hinchada, pero no ha cambiado de color.\n- No tienes fiebre, pero s\u00ed presentas mareos.\n- El perro est\u00e1 vacunado, pero t\u00fa a\u00fan no has recibido la vacuna antitet\u00e1nica recientemente.\n- Has limpiado la herida con agua y jab\u00f3n.\n\nCon base en lo que me cuentas, es importante que tomes en cuenta lo siguiente:\n\n---\n\n**RECOMENDACIONES:**\n\n1. **Atenci\u00f3n m\u00e9dica inmediata:**  \n   La herida sigue sangrando despu\u00e9s de 24 horas y est\u00e1 hinchada, lo cual puede indicar una lesi\u00f3n importante o una posible infecci\u00f3n. Adem\u00e1s, los mareos pueden ser se\u00f1al de p\u00e9rdida de sangre o infecci\u00f3n. Te recomiendo acudir lo antes posible a un centro de salud o sala de urgencias para que un m\u00e9dico valore la herida, detenga el sangrado de forma adecuada y decida si necesitas sutura, antibi\u00f3ticos o alg\u00fan otro tratamiento.\n\n2. **Vacuna antitet\u00e1nica:**  \n   Es fundamental que recibas la vacuna antitet\u00e1nica si no la has recibido en los \u00faltimos 5 a\u00f1os, ya que las mordeduras de animales pueden ser una v\u00eda de entrada para esta bacteria.\n\n3. **Observaci\u00f3n de la herida:**  \n   Aunque el perro est\u00e1 vacunado contra la rabia, sigue observando la herida y el estado general del animal. Si el perro muestra comportamientos extra\u00f1os o enferma en los pr\u00f3ximos d\u00edas, informa a las autoridades de salud.\n\n4. **Cuidados en casa:**  \n   Mientras acudes al m\u00e9dico, mant\u00e9n la herida limpia, c\u00fabrela con un pa\u00f1o limpio y aplica presi\u00f3n si sigue sangrando. Evita aplicar remedios caseros o cremas sin indicaci\u00f3n m\u00e9dica.\n\n---\n\n**SIGNOS DE ALARMA (acude a urgencias si presentas):**\n\n- Sangrado que no se detiene con presi\u00f3n directa.\n- Fiebre mayor a 38\u00b0C, escalofr\u00edos o sudoraci\u00f3n.\n- Dolor intenso, enrojecimiento que se extiende, calor, pus o mal olor en la herida.\n- Dificultad para mover la zona afectada, adormecimiento o debilidad.\n- Mareos intensos, desmayo o sensaci\u00f3n de debilidad general.\n\n---\n\n**Plan de acci\u00f3n:**  \nTe recomiendo acudir hoy mismo a un centro de salud para valoraci\u00f3n m\u00e9dica presencial. Lleva contigo la informaci\u00f3n sobre el perro y tu historial de vacunaci\u00f3n si la tienes a mano.\n\nSi tienes alguna otra duda o necesitas m\u00e1s orientaci\u00f3n, aqu\u00ed estar\u00e9 para ayudarte. \u00a1Cuida mucho de ti!",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T09:29:26.165482"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T09:26:07.985427",
+  "updated_at": "2025-05-27T09:29:26.165492"
+}

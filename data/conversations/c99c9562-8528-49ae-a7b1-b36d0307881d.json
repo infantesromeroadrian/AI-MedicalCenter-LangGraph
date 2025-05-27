@@ -1,0 +1,67 @@
+{
+  "conversation_id": "c99c9562-8528-49ae-a7b1-b36d0307881d",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en neurology. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T12:15:40.263788"
+    },
+    {
+      "content": "me duele la cabeza\r\n",
+      "sender": "user",
+      "timestamp": "2025-05-27T12:15:40.263805"
+    },
+    {
+      "content": "Hola, soy neur\u00f3logo y te agradezco que hayas venido a consulta. Entiendo que tienes dolor de cabeza y quiero ayudarte a entender mejor lo que te est\u00e1 pasando.\n\nPara poder orientarte mejor, me gustar\u00eda preguntarte:\n\n1. \u00bfDesde cu\u00e1ndo tienes este dolor de cabeza y con qu\u00e9 frecuencia aparece (es algo reciente, lleva d\u00edas, semanas o meses)?\n2. \u00bfD\u00f3nde sientes el dolor exactamente (por ejemplo, en un lado de la cabeza, en la frente, detr\u00e1s de los ojos, en la nuca, etc.) y c\u00f3mo describir\u00edas la intensidad (leve, moderado, intenso)?\n\nCon esta informaci\u00f3n podr\u00e9 guiarte mejor y ver si es necesario hacer m\u00e1s preguntas o darte algunas recomendaciones.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T12:15:44.729553"
+    },
+    {
+      "content": "me duele desde hace una semana un dolor intenso punzante en la frente",
+      "sender": "user",
+      "timestamp": "2025-05-27T12:16:22.388681"
+    },
+    {
+      "content": "Gracias por aclarar que el dolor es intenso, punzante y localizado en la frente, y que lleva una semana. Para poder ayudarte mejor, necesito saber un poco m\u00e1s:\n\n1. \u00bfEl dolor es constante durante todo el d\u00eda o aparece y desaparece en ciertos momentos?  \n2. \u00bfHas notado alg\u00fan otro s\u00edntoma junto con el dolor de cabeza, como n\u00e1useas, v\u00f3mitos, visi\u00f3n borrosa, sensibilidad a la luz o al ruido, fiebre, debilidad en alguna parte del cuerpo, dificultad para hablar o mareos?\n\nCon tus respuestas podr\u00e9 entender mejor la situaci\u00f3n y orientarte de la mejor manera posible.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T12:16:26.971803"
+    },
+    {
+      "content": "el dolor es constante, me mareo",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:16:43.397173"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que el dolor de cabeza es constante, intenso, punzante en la frente y que adem\u00e1s te est\u00e1s mareando.\n\nPara poder orientarte mejor, me gustar\u00eda preguntarte:\n\n1. \u00bfHas notado alg\u00fan cambio en tu visi\u00f3n (por ejemplo, visi\u00f3n borrosa, ver luces o manchas, p\u00e9rdida de visi\u00f3n) desde que empez\u00f3 el dolor de cabeza?\n2. \u00bfEl mareo es como sensaci\u00f3n de que todo da vueltas (v\u00e9rtigo) o m\u00e1s bien una sensaci\u00f3n de inestabilidad o debilidad?\n3. \u00bfTienes antecedentes de golpes en la cabeza recientes, fiebre, o has notado debilidad, adormecimiento o dificultad para mover alguna parte del cuerpo?\n\nEstas respuestas me ayudar\u00e1n a valorar si hay signos de alarma y a darte recomendaciones m\u00e1s precisas.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T13:16:57.383985"
+    },
+    {
+      "content": "algo de vision borrosa, es una sensacion de que da vueltas, noto algo de debilidad",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:17:39.948540"
+    },
+    {
+      "content": "Gracias por contarme que tienes visi\u00f3n borrosa, sensaci\u00f3n de que todo da vueltas y algo de debilidad. Entiendo que estos s\u00edntomas pueden ser preocupantes y quiero asegurarme de que no haya se\u00f1ales de alarma.\n\nMe gustar\u00eda preguntarte lo siguiente para entender mejor tu situaci\u00f3n:\n\n1. \u00bfLa debilidad que sientes es en todo el cuerpo o en alguna parte espec\u00edfica (por ejemplo, solo en un brazo o una pierna)? \u00bfHas notado dificultad para mover alguna parte del cuerpo?\n2. \u00bfHas tenido dificultad para hablar, entender palabras, o alg\u00fan cambio en la forma de hablar desde que comenzaron los s\u00edntomas?\n3. \u00bfTienes antecedentes personales o familiares de enfermedades neurol\u00f3gicas como migra\u00f1a, epilepsia, accidentes cerebrovasculares (ACV) o esclerosis m\u00faltiple?\n\nCon esta informaci\u00f3n podr\u00e9 orientarte mejor y ver si es necesario que busques atenci\u00f3n m\u00e9dica de inmediato o si podemos seguir evaluando juntos.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T13:17:45.723453"
+    },
+    {
+      "content": "nada mas estoy tomando parcetamol para ver si mejora",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:18:13.459614"
+    },
+    {
+      "content": "Perfecto, gracias por compartir toda esta informaci\u00f3n. Para cerrar la consulta, te hago un resumen de lo que hemos conversado y te doy recomendaciones claras para que sepas c\u00f3mo proceder.\n\n**Resumen de tu caso:**\n- Dolor de cabeza intenso, punzante, localizado en la frente, constante desde hace una semana.\n- S\u00edntomas asociados: visi\u00f3n borrosa, sensaci\u00f3n de que todo da vueltas (v\u00e9rtigo) y algo de debilidad.\n- Est\u00e1s tomando paracetamol, pero no has notado mejor\u00eda.\n\nEstos s\u00edntomas, especialmente la combinaci\u00f3n de dolor de cabeza intenso, visi\u00f3n borrosa, mareo tipo v\u00e9rtigo y debilidad, pueden indicar un problema neurol\u00f3gico que requiere una valoraci\u00f3n m\u00e9dica presencial lo antes posible.\n\n---\n\n**RECOMENDACIONES:**\n\n1. **Busca atenci\u00f3n m\u00e9dica de inmediato**:  \n   Te recomendar\u00eda acudir a un servicio de urgencias hoy mismo. Es importante descartar causas graves como un accidente cerebrovascular (ACV), hemorragia cerebral, infecciones o problemas de presi\u00f3n intracraneal. No esperes a ver si mejora con analg\u00e9sicos.\n\n2. **Signos de alarma que requieren atenci\u00f3n urgente**:  \n   Si presentas cualquiera de los siguientes s\u00edntomas, acude inmediatamente a urgencias:\n   - Debilidad o adormecimiento s\u00fabito en la cara, brazo o pierna, especialmente de un solo lado.\n   - Dificultad para hablar o entender palabras.\n   - P\u00e9rdida s\u00fabita de visi\u00f3n en uno o ambos ojos.\n   - Dolor de cabeza que empeora r\u00e1pidamente o es el peor de tu vida.\n   - V\u00f3mitos persistentes, fiebre alta, rigidez de cuello o convulsiones.\n   - P\u00e9rdida de conciencia o confusi\u00f3n.\n\n3. **Plan de acci\u00f3n**:  \n   - No tomes m\u00e1s medicamentos por tu cuenta hasta ser valorado por un m\u00e9dico.\n   - Si tienes antecedentes m\u00e9dicos relevantes, lleva esa informaci\u00f3n contigo al hospital.\n   - Si vives solo, avisa a alguien de confianza para que te acompa\u00f1e o est\u00e9 pendiente de ti.\n\n---\n\n**Explicaci\u00f3n:**  \nTus s\u00edntomas pueden deberse a varias causas, algunas de las cuales pueden ser graves y requieren tratamiento urgente. Por eso, lo m\u00e1s seguro es que te eval\u00faen presencialmente, posiblemente con estudios de imagen cerebral y una exploraci\u00f3n neurol\u00f3gica completa.\n\nSi tienes dudas o necesitas m\u00e1s orientaci\u00f3n despu\u00e9s de la valoraci\u00f3n m\u00e9dica, no dudes en volver a consultarme. \u00a1Cu\u00eddate mucho y no demores en buscar atenci\u00f3n!",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T13:18:28.628459"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T12:15:40.263764",
+  "updated_at": "2025-05-27T13:18:28.628470"
+}

@@ -1,0 +1,27 @@
+{
+  "conversation_id": "ba5b575f-2853-45c1-86bd-76118a44f6a1",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en neurology. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T10:11:31.056545"
+    },
+    {
+      "content": "me duele la cabeza",
+      "sender": "user",
+      "timestamp": "2025-05-27T10:11:31.056557"
+    },
+    {
+      "content": "Hola, soy neur\u00f3logo y estoy aqu\u00ed para ayudarte con tu dolor de cabeza. Para poder entender mejor tu situaci\u00f3n, me gustar\u00eda hacerte algunas preguntas:\n\n1. \u00bfDesde cu\u00e1ndo tienes este dolor de cabeza y con qu\u00e9 frecuencia aparece?\n2. \u00bfPodr\u00edas describir c\u00f3mo es el dolor? (Por ejemplo: \u00bfes punzante, opresivo, en un solo lado o en toda la cabeza?)\n3. \u00bfHas notado alg\u00fan otro s\u00edntoma junto con el dolor de cabeza, como visi\u00f3n borrosa, n\u00e1useas, v\u00f3mitos, debilidad, dificultad para hablar o mareos?\n\nCon tus respuestas podr\u00e9 orientarte mejor y darte recomendaciones m\u00e1s precisas.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T10:11:35.529393"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T10:11:31.056524",
+  "updated_at": "2025-05-27T10:11:35.529411"
+}

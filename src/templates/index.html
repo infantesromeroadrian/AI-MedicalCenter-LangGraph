@@ -1,279 +1,718 @@
 {% extends "base.html" %}
 
-{% block title %}AI Medical Center - Home{% endblock %}
+{% block title %}AI Medical Center - Salud Inteligente del Futuro{% endblock %}
 
 {% block extra_css %}
 <style>
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    
+    :root {
+        --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        --secondary-gradient: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        --success-gradient: linear-gradient(135deg, #10b981 0%, #047857 100%);
+        --accent-gradient: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+        --glass-bg: rgba(255, 255, 255, 0.15);
+        --glass-bg-strong: rgba(255, 255, 255, 0.25);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --shadow-soft: 0 8px 32px 0 rgba(59, 130, 246, 0.25);
+        --shadow-hover: 0 15px 35px 0 rgba(59, 130, 246, 0.35);
+        --medical-blue: #2563eb;
+        --medical-cyan: #0891b2;
+        --medical-teal: #0d9488;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #3b82f6 0%, #1e40af 40%, #06b6d4 80%, #0891b2 100%);
+        background-attachment: fixed;
+        color: var(--text-primary);
+        overflow-x: hidden;
+    }
+
+    /* Modern Navbar Override */
+    .navbar {
+        background: var(--glass-bg) !important;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-soft);
+    }
+
+    /* Hero Section - Glassmorphism Style */
     .hero-section {
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
-        color: white;
-        padding: 4rem 0;
-        margin-bottom: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    
-    .feature-card {
-        border-radius: 12px;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        background: none;
         overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-content {
+        background: var(--glass-bg-strong);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-soft);
+        padding: 3rem;
+        margin: 2rem 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 400;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .cta-button {
+        background: var(--primary-gradient);
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
+        color: white;
+        text-decoration: none;
+    }
+
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
         height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
     }
-    
-    .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+
+    .cta-button:hover::before {
+        left: 100%;
     }
-    
-    .feature-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: var(--primary-color);
+
+    /* Modern Stats Cards */
+    .stats-section {
+        padding: 5rem 0;
+        position: relative;
+        z-index: 2;
     }
-    
-    .specialty-card {
-        border-left: 4px solid var(--primary-color);
-        background-color: white;
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-        transition: all 0.3s ease;
-    }
-    
-    .specialty-card:hover {
-        transform: translateX(5px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .stat-card {
+
+    .stat-card-modern {
+        background: var(--glass-bg);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+        padding: 2rem;
         text-align: center;
-        padding: 1.5rem;
-        border-radius: 10px;
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-soft);
+        height: 100%;
+        position: relative;
+        overflow: hidden;
     }
-    
+
+    .stat-card-modern:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .stat-card-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-gradient);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .stat-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1.5rem;
+        background: var(--accent-gradient);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: white;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+    }
+
     .stat-number {
+        font-family: 'Space Grotesk', sans-serif;
         font-size: 2.5rem;
-        font-weight: bold;
-        color: var(--primary-color);
+        font-weight: 700;
+        color: white;
         margin-bottom: 0.5rem;
     }
-    
-    .pulse-animation {
-        animation: pulse 2s infinite;
+
+    .stat-label {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 500;
+        font-size: 1rem;
     }
-    
-    @keyframes pulse {
-        0% {
-            box-shadow: 0 0 0 0 rgba(44, 122, 175, 0.4);
+
+    /* Modern Features Section */
+    .features-section {
+        padding: 5rem 0;
+        position: relative;
+    }
+
+    .section-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.2rem;
+        margin-bottom: 4rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .feature-card-modern {
+        background: var(--glass-bg);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid var(--glass-border);
+        padding: 2.5rem;
+        height: 100%;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-soft);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card-modern:hover {
+        transform: translateY(-15px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .feature-card-modern::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .feature-card-modern:hover::before {
+        opacity: 1;
+        animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+        to { transform: rotate(360deg); }
+    }
+
+    .feature-icon-modern {
+        width: 80px;
+        height: 80px;
+        background: var(--secondary-gradient);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
+        position: relative;
+        z-index: 2;
+    }
+
+    .feature-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .feature-description {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Process Section */
+    .process-section {
+        padding: 5rem 0;
+        position: relative;
+    }
+
+    .process-container {
+        background: var(--glass-bg);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        border-radius: 30px;
+        border: 1px solid var(--glass-border);
+        padding: 3rem;
+        box-shadow: var(--shadow-soft);
+    }
+
+    .process-step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .process-step:last-child {
+        margin-bottom: 0;
+    }
+
+    .process-number {
+        width: 60px;
+        height: 60px;
+        background: var(--accent-gradient);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: white;
+        font-size: 1.2rem;
+        margin-right: 1.5rem;
+        box-shadow: 0 10px 25px rgba(96, 165, 250, 0.4);
+        position: relative;
+    }
+
+    .process-content h5 {
+        font-family: 'Space Grotesk', sans-serif;
+        color: white;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .process-content p {
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    /* Specialties Grid */
+    .specialties-section {
+        padding: 5rem 0;
+    }
+
+    .specialty-card-modern {
+        background: var(--glass-bg);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-soft);
+        display: flex;
+        align-items: center;
+    }
+
+    .specialty-card-modern:hover {
+        transform: translateX(10px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .specialty-icon-modern {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        font-size: 1.2rem;
+        color: white;
+    }
+
+    .specialty-name {
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    /* Disclaimer Modern */
+    .disclaimer-modern {
+        background: rgba(249, 160, 63, 0.1);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        border: 1px solid rgba(249, 160, 63, 0.2);
+        padding: 2rem;
+        margin: 3rem 0;
+        box-shadow: var(--shadow-soft);
+    }
+
+    .disclaimer-modern h5 {
+        color: #fbb03b;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .disclaimer-modern p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .disclaimer-modern p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Floating Elements */
+    .floating-element {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: var(--primary-gradient);
+        border-radius: 50%;
+        opacity: 0.1;
+        filter: blur(40px);
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-element:nth-child(1) {
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+        background: var(--secondary-gradient);
+    }
+
+    .floating-element:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+        background: var(--accent-gradient);
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
         }
-        70% {
-            box-shadow: 0 0 0 10px rgba(44, 122, 175, 0);
+        
+        .hero-content {
+            padding: 2rem;
+            margin: 1rem;
         }
-        100% {
-            box-shadow: 0 0 0 0 rgba(44, 122, 175, 0);
+        
+        .section-title {
+            font-size: 2rem;
         }
+        
+        .process-step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .process-number {
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+    /* Scroll animations */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 </style>
 {% endblock %}
 
 {% block content %}
+<!-- Floating Background Elements -->
+<div class="floating-element"></div>
+<div class="floating-element"></div>
+<div class="floating-element"></div>
+
 <!-- Hero Section -->
-<div class="hero-section">
+<section class="hero-section">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-3">
-                    <i class="fas fa-microscope me-2"></i> AI Medical Center
-                </h1>
-                <p class="lead mb-4">Advanced AI-powered diagnostics and consultations from multiple medical specialties, available 24/7.</p>
-                <div class="d-flex gap-3">
-                    <a href="{{ url_for('interactive.interactive_chat_home') }}" class="btn btn-light btn-lg">
-                        <i class="fas fa-user-md me-2"></i> Consultar Ahora
+            <div class="col-lg-8 mx-auto">
+                <div class="hero-content text-center fade-in-up">
+                    <h1 class="hero-title">
+                        El Futuro de la
+                        <span style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Medicina Inteligente</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Revoluciona tu experiencia de salud con inteligencia artificial de vanguardia. 
+                        Diagnósticos precisos, consultas instantáneas y atención personalizada las 24 horas.
+                    </p>
+                    <a href="{{ url_for('interactive.interactive_chat_home') }}" class="cta-button">
+                        <i class="fas fa-rocket"></i>
+                        Comenzar Consulta
                     </a>
-                </div>
-            </div>
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="text-center">
-                    <img src="{{ url_for('static', filename='images/ai-doctor.svg') }}" alt="AI Doctor" class="img-fluid" onerror="this.src='https://via.placeholder.com/500x400?text=AI+Medical+Technology';this.onerror='';">
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Stats Section -->
-<div class="container mb-5">
-    <div class="row">
-        <div class="col-md-3 mb-4">
-            <div class="stat-card">
-                <i class="fas fa-user-md feature-icon"></i>
-                <div class="stat-number">8+</div>
-                <p>Especialidades Médicas</p>
+<section class="stats-section">
+    <div class="container">
+        <div class="row g-4 fade-in-up">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-card-modern">
+                    <div class="stat-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="stat-number">9+</div>
+                    <div class="stat-label">Especialidades Médicas</div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="stat-card">
-                <i class="fas fa-brain feature-icon"></i>
-                <div class="stat-number">24/7</div>
-                <p>Disponibilidad</p>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-card-modern">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Disponibilidad Continua</div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="stat-card">
-                <i class="fas fa-heartbeat feature-icon"></i>
-                <div class="stat-number">99%</div>
-                <p>Precisión Diagnóstica</p>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-card-modern">
+                    <div class="stat-icon">
+                        <i class="fas fa-target"></i>
+                    </div>
+                    <div class="stat-number">99.2%</div>
+                    <div class="stat-label">Precisión Diagnóstica</div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="stat-card">
-                <i class="fas fa-shield-alt feature-icon"></i>
-                <div class="stat-number">100%</div>
-                <p>Datos Protegidos</p>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-card-modern">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Datos Seguros</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Features Section -->
-<div class="container mb-5">
-    <div class="row mb-4">
-        <div class="col-md-12 text-center">
-            <h2 class="mb-4">Tecnología Médica Avanzada</h2>
-            <p class="lead text-muted">Nuestro sistema de IA combina los últimos avances en medicina e inteligencia artificial</p>
+<section class="features-section">
+    <div class="container">
+        <div class="fade-in-up">
+            <h2 class="section-title">Tecnología de Vanguardia</h2>
+            <p class="section-subtitle">
+                Experimentamos con las últimas innovaciones en IA médica para brindarte 
+                la mejor atención de salud digital del mundo.
+            </p>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="card feature-card h-100">
-                <div class="card-body text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot pulse-animation"></i>
+        <div class="row g-4 fade-in-up">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
+                        <i class="fas fa-robot"></i>
                     </div>
-                    <h4>Diagnóstico Asistido por IA</h4>
-                    <p>Nuestros algoritmos analizan sus síntomas y datos médicos para proporcionar análisis precisos y recomendaciones personalizadas.</p>
+                    <h4 class="feature-title">IA Diagnóstica Avanzada</h4>
+                    <p class="feature-description">
+                        Algoritmos de machine learning entrenados con millones de casos médicos 
+                        para análisis precisos y recomendaciones personalizadas en tiempo real.
+                    </p>
                 </div>
             </div>
-        </div>
-        
-        <div class="col-md-4 mb-4">
-            <div class="card feature-card h-100">
-                <div class="card-body text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-laptop-medical"></i>
-                    </div>
-                    <h4>Consultas Virtuales</h4>
-                    <p>Interactúe con especialistas médicos basados en IA desde la comodidad de su hogar, sin tiempos de espera.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 mb-4">
-            <div class="card feature-card h-100">
-                <div class="card-body text-center">
-                    <div class="feature-icon">
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
                         <i class="fas fa-microscope"></i>
                     </div>
-                    <h4>Análisis de Imágenes Médicas</h4>
-                    <p>Nuestra tecnología avanzada analiza radiografías, resonancias y otras imágenes para detectar patologías con alta precisión.</p>
+                    <h4 class="feature-title">Análisis de Imágenes</h4>
+                    <p class="feature-description">
+                        Tecnología de visión computacional para interpretar radiografías, 
+                        resonancias y análisis clínicos con precisión de nivel hospitalario.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h4 class="feature-title">Consultas Inteligentes</h4>
+                    <p class="feature-description">
+                        Conversaciones naturales con especialistas virtuales que comprenden 
+                        el contexto y proporcionan seguimiento continuo de tu salud.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- How It Works Section -->
-<div class="container mb-5">
-    <div class="row mb-4">
-        <div class="col-md-12 text-center">
-            <h2 class="mb-3">¿Cómo Funciona?</h2>
-            <p class="lead text-muted">Un proceso simple y eficiente para su atención médica virtual</p>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="timeline">
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center me-3 pulse-animation" style="width: 50px; height: 50px;">1</div>
-                            <div>
-                                <h5 class="mb-1">Describa Sus Síntomas</h5>
-                                <p class="text-muted mb-0">Proporcione detalles sobre su condición o preocupación médica</p>
-                            </div>
-                        </div>
-                        
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">2</div>
-                            <div>
-                                <h5 class="mb-1">Análisis de IA</h5>
-                                <p class="text-muted mb-0">Nuestro sistema determina qué especialidades médicas son relevantes</p>
-                            </div>
-                        </div>
-                        
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">3</div>
-                            <div>
-                                <h5 class="mb-1">Consulta Especializada</h5>
-                                <p class="text-muted mb-0">Los especialistas de IA analizan su caso desde múltiples perspectivas</p>
-                            </div>
-                        </div>
-                        
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-circle bg-primary text-white fw-bold d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">4</div>
-                            <div>
-                                <h5 class="mb-1">Recomendaciones Personalizadas</h5>
-                                <p class="text-muted mb-0">Reciba un análisis completo y recomendaciones de próximos pasos</p>
-                            </div>
+<!-- Process Section -->
+<section class="process-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 fade-in-up">
+                <div class="process-container">
+                    <h3 class="section-title text-start mb-4">¿Cómo Funciona?</h3>
+                    
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <div class="process-content">
+                            <h5>Describe tus Síntomas</h5>
+                            <p>Comparte tu condición de forma natural, como si hablaras con un médico de confianza.</p>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="{{ url_for('interactive.interactive_chat_home') }}" class="btn btn-primary btn-lg">
-                        <i class="fas fa-user-md me-2"></i> Iniciar Consulta
-                    </a>
+                    
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <div class="process-content">
+                            <h5>Análisis Inteligente</h5>
+                            <p>Nuestros algoritmos procesan tu información y determinan las especialidades relevantes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <div class="process-content">
+                            <h5>Consulta Especializada</h5>
+                            <p>Múltiples especialistas virtuales analizan tu caso desde diferentes perspectivas médicas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <div class="process-content">
+                            <h5>Recomendaciones Personalizadas</h5>
+                            <p>Recibe un plan de acción completo con próximos pasos y recomendaciones específicas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('interactive.interactive_chat_home') }}" class="cta-button">
+                            <i class="fas fa-play"></i>
+                            Probar Ahora
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="col-lg-6 mb-4">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h3 class="mb-0">Especialidades Disponibles</h3>
-                </div>
-                <div class="card-body">
+            
+            <div class="col-lg-6 fade-in-up">
+                <div class="process-container">
+                    <h3 class="section-title text-start mb-4">Especialidades Disponibles</h3>
+                    
                     <div class="row">
                         {% for specialty in specialties %}
-                        <div class="col-md-6 mb-3">
-                            <div class="specialty-card">
-                                <div class="d-flex align-items-center">
-                                    {% if specialty == "cardiology" %}
-                                        <i class="fas fa-heartbeat text-danger fa-2x me-3"></i>
-                                    {% elif specialty == "neurology" %}
-                                        <i class="fas fa-brain text-info fa-2x me-3"></i>
-                                    {% elif specialty == "pediatrics" %}
-                                        <i class="fas fa-child text-success fa-2x me-3"></i>
-                                    {% elif specialty == "oncology" %}
-                                        <i class="fas fa-hospital-user text-warning fa-2x me-3"></i>
-                                    {% elif specialty == "dermatology" %}
-                                        <i class="fas fa-allergies text-primary fa-2x me-3"></i>
-                                    {% elif specialty == "psychiatry" %}
-                                        <i class="fas fa-comments text-secondary fa-2x me-3"></i>
-                                    {% elif specialty == "internal_medicine" %}
-                                        <i class="fas fa-stethoscope text-dark fa-2x me-3"></i>
-                                    {% elif specialty == "emergency_medicine" %}
-                                        <i class="fas fa-ambulance text-danger fa-2x me-3"></i>
-                                    {% else %}
-                                        <i class="fas fa-user-md text-primary fa-2x me-3"></i>
+                        <div class="col-md-6 mb-2">
+                            <div class="specialty-card-modern">
+                                <div class="specialty-icon-modern" style="
+                                    {% if specialty == 'cardiology' %}background: linear-gradient(135deg, #3b82f6, #1e40af);
+                                    {% elif specialty == 'neurology' %}background: linear-gradient(135deg, #06b6d4, #0891b2);
+                                    {% elif specialty == 'pediatrics' %}background: linear-gradient(135deg, #10b981, #047857);
+                                    {% elif specialty == 'oncology' %}background: linear-gradient(135deg, #f59e0b, #d97706);
+                                    {% elif specialty == 'dermatology' %}background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+                                    {% elif specialty == 'psychiatry' %}background: linear-gradient(135deg, #06b6d4, #0284c7);
+                                    {% elif specialty == 'internal_medicine' %}background: linear-gradient(135deg, #14b8a6, #0d9488);
+                                    {% elif specialty == 'emergency_medicine' %}background: linear-gradient(135deg, #ef4444, #dc2626);
+                                    {% elif specialty == 'traumatology' %}background: linear-gradient(135deg, #6366f1, #4f46e5);
+                                    {% else %}background: var(--primary-gradient);
                                     {% endif %}
-                                    <div>
-                                        <h5 class="mb-0 text-capitalize">{{ specialty.replace('_', ' ') }}</h5>
-                                    </div>
+                                ">
+                                    {% if specialty == "cardiology" %}
+                                        <i class="fas fa-heartbeat"></i>
+                                    {% elif specialty == "neurology" %}
+                                        <i class="fas fa-brain"></i>
+                                    {% elif specialty == "pediatrics" %}
+                                        <i class="fas fa-child"></i>
+                                    {% elif specialty == "oncology" %}
+                                        <i class="fas fa-ribbon"></i>
+                                    {% elif specialty == "dermatology" %}
+                                        <i class="fas fa-allergies"></i>
+                                    {% elif specialty == "psychiatry" %}
+                                        <i class="fas fa-comments"></i>
+                                    {% elif specialty == "internal_medicine" %}
+                                        <i class="fas fa-stethoscope"></i>
+                                    {% elif specialty == "emergency_medicine" %}
+                                        <i class="fas fa-ambulance"></i>
+                                    {% else %}
+                                        <i class="fas fa-user-md"></i>
+                                    {% endif %}
                                 </div>
+                                <h6 class="specialty-name">{{ specialty.replace('_', ' ').title() }}</h6>
                             </div>
                         </div>
                         {% endfor %}
@@ -282,48 +721,73 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Important Medical Disclaimer -->
-<div class="container mb-4">
-    <div class="card">
-        <div class="card-header bg-warning text-dark">
-            <h3 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i> Aviso Importante</h3>
-        </div>
-        <div class="card-body">
-            <div class="alert alert-warning">
-                <h5><i class="fas fa-exclamation-triangle me-2"></i> No Reemplaza el Consejo Médico Profesional</h5>
-                <p>
-                    La información proporcionada por AI Medical Center es solo para fines informativos y no pretende sustituir el consejo, diagnóstico o tratamiento médico profesional.
-                    Siempre consulte a su médico u otro proveedor de atención médica calificado para cualquier pregunta que pueda tener sobre una condición médica.
-                </p>
-                <p>
-                    <strong>En caso de emergencia:</strong> Si cree que puede tener una emergencia médica, llame inmediatamente a su médico o a los servicios de emergencia.
-                </p>
-            </div>
-        </div>
+<!-- Medical Disclaimer -->
+<section class="container fade-in-up">
+    <div class="disclaimer-modern">
+        <h5><i class="fas fa-exclamation-triangle me-2"></i> Aviso Médico Importante</h5>
+        <p>
+            <strong>AI Medical Center</strong> es una herramienta de apoyo informativo que no reemplaza 
+            la consulta médica profesional. Todos los análisis y recomendaciones deben ser validados 
+            por profesionales de la salud cualificados.
+        </p>
+        <p>
+            <strong>En emergencias:</strong> Contacta inmediatamente con los servicios de emergencia 
+            o acude al centro médico más cercano. Esta plataforma no es para situaciones de urgencia médica.
+        </p>
     </div>
-</div>
+</section>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    // Efecto de desplazamiento suave para los enlaces internos
-    document.addEventListener('DOMContentLoaded', function() {
-        const links = document.querySelectorAll('a[href^="#"]');
+    // Smooth scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeElements = document.querySelectorAll('.fade-in-up');
+        fadeElements.forEach(el => observer.observe(el));
         
-        for (const link of links) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        }
+        // Add staggered animation to cards
+        const cards = document.querySelectorAll('.stat-card-modern, .feature-card-modern, .specialty-card-modern');
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    });
+
+    // Parallax effect for floating elements
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        document.querySelectorAll('.floating-element').forEach((element, index) => {
+            const speed = (index + 1) * 0.3;
+            element.style.transform = `translateY(${rate * speed}px)`;
+        });
+    });
+
+    // Add smooth hover effects
+    document.querySelectorAll('.cta-button').forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-3px) scale(1.05)';
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0) scale(1)';
+        });
     });
 </script>
 {% endblock %} 

@@ -1,0 +1,67 @@
+{
+  "conversation_id": "8dcb28ae-361f-43ce-a268-576bc8d644c0",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en neurology. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T14:49:54.601412"
+    },
+    {
+      "content": "me duele la cabeza ",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:49:54.601445"
+    },
+    {
+      "content": "Hola, soy neur\u00f3logo y estoy aqu\u00ed para ayudarte a entender mejor tu dolor de cabeza.\n\nPara poder orientarte mejor, \u00bfpodr\u00edas contarme un poco m\u00e1s sobre tu dolor?  \n1. \u00bfD\u00f3nde sientes el dolor exactamente (por ejemplo, en un solo lado, en la frente, en la nuca, en toda la cabeza)?  \n2. \u00bfDesde cu\u00e1ndo tienes este dolor y cu\u00e1nto tiempo suele durar cada episodio?  \n3. \u00bfEl dolor aparece de repente o va aumentando poco a poco?\n\nCon esta informaci\u00f3n podr\u00e9 acercarme m\u00e1s a la causa y ayudarte de la mejor manera posible.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T14:50:02.330398"
+    },
+    {
+      "content": "me duele la cabeza intensamente con un dolor tipo punzada en la frente",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:50:20.153105"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que el dolor es intenso, tipo punzada y localizado en la frente.\n\nPara poder ayudarte mejor, me gustar\u00eda saber un poco m\u00e1s:\n\n1. \u00bfEste dolor de cabeza apareci\u00f3 de forma repentina o fue aumentando poco a poco?\n2. \u00bfHas notado alg\u00fan otro s\u00edntoma junto con el dolor, como visi\u00f3n borrosa, n\u00e1useas, v\u00f3mitos, sensibilidad a la luz o al ruido, debilidad en alguna parte del cuerpo, dificultad para hablar o fiebre?\n3. \u00bfHay algo que haga que el dolor mejore o empeore, como cambios de posici\u00f3n, esfuerzo f\u00edsico, o tomar alg\u00fan medicamento?\n\nCon tus respuestas podr\u00e9 orientarte mejor sobre los siguientes pasos.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T14:50:25.747158"
+    },
+    {
+      "content": "me duele hace una semana, he notado alfo de vision borrosa y me dueel mucho mas en las ma\u00f1anas",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:50:59.977910"
+    },
+    {
+      "content": "Gracias por compartir estos detalles, entiendo que el dolor de cabeza es intenso, tipo punzada en la frente, lleva una semana, es peor en las ma\u00f1anas y has notado algo de visi\u00f3n borrosa.\n\nPara poder orientarte mejor, me gustar\u00eda preguntarte:\n\n1. \u00bfHas notado que el dolor de cabeza te despierta por la noche o te impide dormir bien?\n2. \u00bfTienes antecedentes de golpes en la cabeza recientes, presi\u00f3n arterial alta, o alg\u00fan problema neurol\u00f3gico previo?\n3. \u00bfHas tenido fiebre, rigidez en el cuello, debilidad en alguna parte del cuerpo, dificultad para hablar o p\u00e9rdida de equilibrio junto con estos s\u00edntomas?\n\nEstas preguntas me ayudar\u00e1n a identificar si hay se\u00f1ales de alarma que requieran atenci\u00f3n m\u00e1s urgente.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T14:51:06.768895"
+    },
+    {
+      "content": "si me impide dormir bien no tengo problemas previos , si he tenido rigidez de cuello",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:51:50.238104"
+    },
+    {
+      "content": "Gracias por responder. Entiendo que el dolor de cabeza es intenso, tipo punzada en la frente, lleva una semana, empeora en las ma\u00f1anas, te impide dormir bien y has tenido rigidez de cuello y algo de visi\u00f3n borrosa. No tienes antecedentes previos de problemas neurol\u00f3gicos.\n\nPara poder entender mejor tu situaci\u00f3n, me gustar\u00eda preguntarte:\n\n1. \u00bfHas notado fiebre, n\u00e1useas o v\u00f3mitos junto con el dolor de cabeza?\n2. \u00bfHas sentido debilidad, entumecimiento, dificultad para mover alguna parte del cuerpo o problemas para hablar?\n3. \u00bfEl dolor de cabeza ha ido empeorando con los d\u00edas o se ha mantenido igual?\n\nEstas respuestas me ayudar\u00e1n a valorar si hay signos de alarma y a decidir los siguientes pasos contigo.",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T14:51:55.925601"
+    },
+    {
+      "content": "nada mas, ha ido el dolor en aumento",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:52:25.445036"
+    },
+    {
+      "content": "Gracias por compartir toda esta informaci\u00f3n y confiar en m\u00ed para orientarte. Vamos a hacer un resumen de lo que hemos hablado y te dar\u00e9 recomendaciones claras para los siguientes pasos.\n\n**Resumen de tu caso:**\n- Dolor de cabeza intenso, tipo punzada, localizado en la frente.\n- El dolor lleva una semana, empeora en las ma\u00f1anas y te impide dormir bien.\n- Has notado visi\u00f3n borrosa y rigidez de cuello.\n- No tienes antecedentes neurol\u00f3gicos previos ni golpes recientes en la cabeza.\n- El dolor ha ido en aumento.\n\nEstos s\u00edntomas, especialmente el dolor de cabeza intenso que empeora en las ma\u00f1anas, la visi\u00f3n borrosa, la rigidez de cuello y la dificultad para dormir, son se\u00f1ales que pueden indicar una causa seria y requieren valoraci\u00f3n m\u00e9dica urgente.\n\n---\n\n**RECOMENDACIONES:**\n\n1. **Busca atenci\u00f3n m\u00e9dica de inmediato.**  \n   Te recomendar\u00eda acudir hoy mismo a un servicio de urgencias. El dolor de cabeza intenso, progresivo, con visi\u00f3n borrosa y rigidez de cuello puede estar relacionado con condiciones que necesitan ser descartadas r\u00e1pidamente, como infecciones (meningitis), aumento de la presi\u00f3n dentro del cr\u00e1neo u otras causas neurol\u00f3gicas importantes.\n\n2. **No tomes analg\u00e9sicos fuertes sin supervisi\u00f3n m\u00e9dica.**  \n   Aunque el dolor es intenso, es importante que un m\u00e9dico te valore antes de automedicarte, ya que algunos medicamentos pueden enmascarar s\u00edntomas importantes.\n\n3. **Signos de alarma que requieren atenci\u00f3n inmediata:**  \n   - Empeoramiento s\u00fabito del dolor de cabeza.\n   - Fiebre alta.\n   - V\u00f3mitos persistentes.\n   - P\u00e9rdida de conciencia, confusi\u00f3n, dificultad para hablar o moverse.\n   - Convulsiones.\n   - Empeoramiento de la visi\u00f3n o p\u00e9rdida total de la misma.\n\nSi presentas cualquiera de estos s\u00edntomas, acude de inmediato a urgencias.\n\n---\n\n**Plan de acci\u00f3n:**\n- Acude hoy mismo a un centro de salud o servicio de urgencias para una valoraci\u00f3n neurol\u00f3gica completa y estudios complementarios (como una tomograf\u00eda o resonancia, si el m\u00e9dico lo indica).\n- Lleva una lista de tus s\u00edntomas y desde cu\u00e1ndo los presentas para que el equipo m\u00e9dico tenga toda la informaci\u00f3n.\n\nRecuerda que tu salud es lo m\u00e1s importante y, ante s\u00edntomas como los que describes, es mejor actuar con rapidez. Si tienes alguna otra pregunta o necesitas aclarar algo antes de acudir al m\u00e9dico, aqu\u00ed estoy para ayudarte. \u00a1Cu\u00eddate mucho!",
+      "sender": "neurology",
+      "timestamp": "2025-05-27T14:52:43.595166"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T14:49:54.601390",
+  "updated_at": "2025-05-27T14:52:43.595176"
+}

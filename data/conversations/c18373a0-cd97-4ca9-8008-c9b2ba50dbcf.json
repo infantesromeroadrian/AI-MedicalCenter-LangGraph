@@ -1,0 +1,57 @@
+{
+  "conversation_id": "c18373a0-cd97-4ca9-8008-c9b2ba50dbcf",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T13:36:41.329202"
+    },
+    {
+      "content": "me ha mordido un perro tengo un corte en la mano\r\n",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:36:41.329220"
+    },
+    {
+      "content": "Hola, lamento mucho que hayas pasado por esta situaci\u00f3n. Soy m\u00e9dico internista y te ayudar\u00e9 a orientarte sobre qu\u00e9 hacer.\n\nPara poder asesorarte mejor, necesito saber un poco m\u00e1s sobre la mordedura:\n\n1. \u00bfHace cu\u00e1nto tiempo ocurri\u00f3 la mordedura y c\u00f3mo describir\u00edas el corte (profundo, superficial, sangra mucho)?\n2. \u00bfConoces al perro que te mordi\u00f3? \u00bfSabes si tiene sus vacunas al d\u00eda, especialmente la de la rabia?\n3. \u00bfHas limpiado la herida o recibido alg\u00fan tipo de atenci\u00f3n desde que ocurri\u00f3 el incidente?\n\nCon esta informaci\u00f3n podr\u00e9 orientarte mejor sobre los siguientes pasos a seguir.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:36:44.228046"
+    },
+    {
+      "content": "me mordio en la ma\u00f1ana, el perro si esta vacunado, he limpiado la herida pero no deja sangrar es bastante prpofundo y sangra abundantemente, ",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:37:41.466764"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n adicional. Entiendo que la mordedura fue en la ma\u00f1ana, que el perro est\u00e1 vacunado y que la herida es profunda y sangra bastante. Tambi\u00e9n mencionas que la has limpiado, pero sigue sangrando.\n\nPara poder ayudarte mejor, necesito saber un poco m\u00e1s:\n\n1. \u00bfLa herida sigue sangrando en este momento o ya ha disminuido el sangrado? \u00bfHas intentado presionar la zona para detener el sangrado?\n2. \u00bfNotas enrojecimiento, hinchaz\u00f3n, calor o pus alrededor de la herida?\n3. \u00bfTienes fiebre, dolor intenso, dificultad para mover la mano o los dedos, o p\u00e9rdida de sensibilidad en la zona afectada?\n\nCon estas respuestas podr\u00e9 orientarte sobre los siguientes pasos y si es necesario que acudas a un centro m\u00e9dico de inmediato.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:37:47.179452"
+    },
+    {
+      "content": "la herida ocurrio con una mordida del perro hace 5 horas, tengo la mano entumecida, no tengo idea si el perro esta vacunado, yo no se si estoy vacunado, no tengo enfermedades previas, alergia a los gatos, me mordio el perro entonces evidentemente esta sucia la herida,",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:41:46.473901"
+    },
+    {
+      "content": "Gracias por la informaci\u00f3n que me has dado hasta ahora. Entiendo que la herida fue causada por la mordida de un perro, es profunda, sangra bastante, la limpiaste, pero sigues con sangrado y entumecimiento en la mano. Adem\u00e1s, tienes alergia a los gatos, pero no mencionas otras enfermedades ni medicamentos.\n\nPara poder orientarte mejor, me gustar\u00eda saber lo siguiente:\n\n1. \u00bfEl sangrado es continuo o intermitente? \u00bfHas logrado detenerlo aplicando presi\u00f3n directa sobre la herida?\n2. \u00bfEl entumecimiento es solo en la zona de la mordida o afecta toda la mano/dedos? \u00bfPuedes mover bien los dedos y la mano?\n3. \u00bfHas notado que la herida se vea m\u00e1s roja, caliente o que salga alg\u00fan l\u00edquido diferente a sangre (como pus)?\n\nCon estas respuestas podr\u00e9 valorar mejor la gravedad de la situaci\u00f3n y orientarte sobre los siguientes pasos.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:41:53.614959"
+    },
+    {
+      "content": "sangrado continuo, solo en la zona mordida esta entumecida, la herida esta caliente si",
+      "sender": "user",
+      "timestamp": "2025-05-27T13:42:32.871549"
+    },
+    {
+      "content": "Gracias por responder a las preguntas. Con la informaci\u00f3n que me das, veo que tienes una herida profunda por mordedura de perro en la mano, con sangrado continuo, entumecimiento en la zona de la mordida y sensaci\u00f3n de calor en la herida. No sabes si el perro est\u00e1 vacunado ni si t\u00fa tienes la vacuna antitet\u00e1nica al d\u00eda.\n\nPOSIBLES CAUSAS (en lenguaje sencillo):\n\n1. **Lesi\u00f3n vascular o nerviosa:**  \n   El sangrado continuo y el entumecimiento pueden indicar que la mordida da\u00f1\u00f3 un vaso sangu\u00edneo importante o un nervio en la mano. El entumecimiento sugiere que alg\u00fan nervio pudo haber sido afectado, y el sangrado que un vaso sangu\u00edneo no ha cerrado bien.\n\n2. **Infecci\u00f3n temprana:**  \n   El calor en la herida y el hecho de que est\u00e1 sucia aumentan el riesgo de infecci\u00f3n. Las mordeduras de perro pueden introducir bacterias peligrosas en la piel y los tejidos profundos, lo que puede causar infecciones graves si no se trata a tiempo.\n\n3. **Riesgo de t\u00e9tanos y rabia:**  \n   Como no sabes si tienes la vacuna antitet\u00e1nica al d\u00eda y tampoco si el perro est\u00e1 vacunado, existe riesgo de infecciones graves como el t\u00e9tanos y, aunque es poco frecuente, la rabia.\n\nPRUEBAS O EX\u00c1MENES QUE PUEDEN SER NECESARIOS:\n\n- **Evaluaci\u00f3n m\u00e9dica inmediata:** Para revisar la profundidad de la herida, descartar da\u00f1o a tendones, nervios o vasos sangu\u00edneos, y valorar la necesidad de sutura o intervenci\u00f3n quir\u00fargica.\n- **Cultivo de la herida:** Si hay signos de infecci\u00f3n, para identificar la bacteria y elegir el mejor antibi\u00f3tico.\n- **Pruebas de laboratorio b\u00e1sicas:** Para descartar infecci\u00f3n generalizada si presentas fiebre o mal estado general.\n- **Vacunaci\u00f3n:** Es probable que necesites vacuna antitet\u00e1nica y, dependiendo de la valoraci\u00f3n m\u00e9dica, vacuna antirr\u00e1bica.\n\nRECOMENDACIONES:\n\n1. **Acude de inmediato a un servicio de urgencias.**  \n   El sangrado continuo, el entumecimiento y el calor en la herida son signos de posible da\u00f1o importante y riesgo de infecci\u00f3n grave. No retrases la atenci\u00f3n.\n\n2. **Mant\u00e9n la mano elevada y aplica presi\u00f3n suave con una gasa limpia** para intentar controlar el sangrado mientras llegas al centro m\u00e9dico.\n\n3. **No intentes cerrar la herida por tu cuenta** ni apliques cremas o remedios caseros.\n\n4. **Lleva informaci\u00f3n sobre el perro si es posible** (ubicaci\u00f3n, due\u00f1o, caracter\u00edsticas), ya que esto puede ser \u00fatil para el manejo de la rabia.\n\n5. **En el hospital, solicita que revisen tu esquema de vacunaci\u00f3n** (t\u00e9tanos y rabia) y que te eval\u00fae un m\u00e9dico para descartar da\u00f1o a estructuras importantes de la mano.\n\nRecuerda que las mordeduras en la mano pueden complicarse r\u00e1pidamente, as\u00ed que es fundamental que recibas atenci\u00f3n m\u00e9dica lo antes posible. \u00bfTienes alguna otra pregunta o necesitas ayuda para saber c\u00f3mo llegar a un centro de salud?",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T13:42:46.017775"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T13:36:41.329178",
+  "updated_at": "2025-05-27T13:42:46.017784"
+}

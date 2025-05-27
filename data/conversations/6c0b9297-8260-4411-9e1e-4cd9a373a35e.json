@@ -1,0 +1,27 @@
+{
+  "conversation_id": "6c0b9297-8260-4411-9e1e-4cd9a373a35e",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-27T14:01:41.268072"
+    },
+    {
+      "content": "me ha mordido un perro\r\n",
+      "sender": "user",
+      "timestamp": "2025-05-27T14:01:41.268105"
+    },
+    {
+      "content": "Hola, gracias por consultarme. Entiendo que te ha mordido un perro, y quiero ayudarte a manejar esta situaci\u00f3n de la mejor manera posible.\n\nPara poder orientarte mejor, necesito saber un poco m\u00e1s:\n\n1. \u00bfCu\u00e1ndo ocurri\u00f3 la mordedura (hace cu\u00e1ntas horas o d\u00edas)?\n2. \u00bfLa herida sangra mucho, es profunda o superficial? \u00bfHas podido limpiarla?\n3. \u00bfSabes si el perro tiene due\u00f1o y si est\u00e1 vacunado contra la rabia?\n\nCon esta informaci\u00f3n podr\u00e9 darte recomendaciones m\u00e1s precisas y seguras.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-27T14:01:43.894880"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-27T14:01:41.268050",
+  "updated_at": "2025-05-27T14:01:43.894894"
+}

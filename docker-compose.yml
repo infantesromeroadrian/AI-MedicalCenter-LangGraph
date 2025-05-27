@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   medical-ai-app:
     build:
