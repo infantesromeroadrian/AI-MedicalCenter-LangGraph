@@ -1,0 +1,62 @@
+{
+  "conversation_id": "a8a85039-9ee0-447a-974e-613416628088",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en emergency_medicine. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-28T23:12:25.355260"
+    },
+    {
+      "content": "me ha mordido un perro y tengo una herida sangrante en la mano",
+      "sender": "user",
+      "timestamp": "2025-05-28T23:12:25.355268"
+    },
+    {
+      "content": "As a Emergency Medicine specialist, Entiendo que estás pasando por una situación estresante. Vamos a manejar esto juntos. Necesito que me proporciones más detalles para poder ayudarte de la mejor manera posible.\n\n1. ¿Cuánto tiempo ha pasado desde que te mordió el perro?\n2. ¿Podrías describirme con más detalle la herida? ¿Es profunda? ¿Está muy sucia?\n3. ¿Has notado algo que empeore el sangrado, como el movimiento o la presión?\n\nPor favor, mientras respondes, intenta mantener la calma y aplica presión directa sobre la herida con un paño limpio para ayudar a detener el sangrado.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-28T23:12:32.383936"
+    },
+    {
+      "content": "[IMAGEN ANALIZADA:http://127.0.0.1:3567/static/uploads/images/558fb543bcff40c3bd791bcd7d509da5_fig1.webp] **Análisis de imagen médica (contexto: medicina de urgencias)**\n\n---\n\n### 1. Descripción de lo que observo en la imagen\nSe observa una herida profunda y lacerante en la base del pulgar de la mano, con bordes irregulares y presencia de sangrado activo. La herida parece comprometer piel, tejido subcutáneo y posiblemente estructuras más profundas.\n\n---\n\n### 2. Posibles observaciones relevantes desde el punto de vista médico\n- **Herida lacerante profunda:** Existe riesgo de daño a tendones, nervios y vasos sanguíneos en la región tenar.\n- **Sangrado activo:** Puede requerir control hemostático urgente.\n- **Riesgo de infección:** Por la exposición del tejido y posible contaminación.\n- **Compromiso funcional:** Posible afectación de la movilidad y sensibilidad del pulgar.\n\n---\n\n### 3. Sugerencias de información adicional que el paciente debería proporcionar verbalmente\n- **Mecanismo de la lesión:** ¿Cómo ocurrió la herida? (objeto cortante, accidente, mordedura, etc.)\n- **Hora de la lesión:** ¿Cuánto tiempo ha pasado desde que ocurrió?\n- **Síntomas asociados:** ¿Hay pérdida de sensibilidad, dificultad para mover el pulgar o la mano, dolor intenso, sangrado persistente?\n- **Estado de vacunación antitetánica:** ¿Está al día con la vacuna?\n- **Antecedentes médicos relevantes:** Diabetes, inmunosupresión, alergias a medicamentos, etc.\n\n---\n\n### 4. Limitaciones claras de este análisis visual\n- **No se puede evaluar la profundidad real ni el compromiso de estructuras internas** (tendones, nervios, vasos) solo con la imagen.\n- **No se puede valorar el estado funcional** (movilidad, sensibilidad) sin exploración física y conversación con el paciente.\n- **No se puede descartar la presencia de cuerpos extraños** ni daño óseo sin estudios complementarios (radiografía, ecografía).\n- **No se puede determinar el grado de contaminación** o riesgo infeccioso solo con la imagen.\n\n---\n\n### Recomendaciones importantes\n\n- **Esta imagen es solo un complemento y NO sustituye una evaluación médica completa.**\n- **El diagnóstico final requerirá conversación adicional con el paciente y exploración física directa.**\n- **Es fundamental que continúe describiendo verbalmente sus síntomas, antecedentes y detalles del accidente.**\n- **Este es SOLO un análisis preliminar, no un diagnóstico definitivo.**\n- **Acuda de inmediato a un servicio de urgencias para valoración y tratamiento adecuado.**\n\n---\n\n**Recuerde:** La atención médica presencial es indispensable en este tipo de lesiones.",
+      "sender": "system",
+      "timestamp": "2025-05-28T23:13:33.694956"
+    },
+    {
+      "content": "la herida fue hace 3 horas, la herida ha empeorado porque ha sangrado mas y esta inflamado",
+      "sender": "user",
+      "timestamp": "2025-05-28T23:13:36.851335"
+    },
+    {
+      "content": "Entiendo que estás preocupado. Para poder ayudarte mejor, necesito que me respondas un par de preguntas:\n\n1. ¿Podrías describirme cómo ha cambiado la herida desde que ocurrió el incidente? ¿Ha aumentado el sangrado o la inflamación?\n2. ¿Has intentado hacer algo para detener el sangrado o reducir la inflamación? Si es así, ¿qué has hecho y ha tenido algún efecto?\n\nPor favor, responde a estas preguntas lo más detalladamente posible.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-28T23:13:45.905590"
+    },
+    {
+      "content": "la herida principalmente se ha inflamado,  y se ha puesto de un color verdoso,",
+      "sender": "user",
+      "timestamp": "2025-05-28T23:14:24.616775"
+    },
+    {
+      "content": "Entiendo tu preocupación. Las mordeduras de perro pueden ser graves y necesitan atención médica adecuada. Para poder ayudarte mejor, necesito que me respondas un par de preguntas:\n\n1. ¿Estás experimentando fiebre o escalofríos?\n2. ¿Has notado pus o un olor desagradable proveniente de la herida?\n3. ¿Has tenido alguna reacción alérgica o sensibilidad a las vacunas o medicamentos en el pasado?\n\nRECOMENDACIONES DE EMERGENCIA:\nDebes buscar atención médica inmediata. Mientras llega la ayuda, intenta limpiar la herida con agua y jabón, pero no la cierres con vendajes ajustados. Vigila signos de alarma como aumento del dolor, hinchazón, enrojecimiento, calor en la zona de la herida, drenaje de pus, fiebre o escalofríos.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-28T23:14:36.943511"
+    },
+    {
+      "content": "algun escalofrio,algo de olor desagradable, niguna reaccion alergica,",
+      "sender": "user",
+      "timestamp": "2025-05-28T23:15:16.297636"
+    },
+    {
+      "content": "Lo siento, La consulta no parece contener información médica específica. Por favor, proporciona más detalles sobre tu consulta médica.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-28T23:15:21.658208"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-28T23:12:25.355246",
+  "updated_at": "2025-05-28T23:15:21.658213"
+}

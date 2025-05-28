@@ -192,119 +192,179 @@ async def generate_pdf_report(html_content: str, conversation_id: str) -> bytes:
         def log_debug(msg):
             logger.info(f"[PDF Debug] {msg}")
         
-        log_debug("Verificando entorno para generación de PDF")
+        log_debug("Iniciando generación de PDF con múltiples alternativas")
         
-        # Intentamos primero con pdfkit (usando wkhtmltopdf)
+        # Método 1: Usar reportlab (más confiable)
         try:
-            import pdfkit
-            log_debug("Usando pdfkit para generar PDF")
+            log_debug("Intentando con ReportLab")
+            from reportlab.pdfgen import canvas
+            from reportlab.lib.pagesizes import A4
+            from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+            from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+            from reportlab.lib.units import inch
+            import re
             
-            # Ver si wkhtmltopdf está disponible
-            import subprocess
-            try:
-                subprocess.run(['which', 'wkhtmltopdf'], check=True, capture_output=True)
-                log_debug("wkhtmltopdf encontrado en el sistema")
-            except (subprocess.SubprocessError, FileNotFoundError):
-                log_debug("wkhtmltopdf no está accesible en el PATH")
+            # Crear buffer en memoria
+            buffer = io.BytesIO()
             
-            # Configurar opciones para pdfkit
-            options = {
-                'page-size': 'A4',
-                'margin-top': '1cm',
-                'margin-right': '1cm',
-                'margin-bottom': '1cm',
-                'margin-left': '1cm',
-                'encoding': 'UTF-8',
-                'no-outline': None,
-                'quiet': ''
-            }
+            # Crear documento PDF
+            doc = SimpleDocTemplate(buffer, pagesize=A4, 
+                                  rightMargin=72, leftMargin=72,
+                                  topMargin=72, bottomMargin=18)
             
-            # Generar el PDF
-            log_debug("Intentando generar PDF con pdfkit")
-            pdf_bytes = pdfkit.from_string(html_content, False, options=options)
-            log_debug(f"PDF generado exitosamente con pdfkit, tamaño: {len(pdf_bytes)} bytes")
+            # Obtener estilos
+            styles = getSampleStyleSheet()
+            title_style = ParagraphStyle(
+                'CustomTitle',
+                parent=styles['Heading1'],
+                fontSize=16,
+                spaceAfter=30,
+                alignment=1  # Center
+            )
             
+            # Procesar HTML para extraer texto
+            text_content = re.sub(r'<style[^>]*>.*?</style>', '', html_content, flags=re.DOTALL)
+            text_content = re.sub(r'<[^>]*>', '', text_content)
+            text_content = re.sub(r'\n\s*\n', '\n', text_content.strip())
+            
+            # Construir contenido del PDF
+            story = []
+            
+            # Título
+            story.append(Paragraph("INFORME MÉDICO", title_style))
+            story.append(Spacer(1, 12))
+            
+            # Información básica
+            story.append(Paragraph(f"<b>ID de Conversación:</b> {conversation_id}", styles['Normal']))
+            story.append(Paragraph(f"<b>Fecha de generación:</b> {datetime.now().strftime('%d/%m/%Y %H:%M')}", styles['Normal']))
+            story.append(Spacer(1, 12))
+            
+            # Contenido principal
+            paragraphs = text_content.split('\n\n')
+            for para in paragraphs:
+                if para.strip():
+                    # Detectar títulos/secciones
+                    if para.strip().isupper() or len(para) < 50:
+                        story.append(Paragraph(f"<b>{para}</b>", styles['Heading2']))
+                    else:
+                        story.append(Paragraph(para, styles['Normal']))
+                    story.append(Spacer(1, 6))
+            
+            # Generar PDF
+            doc.build(story)
+            buffer.seek(0)
+            pdf_bytes = buffer.getvalue()
+            buffer.close()
+            
+            log_debug(f"PDF generado exitosamente con ReportLab, tamaño: {len(pdf_bytes)} bytes")
             return pdf_bytes
-                
-        except Exception as e:
-            log_debug(f"Error con pdfkit: {str(e)}")
             
-            # Intentar con weasyprint como alternativa
+        except Exception as e:
+            log_debug(f"Error con ReportLab: {str(e)}")
+            
+            # Método 2: Usar weasyprint (corregido)
             try:
-                # Importamos weasyprint aquí para evitar errores si no está instalado
-                from weasyprint import HTML, CSS
-                log_debug("Usando WeasyPrint como alternativa")
+                log_debug("Intentando con WeasyPrint corregido")
+                from weasyprint import HTML
                 
-                # Crear un objeto HTML desde el contenido
-                html = HTML(string=html_content)
+                # Crear contenido HTML limpio para WeasyPrint
+                clean_html = f"""
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body {{ font-family: Arial, sans-serif; margin: 2cm; line-height: 1.6; }}
+                        h1 {{ color: #2a5885; text-align: center; }}
+                        h2 {{ color: #2a5885; border-bottom: 1px solid #ccc; }}
+                        .header {{ background-color: #f5f5f5; padding: 15px; margin-bottom: 20px; }}
+                    </style>
+                </head>
+                <body>
+                    {html_content}
+                </body>
+                </html>
+                """
                 
-                # Generar el PDF
-                pdf_bytes = html.write_pdf()
+                # Generar PDF con WeasyPrint
+                html_doc = HTML(string=clean_html)
+                pdf_bytes = html_doc.write_pdf()
+                
                 log_debug(f"PDF generado exitosamente con WeasyPrint, tamaño: {len(pdf_bytes)} bytes")
-                
                 return pdf_bytes
                 
             except Exception as weasy_error:
                 log_debug(f"Error con WeasyPrint: {str(weasy_error)}")
-                # Si ambos métodos fallan, usar FPDF como último recurso
                 
-                log_debug("Usando FPDF como último recurso")
-                from fpdf import FPDF
-                
-                class PDF(FPDF):
-                    def header(self):
-                        self.set_font('Arial', 'B', 15)
-                        self.cell(0, 10, 'Informe Médico', 0, 1, 'C')
-                        self.ln(10)
+                # Método 3: Usar fpdf2 como respaldo
+                try:
+                    log_debug("Usando fpdf2 como respaldo")
+                    from fpdf import FPDF
                     
-                    def footer(self):
-                        self.set_y(-15)
-                        self.set_font('Arial', 'I', 8)
-                        self.cell(0, 10, f'Página {self.page_no()}/{{nb}}', 0, 0, 'C')
-                
-                pdf = PDF()
-                pdf.alias_nb_pages()
-                pdf.add_page()
-                pdf.set_font('Arial', '', 12)
-                
-                # Eliminar etiquetas HTML para texto plano
-                import re
-                text_content = re.sub(r'<[^>]*>', '', html_content)
-                text_content = re.sub(r'\n\s*\n', '\n', text_content)
-                
-                # Añadir texto al PDF
-                pdf.multi_cell(0, 10, f"INFORME MÉDICO\n\nID Conversación: {conversation_id}\nFecha: {datetime.now().strftime('%d/%m/%Y')}\n\n")
-                
-                # Truncar si es demasiado largo para FPDF
-                preview_content = text_content[:3000] + "..." if len(text_content) > 3000 else text_content
-                pdf.multi_cell(0, 10, preview_content)
-                pdf.ln(10)
-                pdf.multi_cell(0, 10, "NOTA: Este es un informe simplificado debido a limitaciones técnicas. El informe completo está disponible en formato HTML.")
-                
-                log_debug("PDF básico generado con FPDF")
-                
-                return pdf.output(dest='S').encode('latin1', errors='replace')  # FPDF usa latin1
+                    class PDF(FPDF):
+                        def header(self):
+                            self.set_font('Arial', 'B', 15)
+                            self.cell(0, 10, 'INFORME MÉDICO', 0, 1, 'C')
+                            self.ln(10)
+                        
+                        def footer(self):
+                            self.set_y(-15)
+                            self.set_font('Arial', 'I', 8)
+                            self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'C')
+                    
+                    pdf = FPDF()
+                    pdf.add_page()
+                    pdf.set_font('Arial', '', 12)
+                    
+                    # Eliminar etiquetas HTML
+                    import re
+                    text_content = re.sub(r'<[^>]*>', '', html_content)
+                    text_content = re.sub(r'\n\s*\n', '\n', text_content)
+                    
+                    # Información básica
+                    pdf.multi_cell(0, 10, f"ID Conversación: {conversation_id}")
+                    pdf.multi_cell(0, 10, f"Fecha: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
+                    pdf.ln(10)
+                    
+                    # Contenido principal (limitado para evitar problemas de encoding)
+                    preview_content = text_content[:2000] + "..." if len(text_content) > 2000 else text_content
+                    
+                    # Reemplazar caracteres problemáticos
+                    preview_content = preview_content.encode('latin1', errors='replace').decode('latin1')
+                    pdf.multi_cell(0, 10, preview_content)
+                    
+                    pdf.ln(10)
+                    pdf.multi_cell(0, 10, "NOTA: Este es un informe simplificado. El informe completo está disponible en la interfaz web.")
+                    
+                    log_debug("PDF básico generado con fpdf2")
+                    return pdf.output()
+                    
+                except Exception as fpdf_error:
+                    log_debug(f"Error con fpdf2: {str(fpdf_error)}")
+                    raise Exception(f"Todos los métodos de PDF fallaron: ReportLab, WeasyPrint, fpdf2")
                 
     except Exception as e:
         logger.error(f"Error crítico generando PDF: {e}")
         logger.error(traceback.format_exc())
         
-        # Como último recurso, devolver un mensaje de error en un PDF simple
+        # Como último recurso, generar un PDF simple con mensaje de error
         try:
             from fpdf import FPDF
             
             pdf = FPDF()
             pdf.add_page()
             pdf.set_font('Arial', 'B', 16)
-            pdf.cell(40, 10, 'Error al generar el informe PDF')
+            pdf.cell(0, 10, 'Error al generar el informe PDF', 0, 1)
             pdf.ln(10)
             pdf.set_font('Arial', '', 12)
             pdf.multi_cell(0, 10, f"Se produjo un error: {str(e)}")
             pdf.ln(5)
-            pdf.multi_cell(0, 10, "Por favor, inténtelo de nuevo o contacte con soporte técnico.")
+            pdf.multi_cell(0, 10, "Por favor, inténtelo de nuevo o descargue el informe HTML.")
             
-            return pdf.output(dest='S').encode('latin1', errors='replace')
+            return pdf.output()
+            
         except Exception as final_error:
             logger.critical(f"Error fatal generando PDF: {final_error}")
-            # Si todo falla, devolver bytes con mensaje de error
-            return b"Error generando PDF" 
+            # Si absolutamente todo falla, devolver un mensaje de error en bytes
+            error_message = f"Error generando PDF: {str(e)}"
+            return error_message.encode('utf-8') 

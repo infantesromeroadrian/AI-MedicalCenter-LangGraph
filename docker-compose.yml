@@ -19,9 +19,30 @@ services:
     env_file:
       - .env
     restart: unless-stopped
+    # Mejorar configuración de red
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    networks:
+      - medical-ai-network
+    # Configuración de memoria y recursos
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3567/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s 
+      start_period: 40s
+
+# Red personalizada para mejor aislamiento
+networks:
+  medical-ai-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16 

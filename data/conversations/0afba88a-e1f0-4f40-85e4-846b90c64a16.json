@@ -1,0 +1,42 @@
+{
+  "conversation_id": "0afba88a-e1f0-4f40-85e4-846b90c64a16",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en emergency_medicine. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-28T23:08:20.966076"
+    },
+    {
+      "content": "me ha mordio un perro y tengo una herida sangrante en la mano",
+      "sender": "user",
+      "timestamp": "2025-05-28T23:08:20.966097"
+    },
+    {
+      "content": "As a Emergency Medicine specialist, Entiendo que estás pasando por una situación preocupante. Vamos a manejar esto de la mejor manera posible. Necesito que me proporciones más detalles:\n\n1. ¿Cuánto tiempo ha pasado desde que te mordió el perro?\n2. ¿Podrías describirme la herida? ¿Es profunda? ¿Está muy sucia?\n3. ¿Has notado algo que empeore la situación, como un aumento en el sangrado o dolor?\n\nPor favor, mientras respondes, aplica presión directa sobre la herida con un paño limpio para ayudar a detener el sangrado.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-28T23:08:26.703709"
+    },
+    {
+      "content": "[IMAGEN ANALIZADA:http://127.0.0.1:3567/static/uploads/images/651de9243cb3483f9d1281540260beeb_fig1.webp] **Análisis de imagen médica (contexto: medicina de urgencias)**\n\n1. **Descripción de lo que observo en la imagen:**\n   - Se observa una herida profunda y lacerante en la base del pulgar de la mano, con bordes irregulares y presencia de sangrado activo. La lesión parece comprometer piel, tejido subcutáneo y posiblemente estructuras más profundas.\n\n2. **Posibles observaciones relevantes desde el punto de vista médico:**\n   - Herida lacerante de moderada a gran profundidad, con riesgo de compromiso de tendones, nervios y vasos sanguíneos de la región tenar.\n   - Posible exposición de tejido subyacente.\n   - Riesgo de infección debido a la contaminación visible.\n   - Potencial afectación funcional del pulgar (movilidad, sensibilidad, fuerza de prensión).\n\n3. **Sugerencias de información adicional que el paciente debería proporcionar verbalmente:**\n   - Mecanismo de la lesión (cómo ocurrió, objeto involucrado, tiempo transcurrido).\n   - Síntomas asociados: dolor, pérdida de sensibilidad, dificultad para mover el pulgar o la mano.\n   - Estado de vacunación antitetánica.\n   - Presencia de enfermedades previas (diabetes, inmunosupresión, alergias).\n   - Si ha habido sangrado abundante o signos de shock (mareo, palidez, sudoración).\n   - Si ha intentado algún tipo de limpieza o tratamiento previo.\n\n4. **Limitaciones claras de este análisis visual:**\n   - La imagen es solo un complemento y NO sustituye una evaluación médica completa y presencial.\n   - No es posible valorar la profundidad real de la herida, ni el compromiso exacto de estructuras internas (tendones, nervios, vasos).\n   - No se puede evaluar el estado funcional (movilidad, sensibilidad) ni la presencia de cuerpos extraños solo con la imagen.\n   - El diagnóstico final y el plan de manejo requieren conversación adicional y exploración física directa.\n\n**IMPORTANTE:**  \nEsta imagen es únicamente un complemento visual y NO reemplaza la valoración médica completa. El diagnóstico definitivo y el tratamiento adecuado requieren una conversación directa con el paciente, exploración física y, si es necesario, estudios complementarios.  \n**Recomiendo que el paciente continúe describiendo verbalmente sus síntomas, antecedentes y detalles relevantes del accidente.**  \n**Este es SOLO un análisis preliminar, no un diagnóstico.**",
+      "sender": "system",
+      "timestamp": "2025-05-28T23:09:02.608882"
+    },
+    {
+      "content": "la mordida fue hace 3 horas,el sangrado ha aumentado",
+      "sender": "user",
+      "timestamp": "2025-05-28T23:09:10.767380"
+    },
+    {
+      "content": "Lo siento, La consulta no parece contener información médica específica. Por favor, proporciona más detalles sobre tu consulta médica.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-28T23:09:14.969735"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-28T23:08:20.966062",
+  "updated_at": "2025-05-28T23:09:14.969737"
+}
