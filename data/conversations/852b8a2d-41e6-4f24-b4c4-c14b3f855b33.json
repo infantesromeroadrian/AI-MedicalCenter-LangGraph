@@ -1,0 +1,27 @@
+{
+  "conversation_id": "852b8a2d-41e6-4f24-b4c4-c14b3f855b33",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-28T20:56:10.064831"
+    },
+    {
+      "content": "me ha mordido un perro en la mano",
+      "sender": "user",
+      "timestamp": "2025-05-28T20:56:10.064846"
+    },
+    {
+      "content": "Lo siento, La consulta no parece contener informaci\u00f3n m\u00e9dica espec\u00edfica. Por favor, proporciona m\u00e1s detalles sobre tu consulta m\u00e9dica.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-28T20:56:10.065098"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-28T20:56:10.064809",
+  "updated_at": "2025-05-28T20:56:10.065103"
+}

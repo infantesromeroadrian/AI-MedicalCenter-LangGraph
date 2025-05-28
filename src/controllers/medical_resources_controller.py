@@ -149,11 +149,20 @@ def get_complete_lab_info(conversation_id):
 def get_diagnostic_images(conversation_id):
     """Obtener imágenes diagnósticas de una conversación"""
     try:
+        logger.info(f"Buscando imágenes para conversación: {conversation_id}")
+        
         conversation = conversation_service.get_conversation(conversation_id)
         if not conversation:
+            logger.error(f"Conversación no encontrada: {conversation_id}")
             return jsonify({'error': 'Conversación no encontrada'}), 404
         
+        logger.info(f"Conversación encontrada con {len(conversation.messages)} mensajes")
+        
         images = extract_images_from_conversation(conversation)
+        
+        logger.info(f"Extraídas {len(images)} imágenes de la conversación {conversation_id}")
+        for i, img in enumerate(images):
+            logger.info(f"Imagen {i+1}: URL={img.get('url', 'N/A')}, Análisis={img.get('analysis', 'N/A')[:50]}...")
         
         return jsonify({
             'success': True,
@@ -163,7 +172,13 @@ def get_diagnostic_images(conversation_id):
         
     except Exception as e:
         logger.error(f"Error obteniendo imágenes: {e}")
-        return jsonify({'error': str(e)}), 500
+        logger.error(f"Traceback completo: {e.__class__.__name__}: {str(e)}")
+        return jsonify({
+            'error': str(e),
+            'success': False,
+            'images': [],
+            'count': 0
+        }), 500
 
 @medical_resources_bp.route('/summary/<conversation_id>', methods=['GET'])
 @login_required
@@ -278,56 +293,77 @@ def extract_images_from_conversation(conversation):
     """Extraer referencias a imágenes en la conversación"""
     images = []
     
-    import re
-    for message in conversation.messages:
-        # Buscar el nuevo formato: [IMAGEN ANALIZADA:URL] análisis
-        pattern = r'\[IMAGEN ANALIZADA:([^\]]+)\]\s*(.*)'
-        match = re.search(pattern, message.content)
+    try:
+        import re
+        logger.info(f"Analizando {len(conversation.messages)} mensajes para extraer imágenes")
         
-        if match:
-            image_url = match.group(1).strip()
-            analysis = match.group(2).strip()
-            
-            # Formatear fecha para consistencia
-            upload_date = message.timestamp
-            if isinstance(upload_date, str):
-                try:
-                    from datetime import datetime
-                    dt = datetime.fromisoformat(upload_date.replace('Z', '+00:00'))
-                    upload_date = dt.strftime('%d/%m/%Y')
-                except:
-                    upload_date = upload_date
-            
-            image_info = {
-                'id': len(images) + 1,
-                'url': image_url,
-                'analysis': analysis if analysis else 'Imagen médica analizada',
-                'upload_date': upload_date,
-                'type': 'diagnostic'
-            }
-            images.append(image_info)
-        # Mantener compatibilidad con el formato anterior
-        elif '[IMAGEN ANALIZADA]' in message.content:
-            # Formatear fecha para consistencia
-            upload_date = message.timestamp
-            if isinstance(upload_date, str):
-                try:
-                    from datetime import datetime
-                    dt = datetime.fromisoformat(upload_date.replace('Z', '+00:00'))
-                    upload_date = dt.strftime('%d/%m/%Y')
-                except:
-                    upload_date = upload_date
-            
-            image_info = {
-                'id': len(images) + 1,
-                'url': '/static/images/placeholder-medical.jpg',  # Placeholder para formato anterior
-                'analysis': message.content.replace('[IMAGEN ANALIZADA]', '').strip(),
-                'upload_date': upload_date,
-                'type': 'diagnostic'
-            }
-            images.append(image_info)
-    
-    return images
+        for i, message in enumerate(conversation.messages):
+            try:
+                # Buscar el nuevo formato: [IMAGEN ANALIZADA:URL] análisis
+                pattern = r'\[IMAGEN ANALIZADA:([^\]]+)\]\s*(.*)'
+                match = re.search(pattern, message.content)
+                
+                if match:
+                    logger.info(f"Imagen encontrada en mensaje {i}: formato [IMAGEN ANALIZADA:URL]")
+                    image_url = match.group(1).strip()
+                    analysis = match.group(2).strip()
+                    
+                    # Formatear fecha para consistencia
+                    upload_date = message.timestamp
+                    if isinstance(upload_date, str):
+                        try:
+                            from datetime import datetime
+                            dt = datetime.fromisoformat(upload_date.replace('Z', '+00:00'))
+                            upload_date = dt.strftime('%d/%m/%Y')
+                        except Exception as date_error:
+                            logger.warning(f"Error al parsear fecha: {date_error}")
+                            upload_date = "Fecha no disponible"
+                    
+                    image_info = {
+                        'id': len(images) + 1,
+                        'url': image_url,
+                        'analysis': analysis if analysis else 'Imagen médica analizada',
+                        'upload_date': upload_date,
+                        'type': 'diagnostic'
+                    }
+                    images.append(image_info)
+                    logger.info(f"Imagen agregada: ID={image_info['id']}, URL={image_url[:50]}...")
+                    
+                # Mantener compatibilidad con el formato anterior
+                elif '[IMAGEN ANALIZADA]' in message.content:
+                    logger.info(f"Imagen encontrada en mensaje {i}: formato legacy [IMAGEN ANALIZADA]")
+                    
+                    # Formatear fecha para consistencia
+                    upload_date = message.timestamp
+                    if isinstance(upload_date, str):
+                        try:
+                            from datetime import datetime
+                            dt = datetime.fromisoformat(upload_date.replace('Z', '+00:00'))
+                            upload_date = dt.strftime('%d/%m/%Y')
+                        except Exception as date_error:
+                            logger.warning(f"Error al parsear fecha: {date_error}")
+                            upload_date = "Fecha no disponible"
+                    
+                    image_info = {
+                        'id': len(images) + 1,
+                        'url': '/static/images/placeholder-medical.jpg',  # Placeholder para formato anterior
+                        'analysis': message.content.replace('[IMAGEN ANALIZADA]', '').strip(),
+                        'upload_date': upload_date,
+                        'type': 'diagnostic'
+                    }
+                    images.append(image_info)
+                    logger.info(f"Imagen legacy agregada: ID={image_info['id']}")
+                    
+            except Exception as msg_error:
+                logger.error(f"Error procesando mensaje {i}: {msg_error}")
+                continue
+        
+        logger.info(f"Total de imágenes extraídas: {len(images)}")
+        return images
+        
+    except Exception as e:
+        logger.error(f"Error en extract_images_from_conversation: {e}")
+        return []
 
 def extract_symptoms_from_conversation(conversation):
     """Extraer síntomas mencionados"""

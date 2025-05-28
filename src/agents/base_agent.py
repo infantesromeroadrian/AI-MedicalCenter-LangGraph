@@ -236,16 +236,92 @@ class BaseMedicalAgent(ABC):
         if len(query.strip()) > 2000:
             return {"is_valid": False, "reason": "Consulta demasiado larga"}
         
-        # Validar contenido médico mínimo
+        # Validar contenido médico mínimo (EXPANDIDA SIGNIFICATIVAMENTE)
         medical_keywords = [
-            # Síntomas
+            # Síntomas básicos
             "dolor", "duele", "molesta", "siento", "tengo", "noto", "me pasa",
-            "síntoma", "problema", "preocupa", "raro", "extraño",
-            # English
+            "síntoma", "problema", "preocupa", "raro", "extraño", "incómodo",
+            "malestar", "sensación", "experimenta", "sufro", "padezco",
+            
+            # English síntomas
             "pain", "hurt", "feel", "have", "notice", "symptom", "problem", "worried",
-            # Cuerpo
+            "uncomfortable", "experiencing", "suffering", "bothers", "concerns",
+            
+            # Partes del cuerpo específicas
             "cabeza", "pecho", "abdomen", "brazo", "pierna", "espalda", "cuello",
-            "head", "chest", "abdomen", "arm", "leg", "back", "neck"
+            "head", "chest", "abdomen", "arm", "leg", "back", "neck",
+            "mano", "pie", "dedo", "ojo", "oído", "nariz", "boca", "garganta",
+            "hand", "foot", "finger", "eye", "ear", "nose", "mouth", "throat",
+            "rodilla", "hombro", "cadera", "tobillo", "muñeca", "codo",
+            "knee", "shoulder", "hip", "ankle", "wrist", "elbow",
+            "estómago", "intestino", "riñón", "hígado", "corazón", "pulmón",
+            "stomach", "intestine", "kidney", "liver", "heart", "lung",
+            
+            # Traumatismos y accidentes
+            "mordida", "mordedura", "mordido", "bite", "bitten", "picadura",
+            "herida", "lesión", "trauma", "golpe", "caída", "accidente",
+            "wound", "injury", "trauma", "hit", "fall", "accident",
+            "corte", "fractura", "contusión", "magulladura", "raspón",
+            "cut", "fracture", "bruise", "scrape", "scratch",
+            
+            # Animales (para mordeduras/picaduras)
+            "perro", "gato", "serpiente", "araña", "abeja", "avispa",
+            "dog", "cat", "snake", "spider", "bee", "wasp",
+            "rottweiler", "pitbull", "rata", "murciélago", "insecto",
+            "rat", "bat", "insect", "animal", "mascota", "pet",
+            
+            # Infección e inflamación
+            "infección", "infectado", "inflamación", "hinchazón", "enrojecimiento",
+            "infection", "infected", "inflammation", "swelling", "redness",
+            "pus", "secreción", "fiebre", "temperatura", "calor",
+            "fever", "discharge", "heat", "warm", "hot",
+            
+            # Tiempo médico relevante
+            "horas", "días", "semanas", "ayer", "hoy", "hace", "desde",
+            "hours", "days", "weeks", "yesterday", "today", "ago", "since",
+            "mañana", "tarde", "noche", "madrugada", "reciente",
+            "morning", "afternoon", "night", "recent", "lately",
+            
+            # Medicamentos y tratamientos
+            "medicina", "medicamento", "pastilla", "inyección", "tratamiento",
+            "medicine", "medication", "pill", "injection", "treatment",
+            "antibiótico", "analgésico", "vitamina", "suplemento",
+            "antibiotic", "painkiller", "vitamin", "supplement",
+            
+            # Signos vitales y mediciones
+            "presión", "temperatura", "pulso", "respiración", "peso",
+            "pressure", "temperature", "pulse", "breathing", "weight",
+            "glucosa", "azúcar", "colesterol", "análisis", "examen",
+            "glucose", "sugar", "cholesterol", "analysis", "exam",
+            
+            # Procesos fisiológicos
+            "respirar", "tragar", "orinar", "defecar", "dormir", "comer",
+            "breathe", "swallow", "urinate", "defecate", "sleep", "eat",
+            "digerir", "sangrar", "sangrado", "menstruación",
+            "digest", "bleeding", "bleed", "menstruation",
+            
+            # Condiciones médicas comunes
+            "diabetes", "hipertensión", "asma", "alergia", "artritis",
+            "diabetes", "hypertension", "asthma", "allergy", "arthritis",
+            "depresión", "ansiedad", "estrés", "insomnio",
+            "depression", "anxiety", "stress", "insomnia",
+            
+            # Emergencias médicas
+            "emergencia", "urgente", "grave", "crítico", "socorro",
+            "emergency", "urgent", "serious", "critical", "help",
+            "ambulancia", "hospital", "clínica", "doctor", "médico",
+            "ambulance", "hospital", "clinic", "doctor", "physician",
+            
+            # Salud general
+            "salud", "saludable", "enfermo", "enfermedad", "prevención",
+            "health", "healthy", "sick", "illness", "prevention",
+            "bienestar", "fatiga", "cansancio", "debilidad", "mareo",
+            "wellness", "fatigue", "tiredness", "weakness", "dizziness",
+            
+            # Consulta médica
+            "consulta", "revisión", "checkup", "cita", "appointment",
+            "diagnóstico", "diagnosis", "prognóstico", "prognosis",
+            "recomendación", "recommendation", "sugerencia", "advice"
         ]
         
         has_medical_content = any(keyword in query.lower() for keyword in medical_keywords)

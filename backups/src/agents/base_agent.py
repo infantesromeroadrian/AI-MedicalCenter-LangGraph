@@ -501,15 +501,30 @@ class BaseMedicalAgent(ABC):
                 src_section = response.split(pattern)[1].split("\n\n")[0]
                 sources = [s.strip(" -•") for s in src_section.split("\n") if s.strip() and not s.strip().startswith(pattern)]
                 break
-        
+            
         return recommendations or None, sources or None
     
     def _evaluate_confidence(self, query: str, response: str) -> float:
         """
-        Legacy confidence evaluation method - now delegated to enhanced version.
+        Basic confidence evaluation method.
         """
-        knowledge = self._search_knowledge_base(query)
-        return self._evaluate_confidence_enhanced(query, response, knowledge)
+        # Evaluación básica sin recursión
+        basic_confidence = 0.5  # Base confidence
+        
+        # Factor de longitud de respuesta
+        if len(response.split()) > 20:
+            basic_confidence += 0.1
+        
+        # Factor de keywords médicos
+        medical_keywords = ["síntoma", "diagnóstico", "tratamiento", "medical", "symptom", "diagnosis", "treatment"]
+        matches = sum(1 for keyword in medical_keywords if keyword.lower() in response.lower())
+        basic_confidence += min(0.3, matches * 0.05)
+        
+        # Factor de pregunta específica
+        if "?" in response:
+            basic_confidence += 0.1
+        
+        return max(0.1, min(1.0, basic_confidence))
     
     def get_agent_stats(self) -> Dict[str, Any]:
         """Obtener estadísticas del agente."""

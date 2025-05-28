@@ -35,10 +35,10 @@ class MedicalImageAnalyzer:
         """
         # Usar modelo por defecto si no se especifica uno
         if model_name is None:
-            model_name = os.getenv("DEFAULT_MODEL", "gpt-4.1")
+            model_name = os.getenv("DEFAULT_MODEL", "gpt-4.1.1")
         
         self.model_name = model_name
-        self.backup_model = os.getenv("BACKUP_MODEL", "gpt-4-vision-preview")
+        self.backup_model = os.getenv("BACKUP_MODEL", "gpt-4.1-vision-preview")
         
         # Verificar que tenemos API key
         api_key = os.getenv("OPENAI_API_KEY")
@@ -152,7 +152,7 @@ class MedicalImageAnalyzer:
                 else:
                     system_message = "Eres un asistente médico especializado en análisis de imágenes."
                 
-                # Preparar el mensaje con la imagen para gpt-4.1
+                # Preparar el mensaje con la imagen para gpt-4.1.1
                 messages = [
                     {"role": "system", "content": system_message},
                     {"role": "user", "content": [

@@ -1,0 +1,875 @@
+{% extends "base.html" %}
+
+{% block title %}Consulta Psicológica - AI Medical Center{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --therapy-primary: #6B73FF;
+        --therapy-secondary: #9B59B6;
+        --therapy-accent: #F39C12;
+        --therapy-calm: #85C1E9;
+        --therapy-warm: #F8C471;
+        --therapy-success: #58D68D;
+        --therapy-background: #F8F9FA;
+        --therapy-card: #FFFFFF;
+        --therapy-text: #2C3E50;
+        --therapy-light: #ECF0F1;
+    }
+
+    body {
+        background: linear-gradient(135deg, var(--therapy-background) 0%, var(--therapy-light) 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .therapy-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .therapy-header {
+        background: linear-gradient(135deg, var(--therapy-primary), var(--therapy-secondary));
+        color: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(107, 115, 255, 0.3);
+    }
+
+    .therapy-header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+
+    .therapy-subtitle {
+        margin-top: 10px;
+        opacity: 0.9;
+        font-size: 1.1rem;
+    }
+
+    .therapy-main {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 30px;
+    }
+
+    .chat-section {
+        background: var(--therapy-card);
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .chat-header {
+        background: linear-gradient(90deg, var(--therapy-calm), var(--therapy-warm));
+        padding: 20px;
+        color: var(--therapy-text);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    .therapist-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--therapy-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .chat-messages {
+        height: 500px;
+        overflow-y: auto;
+        padding: 20px;
+        background: linear-gradient(to bottom, #fafafa, #ffffff);
+    }
+
+    .message {
+        margin-bottom: 20px;
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .patient-message {
+        text-align: right;
+    }
+
+    .patient-message .message-bubble {
+        background: linear-gradient(135deg, var(--therapy-primary), var(--therapy-secondary));
+        color: white;
+        display: inline-block;
+        padding: 15px 20px;
+        border-radius: 25px 25px 5px 25px;
+        max-width: 70%;
+        position: relative;
+    }
+
+    .therapist-message .message-bubble {
+        background: linear-gradient(135deg, var(--therapy-calm), var(--therapy-warm));
+        color: var(--therapy-text);
+        display: inline-block;
+        padding: 15px 20px;
+        border-radius: 25px 25px 25px 5px;
+        max-width: 80%;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .message-time {
+        font-size: 0.8rem;
+        opacity: 0.7;
+        margin-top: 5px;
+    }
+
+    .insights-badge {
+        display: inline-block;
+        background: var(--therapy-success);
+        color: white;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        margin-left: 10px;
+    }
+
+    .chat-input-container {
+        padding: 20px;
+        background: var(--therapy-light);
+        border-top: 1px solid #E0E0E0;
+    }
+
+    .input-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .chat-input {
+        flex: 1;
+        border: 2px solid var(--therapy-calm);
+        border-radius: 25px;
+        padding: 15px 20px;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .chat-input:focus {
+        border-color: var(--therapy-primary);
+        box-shadow: 0 0 0 3px rgba(107, 115, 255, 0.1);
+    }
+
+    .send-button {
+        background: linear-gradient(135deg, var(--therapy-primary), var(--therapy-secondary));
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.2rem;
+    }
+
+    .send-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(107, 115, 255, 0.4);
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .progress-card {
+        background: var(--therapy-card);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-title {
+        color: var(--therapy-primary);
+        font-weight: 600;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .progress-title i {
+        margin-right: 10px;
+    }
+
+    .therapeutic-bond {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .bond-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: conic-gradient(var(--therapy-success) 0deg, var(--therapy-success) var(--bond-angle), var(--therapy-light) var(--bond-angle));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        font-weight: bold;
+        color: var(--therapy-primary);
+    }
+
+    .insights-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .insights-list li {
+        background: var(--therapy-light);
+        padding: 10px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        border-left: 4px solid var(--therapy-accent);
+        font-size: 0.9rem;
+    }
+
+    .session-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 15px;
+        background: linear-gradient(135deg, var(--therapy-calm), var(--therapy-warm));
+        border-radius: 10px;
+        color: var(--therapy-text);
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: block;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+        opacity: 0.8;
+    }
+
+    .loading-indicator {
+        display: none;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .typing-indicator {
+        display: none;
+        align-items: center;
+        padding: 10px 20px;
+        color: var(--therapy-primary);
+    }
+
+    .typing-dots {
+        display: flex;
+        margin-left: 10px;
+    }
+
+    .typing-dots span {
+        height: 8px;
+        width: 8px;
+        background: var(--therapy-primary);
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 2px;
+        animation: typing 1.4s infinite ease-in-out;
+    }
+
+    .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+    @keyframes typing {
+        0%, 80%, 100% { opacity: 0.3; }
+        40% { opacity: 1; }
+    }
+
+    .emergency-alert {
+        background: #FFE5E5;
+        border: 2px solid #FF6B6B;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .motivation-quotes {
+        background: linear-gradient(135deg, var(--therapy-warm), var(--therapy-success));
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        font-style: italic;
+    }
+
+    .report-button {
+        background: linear-gradient(135deg, var(--therapy-primary), var(--therapy-secondary));
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 15px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .report-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(107, 115, 255, 0.3);
+        background: linear-gradient(135deg, var(--therapy-secondary), var(--therapy-primary));
+    }
+
+    .report-button-content {
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+
+    .report-icon {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 8px;
+        margin-right: 12px;
+        font-size: 1.2rem;
+    }
+
+    .report-text {
+        text-align: left;
+    }
+
+    .report-text strong {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+
+    .report-text small {
+        display: block;
+        opacity: 0.8;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    @media (max-width: 768px) {
+        .therapy-main {
+            grid-template-columns: 1fr;
+        }
+        
+        .therapy-header h1 {
+            font-size: 2rem;
+        }
+        
+        .chat-messages {
+            height: 400px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="therapy-container">
+    <!-- Header terapéutico -->
+    <div class="therapy-header">
+        <h1><i class="fas fa-brain"></i> Consulta Psicológica</h1>
+        <p class="therapy-subtitle">Un espacio seguro para tu bienestar emocional</p>
+        <p style="opacity: 0.8; margin-top: 15px;">
+            Hola <strong>{{ username }}</strong>, aquí encontrarás un acompañamiento personalizado y empático
+        </p>
+    </div>
+
+    <!-- Alerta de emergencia (oculta por defecto) -->
+    <div id="emergencyAlert" class="emergency-alert">
+        <h5><i class="fas fa-exclamation-triangle"></i> Situación de Crisis Detectada</h5>
+        <p>He detectado que podrías estar pasando por un momento muy difícil. Tu bienestar es lo más importante.</p>
+        <button type="button" class="btn btn-danger" onclick="contactEmergency()">
+            Contactar Servicios de Emergencia
+        </button>
+    </div>
+
+    <div class="therapy-main">
+        <!-- Sección principal de chat -->
+        <div class="chat-section">
+            <div class="chat-header">
+                <div class="therapist-avatar">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div>
+                    <div style="font-size: 1.1rem;">Dr. Elena Martínez</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">Psicóloga Clínica</div>
+                </div>
+                <div style="margin-left: auto;">
+                    <span class="badge bg-success">En línea</span>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Mensaje de bienvenida del terapeuta -->
+                <div class="message therapist-message">
+                    <div class="message-bubble">
+                        <p>¡Hola! Me alegra mucho que hayas decidido estar aquí hoy. Este es tu espacio seguro, donde puedes compartir lo que sientes sin ningún juicio.</p>
+                        <p>Soy la Dra. Elena, y estoy aquí para acompañarte en lo que necesites. ¿Cómo te sientes en este momento? ¿Hay algo particular que te gustaría conversar?</p>
+                    </div>
+                    <div class="message-time">Ahora</div>
+                </div>
+            </div>
+
+            <!-- Indicador de escritura -->
+            <div class="typing-indicator" id="typingIndicator">
+                <i class="fas fa-user-md"></i>
+                <span style="margin-left: 10px;">La Dra. Elena está escribiendo</span>
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="input-group">
+                    <input type="text" 
+                           id="messageInput" 
+                           class="chat-input" 
+                           placeholder="Comparte lo que sientes... Este es un espacio seguro"
+                           maxlength="500">
+                    <button type="button" class="send-button" onclick="sendMessage()" aria-label="Enviar mensaje">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar con progreso terapéutico -->
+        <div class="sidebar">
+            <!-- Vínculo terapéutico -->
+            <div class="progress-card">
+                <div class="progress-title">
+                    <i class="fas fa-heart"></i>
+                    Conexión Terapéutica
+                </div>
+                <div class="therapeutic-bond">
+                    <div class="bond-circle" id="bondCircle" style="--bond-angle: 0deg;">
+                        <span id="bondPercentage">0%</span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--therapy-primary);">
+                        Vínculo en construcción
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estadísticas de sesión -->
+            <div class="progress-card">
+                <div class="progress-title">
+                    <i class="fas fa-chart-line"></i>
+                    Progreso de Sesión
+                </div>
+                <div class="session-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="messageCount">0</span>
+                        <span class="stat-label">Intercambios</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="insightCount">0</span>
+                        <span class="stat-label">Insights</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insights identificados -->
+            <div class="progress-card">
+                <div class="progress-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Descubrimientos
+                </div>
+                <ul class="insights-list" id="insightsList">
+                    <li>Los insights aparecerán aquí conforme avancemos...</li>
+                </ul>
+            </div>
+
+            <!-- Frases motivacionales -->
+            <div class="motivation-quotes" id="motivationBox">
+                "Cada paso que das al hablar de tus sentimientos es un acto de valentía."
+            </div>
+            
+            <!-- Botón para generar informe psicológico -->
+            <div class="progress-card">
+                <button id="generate-psychology-report-btn" class="report-button w-100" onclick="generatePsychologyReport()">
+                    <div class="report-button-content">
+                        <div class="report-icon">
+                            <i class="fas fa-file-medical-alt"></i>
+                        </div>
+                        <div class="report-text">
+                            <strong>Generar Informe</strong>
+                            <small>Resumen de sesión terapéutica</small>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading indicator -->
+<div class="loading-indicator" id="loadingIndicator">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Procesando...</span>
+    </div>
+</div>
+
+<!-- Modal para mostrar el informe psicológico -->
+<div class="modal fade" id="psychology-report-modal" tabindex="-1" aria-labelledby="psychology-report-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-gradient-primary text-white">
+        <h5 class="modal-title" id="psychology-report-modal-label">
+            <i class="fas fa-file-medical-alt"></i> Informe de Consulta Psicológica
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div id="psychology-report-loading" class="text-center p-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Generando informe psicológico...</span>
+          </div>
+          <p class="mt-3">Generando informe de sesión terapéutica, por favor espere...</p>
+        </div>
+        <div id="psychology-report-content" class="d-none">
+          <!-- El contenido del informe se insertará aquí -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="fas fa-times"></i> Cerrar
+        </button>
+        <button type="button" class="btn btn-primary" id="download-psychology-report-btn" disabled>
+            <i class="fas fa-download"></i> Descargar PDF
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Variables globales
+let sessionId = '{{ session_id }}';
+let messageCount = 0;
+let insightCount = 0;
+let therapeuticBond = 0;
+
+// Frases motivacionales
+const motivationalQuotes = [
+    "Hablar de tus sentimientos es una forma de cuidarte.",
+    "Cada palabra que compartes es un paso hacia tu bienestar.",
+    "Tu vulnerabilidad es tu fortaleza más grande.",
+    "Estás creando un cambio positivo en tu vida.",
+    "Tus emociones son válidas y merecen ser escuchadas."
+];
+
+// Inicializar
+document.addEventListener('DOMContentLoaded', function() {
+    // Focus en input
+    document.getElementById('messageInput').focus();
+    
+    // Enter para enviar
+    document.getElementById('messageInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    
+    // Cambiar frase motivacional cada 30 segundos
+    setInterval(changeMotivationalQuote, 30000);
+});
+
+function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Mostrar mensaje del paciente
+    addMessageToChat('patient', message);
+    
+    // Limpiar input
+    input.value = '';
+    
+    // Mostrar indicador de escritura
+    showTypingIndicator();
+    
+    // Enviar mensaje al servidor
+    fetch('/psychology/message', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            message: message,
+            session_id: sessionId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        hideTypingIndicator();
+        
+        if (data.error) {
+            console.error('Error:', data.error);
+            return;
+        }
+        
+        // Mostrar respuesta del terapeuta
+        addMessageToChat('therapist', data.response);
+        
+        // Actualizar progreso
+        updateSessionProgress(data);
+        
+        // Verificar emergencias
+        if (data.emergency && data.emergency.detected) {
+            showEmergencyAlert();
+        }
+        
+        // Cambiar frase motivacional
+        changeMotivationalQuote();
+    })
+    .catch(error => {
+        hideTypingIndicator();
+        console.error('Error:', error);
+        addMessageToChat('therapist', 'Disculpa, ha ocurrido un error. ¿Podrías repetir tu mensaje?');
+    });
+}
+
+function addMessageToChat(sender, message) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
+    
+    const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    
+    messageDiv.innerHTML = `
+        <div class="message-bubble">
+            ${message.replace(/\n/g, '<br>')}
+        </div>
+        <div class="message-time">${currentTime}</div>
+    `;
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    
+    // Incrementar contador
+    if (sender === 'patient') {
+        messageCount++;
+        document.getElementById('messageCount').textContent = messageCount;
+    }
+}
+
+function updateSessionProgress(data) {
+    // Actualizar vínculo terapéutico
+    if (data.therapeutic_bond !== undefined) {
+        therapeuticBond = data.therapeutic_bond;
+        const percentage = Math.round(therapeuticBond * 100);
+        const angle = therapeuticBond * 360;
+        
+        document.getElementById('bondPercentage').textContent = percentage + '%';
+        document.getElementById('bondCircle').style.setProperty('--bond-angle', angle + 'deg');
+    }
+    
+    // Actualizar insights
+    if (data.insights && data.insights.length > 0) {
+        const insightsList = document.getElementById('insightsList');
+        
+        // Limpiar lista si es el primer insight
+        if (insightCount === 0) {
+            insightsList.innerHTML = '';
+        }
+        
+        data.insights.forEach(insight => {
+            const li = document.createElement('li');
+            li.textContent = insight;
+            li.style.animation = 'fadeInUp 0.5s ease-out';
+            insightsList.appendChild(li);
+            insightCount++;
+        });
+        
+        document.getElementById('insightCount').textContent = insightCount;
+    }
+}
+
+function showTypingIndicator() {
+    document.getElementById('typingIndicator').style.display = 'flex';
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTypingIndicator() {
+    document.getElementById('typingIndicator').style.display = 'none';
+}
+
+function showEmergencyAlert() {
+    document.getElementById('emergencyAlert').style.display = 'block';
+}
+
+function contactEmergency() {
+    alert('En una emergencia real, contacta inmediatamente:\n\n🚨 Emergencias: 911\n📞 Línea de Crisis: 1-800-XXX-XXXX\n🏥 Hospital más cercano');
+}
+
+function changeMotivationalQuote() {
+    const motivationBox = document.getElementById('motivationBox');
+    const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+    motivationBox.textContent = `"${randomQuote}"`;
+}
+
+// Funciones de utilidad
+function formatTherapeuticResponse(response) {
+    // Formatear respuesta para destacar secciones importantes
+    let formatted = response;
+    
+    // Destacar análisis psicológico
+    formatted = formatted.replace(/ANÁLISIS PSICOLÓGICO PROGRESIVO:(.*?)(?=HERRAMIENTAS|$)/gs, 
+        '<div class="analysis-section"><strong>📊 Análisis Psicológico:</strong>$1</div>');
+    
+    // Destacar herramientas terapéuticas
+    formatted = formatted.replace(/HERRAMIENTAS TERAPÉUTICAS:(.*?)(?=PRÓXIMA|$)/gs, 
+        '<div class="tools-section"><strong>🛠️ Herramientas para ti:</strong>$1</div>');
+    
+    // Destacar próxima exploración
+    formatted = formatted.replace(/PRÓXIMA EXPLORACIÓN:(.*?)$/gs, 
+        '<div class="next-section"><strong>🔮 Para la próxima vez:</strong>$1</div>');
+    
+    return formatted;
+}
+
+// Función para generar informe psicológico
+async function generatePsychologyReport() {
+    try {
+        // Mostrar modal de loading
+        const reportModal = new bootstrap.Modal(document.getElementById('psychology-report-modal'));
+        reportModal.show();
+        
+        // Mostrar loading y ocultar contenido
+        document.getElementById('psychology-report-loading').classList.remove('d-none');
+        document.getElementById('psychology-report-content').classList.add('d-none');
+        document.getElementById('download-psychology-report-btn').disabled = true;
+        
+        // Hacer petición al endpoint
+        const response = await fetch('/psychology/generate_report', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                session_id: sessionId
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.success && data.report) {
+            // Ocultar loading y mostrar reporte
+            document.getElementById('psychology-report-loading').classList.add('d-none');
+            document.getElementById('psychology-report-content').classList.remove('d-none');
+            document.getElementById('psychology-report-content').innerHTML = data.report;
+            
+            // Habilitar botón de descarga
+            document.getElementById('download-psychology-report-btn').disabled = false;
+            
+            // Agregar evento para descarga
+            document.getElementById('download-psychology-report-btn').onclick = function() {
+                downloadPsychologyReportPDF();
+            };
+        } else {
+            throw new Error(data.error || 'Error al generar el informe psicológico');
+        }
+        
+    } catch (error) {
+        console.error('Error generando informe psicológico:', error);
+        
+        // Ocultar loading
+        document.getElementById('psychology-report-loading').classList.add('d-none');
+        document.getElementById('psychology-report-content').classList.remove('d-none');
+                        
+        // Mostrar error
+        document.getElementById('psychology-report-content').innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Error:</strong> No se pudo generar el informe. ${error.message}
+                <br><small class="mt-2 d-block">Asegúrese de haber tenido al menos una conversación antes de generar el informe.</small>
+            </div>
+        `;
+    }
+}
+
+// Función para descargar informe psicológico en PDF
+async function downloadPsychologyReportPDF() {
+    try {
+        const response = await fetch('/psychology/download_report', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                session_id: sessionId
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        // Crear un enlace para descargar el PDF
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `informe_psicologico_${new Date().toISOString().slice(0,10)}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        
+    } catch (error) {
+        console.error('Error descargando PDF:', error);
+        alert('Error al descargar el informe en PDF. Inténtelo de nuevo.');
+    }
+}
+</script>
+{% endblock %} 

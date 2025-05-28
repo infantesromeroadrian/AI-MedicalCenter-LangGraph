@@ -1,0 +1,27 @@
+{
+  "conversation_id": "cb4c8848-5d01-4277-9620-049c8ccd60de",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta m\u00e9dica interactiva. Est\u00e1s hablando con un especialista en emergency_medicine. \u00bfEn qu\u00e9 puedo ayudarte hoy? (El sistema autom\u00e1ticamente te dirigir\u00e1 al especialista m\u00e1s adecuado seg\u00fan tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-05-28T21:04:59.668123"
+    },
+    {
+      "content": "me ha mordido un perro tengo una herida en la mano",
+      "sender": "user",
+      "timestamp": "2025-05-28T21:04:59.668138"
+    },
+    {
+      "content": "As a Emergency Medicine specialist, Entiendo que est\u00e1s pasando por una situaci\u00f3n estresante. Vamos a manejar esto juntos. Necesito que me proporciones m\u00e1s detalles para poder ayudarte de la mejor manera posible.\n\n1. \u00bfCu\u00e1nto tiempo ha pasado desde que te mordi\u00f3 el perro?\n2. \u00bfPuedes describirme c\u00f3mo es la herida? \u00bfEs profunda? \u00bfEst\u00e1 sangrando mucho?\n3. \u00bfEl perro estaba vacunado contra la rabia? \n\nPor favor, mientras respondes a estas preguntas, intenta mantener la calma y aplica presi\u00f3n sobre la herida con un pa\u00f1o limpio para controlar cualquier sangrado.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-05-28T21:05:06.652652"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-05-28T21:04:59.668099",
+  "updated_at": "2025-05-28T21:05:06.652660"
+}

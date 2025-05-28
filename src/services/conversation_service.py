@@ -16,10 +16,23 @@ from src.config.config import BASE_DIR
 logger = logging.getLogger(__name__)
 
 class ConversationService:
-    """Service to manage interactive conversations with medical specialists."""
+    """Service to manage interactive conversations with medical specialists (Singleton)."""
+    
+    _instance = None
+    _initialized = False
+    
+    def __new__(cls):
+        """Ensure only one instance of ConversationService exists."""
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
     
     def __init__(self):
-        """Initialize the conversation service."""
+        """Initialize the conversation service (only once)."""
+        # Only initialize once
+        if ConversationService._initialized:
+            return
+            
         self.conversations: Dict[str, InteractiveConversation] = {}
         self.agent_factory = AgentFactory()
         self.agents: Dict[str, BaseMedicalAgent] = {}
@@ -40,6 +53,10 @@ class ConversationService:
         
         # Load any existing conversations
         self._load_conversations()
+        
+        # Mark as initialized
+        ConversationService._initialized = True
+        logger.info("ConversationService singleton initialized")
     
     def _cleanup_corrupted_files(self):
         """Clean up any corrupted files from previous runs."""
@@ -83,26 +100,47 @@ class ConversationService:
             logger.error(f"Error loading conversations: {e}")
     
     def _save_conversation(self, conversation_id: str):
-        """Save a conversation to disk."""
+        """Save a conversation to disk with improved error handling."""
         try:
             conv = self.conversations.get(conversation_id)
-            if conv:
-                file_path = self.conversation_dir / f"{conversation_id}.json"
-                # Convert the conversation to a dict first, which will handle datetime serialization
-                conversation_dict = conv.dict()
+            if not conv:
+                logger.error(f"Cannot save conversation {conversation_id}: not found in memory")
+                return False
                 
-                # Create a custom JSON encoder to handle datetime objects
-                class DateTimeEncoder(json.JSONEncoder):
-                    def default(self, obj):
-                        if hasattr(obj, 'isoformat'):
-                            return obj.isoformat()
-                        return super().default(obj)
-                
-                with open(file_path, 'w') as f:
-                    json.dump(conversation_dict, f, indent=2, cls=DateTimeEncoder)
-                logger.info(f"Saved conversation {conversation_id} to disk")
+            file_path = self.conversation_dir / f"{conversation_id}.json"
+            
+            # Convert the conversation to a dict first, which will handle datetime serialization
+            conversation_dict = conv.dict()
+            
+            # Create a custom JSON encoder to handle datetime objects
+            class DateTimeEncoder(json.JSONEncoder):
+                def default(self, obj):
+                    if hasattr(obj, 'isoformat'):
+                        return obj.isoformat()
+                    return super().default(obj)
+            
+            # Save to a temporary file first to avoid corruption
+            temp_file_path = file_path.with_suffix('.tmp')
+            
+            with open(temp_file_path, 'w', encoding='utf-8') as f:
+                json.dump(conversation_dict, f, indent=2, cls=DateTimeEncoder, ensure_ascii=False)
+            
+            # Move the temporary file to the final location
+            temp_file_path.replace(file_path)
+            
+            logger.info(f"Saved conversation {conversation_id} to disk")
+            return True
+            
         except Exception as e:
             logger.error(f"Error saving conversation {conversation_id}: {e}")
+            # Clean up temporary file if it exists
+            temp_file_path = self.conversation_dir / f"{conversation_id}.tmp"
+            if temp_file_path.exists():
+                try:
+                    temp_file_path.unlink()
+                except:
+                    pass
+            return False
     
     def create_conversation(self, initial_specialty: str = "internal_medicine") -> InteractiveConversation:
         """Create a new conversation."""
@@ -194,8 +232,29 @@ class ConversationService:
         return conversation
     
     def get_conversation(self, conversation_id: str) -> Optional[InteractiveConversation]:
-        """Get a conversation by ID."""
-        return self.conversations.get(conversation_id)
+        """Get a conversation by ID. If not in memory, try to load from disk."""
+        # First, check if conversation is in memory
+        if conversation_id in self.conversations:
+            return self.conversations[conversation_id]
+        
+        # If not in memory, try to load from disk
+        try:
+            file_path = self.conversation_dir / f"{conversation_id}.json"
+            if file_path.exists():
+                logger.info(f"Loading conversation {conversation_id} from disk on-demand")
+                with open(file_path, 'r') as f:
+                    data = json.load(f)
+                    conv = InteractiveConversation(**data)
+                    # Add to memory cache
+                    self.conversations[conv.conversation_id] = conv
+                    logger.info(f"Successfully loaded conversation {conversation_id} from disk")
+                    return conv
+            else:
+                logger.warning(f"Conversation file {file_path} does not exist")
+                return None
+        except Exception as e:
+            logger.error(f"Error loading conversation {conversation_id} from disk: {e}")
+            return None
     
     def get_all_conversations(self) -> List[InteractiveConversation]:
         """Get all conversations."""

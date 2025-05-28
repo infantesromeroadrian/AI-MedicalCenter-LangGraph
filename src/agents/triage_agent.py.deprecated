@@ -23,9 +23,9 @@ class TriageAgent:
         Args:
             llm: Modelo de lenguaje a utilizar (opcional)
         """
-        # Usar el LLM proporcionado o crear uno nuevo con GPT-4
+        # Usar el LLM proporcionado o crear uno nuevo con gpt-4.1
         self.llm = llm or ChatOpenAI(
-            model="gpt-4-turbo", 
+            model="gpt-4.1", 
             temperature=0,
             api_key=os.getenv("OPENAI_API_KEY")
         )

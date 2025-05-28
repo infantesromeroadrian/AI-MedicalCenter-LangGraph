@@ -34,8 +34,8 @@ def check_environment():
         return False
     
     # Verificar otros parámetros
-    default_model = os.getenv("DEFAULT_MODEL", "gpt-4.1")
-    backup_model = os.getenv("BACKUP_MODEL", "gpt-4-vision-preview")
+    default_model = os.getenv("DEFAULT_MODEL", "gpt-4.1.1")
+    backup_model = os.getenv("BACKUP_MODEL", "gpt-4.1-vision-preview")
     
     print(f"📋 Modelo por defecto: {default_model}")
     print(f"📋 Modelo de respaldo: {backup_model}")
@@ -138,8 +138,8 @@ APP_VERSION=1.0.0
 PORT=5000
 
 # Configuración del modelo de IA
-DEFAULT_MODEL=gpt-4.1
-BACKUP_MODEL=gpt-4-vision-preview
+DEFAULT_MODEL=gpt-4.1.1
+BACKUP_MODEL=gpt-4.1-vision-preview
 MODEL_TEMPERATURE=0.2
 MAX_TOKENS=1000
 

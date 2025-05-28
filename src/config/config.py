@@ -13,7 +13,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # LLM configuration
-LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4.1")
+LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4")
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "openai")  # 'openai' or 'groq'
 
 # Flask configuration

@@ -343,6 +343,6 @@ class AgentController(ModernAgentController):
             result = loop.run_until_complete(
                 self.process_query_basic(patient_query, context=context)
             )
-            return result
+        return result 
         finally:
             loop.close() 

@@ -144,4 +144,116 @@ Al final de tu respuesta, incluye una sección "RECOMENDACIONES PSIQUIÁTRICAS:"
         adjusted_confidence = base_confidence + confidence_boost
         
         # Ensure confidence stays in range [0.1, 1.0]
-        return max(0.1, min(1.0, adjusted_confidence)) 
+        return max(0.1, min(1.0, adjusted_confidence))
+
+    def _validate_medical_query(self, query: str) -> Dict[str, Any]:
+        """
+        Validar que la consulta sea apropiada para consulta psicológica.
+        Sobrescribe la validación médica estricta para ser más flexible.
+        """
+        
+        # Validaciones básicas
+        if len(query.strip()) < 3:
+            return {"is_valid": False, "reason": "Consulta demasiado corta"}
+        
+        if len(query.strip()) > 2000:
+            return {"is_valid": False, "reason": "Consulta demasiado larga"}
+        
+        # Validar contenido psicológico/emocional (más flexible que médico)
+        psychological_keywords = [
+            # Emociones y estados mentales
+            "siento", "me siento", "estoy", "me encuentro", "emoción", "emocional",
+            "triste", "tristeza", "deprimido", "depresión", "ansiedad", "ansioso",
+            "preocupado", "preocupación", "miedo", "temor", "ira", "enojo", "rabia",
+            "feliz", "alegría", "confundido", "confusión", "perdido",
+            
+            # Situaciones psicológicas
+            "estrés", "estresado", "agobio", "agobiado", "abrumado", "burnout",
+            "relación", "pareja", "familia", "trabajo", "laboral", "social",
+            "soledad", "solo", "aislado", "aislamiento",
+            
+            # Comportamientos y hábitos
+            "duermo", "sueño", "insomnio", "apetito", "como", "hábito", "rutina",
+            "motivación", "energía", "concentración", "memoria", "pensamientos",
+            
+            # Experiencias de vida
+            "vida", "vivir", "muerte", "pérdida", "duelo", "cambio", "transición",
+            "pandemia", "covid", "confinamiento", "cuarentena", "zona de confort",
+            "casa", "salir", "sociabilizar", "gente", "personas",
+            
+            # Saludos y apertura emocional
+            "hola", "buenas", "ayuda", "necesito", "quiero", "me pasa", "me ocurre",
+            "desde", "hace", "tiempo", "últimamente", "recientemente",
+            
+            # English equivalents
+            "feel", "feeling", "emotion", "sad", "depression", "anxiety", "worried",
+            "stress", "relationship", "family", "work", "sleep", "tired", "lonely",
+            "help", "need", "want", "life", "living", "since", "lately", "recently",
+            "pandemic", "home", "comfort zone", "social", "people"
+        ]
+        
+        # Verificar si contiene contenido psicológico
+        has_psychological_content = any(keyword in query.lower() for keyword in psychological_keywords)
+        
+        # Para consultas psicológicas, también aceptamos saludos y contexto general
+        is_greeting_with_context = (
+            any(greeting in query.lower() for greeting in ["hola", "buenas", "hello", "hi"]) and
+            len(query.split()) > 1  # Más de una palabra
+        )
+        
+        # Verificar si menciona situaciones de vida relevantes
+        life_situations = [
+            "pandemia", "covid", "cuarentena", "confinamiento", "casa", "hogar",
+            "trabajo", "pareja", "familia", "amigos", "social", "gente",
+            "zona de confort", "salir", "actividades", "rutina", "hábitos"
+        ]
+        has_life_context = any(situation in query.lower() for situation in life_situations)
+        
+        if has_psychological_content or is_greeting_with_context or has_life_context:
+            return {"is_valid": True, "reason": "Consulta psicológica válida"}
+        
+        # Si no encuentra contenido relevante, dar una sugerencia más específica
+        return {
+            "is_valid": False, 
+            "reason": "Para una consulta psicológica, puedes compartir cómo te sientes, qué te preocupa, o alguna situación que quieras conversar"
+        } 
+
+    def _create_validation_error_response(self, validation_result: Dict[str, Any]):
+        """Crear respuesta de error de validación más empática para consulta psicológica."""
+        
+        # Import here to avoid circular imports
+        from src.agents.base_agent import AgentResponse
+        
+        reason = validation_result['reason']
+        
+        if "demasiado corta" in reason:
+            error_message = (
+                "Hola, me da mucho gusto que estés aquí. Veo que has escrito algo breve. "
+                "Este es tu espacio seguro para compartir. ¿Te gustaría contarme un poco más "
+                "sobre cómo te sientes o qué te trae por aquí hoy?"
+            )
+        elif "demasiado larga" in reason:
+            error_message = (
+                "Veo que tienes mucho que compartir, y eso está muy bien. Para poder ayudarte mejor, "
+                "¿podrías resumir lo principal que te preocupa o te gustaría conversar hoy? "
+                "Podemos ir profundizando paso a paso."
+            )
+        else:
+            error_message = (
+                "Entiendo que tal vez no sepas por dónde empezar, y eso es completamente normal. "
+                "Este es un espacio donde puedes compartir cualquier cosa que sientes, te preocupa "
+                "o simplemente quieres conversar. No hay respuestas correctas o incorrectas. "
+                "¿Cómo has estado últimamente?"
+            )
+        
+        return AgentResponse(
+            specialty=self.specialty,
+            response=error_message,
+            confidence=0.9,  # Alta confianza en la respuesta empática
+            recommendations=[
+                "Comparte cualquier emoción o sentimiento que tengas", 
+                "Puedes hablar sobre situaciones que te preocupan",
+                "No hay tema demasiado pequeño o grande para conversar"
+            ],
+            sources=None
+        ) 

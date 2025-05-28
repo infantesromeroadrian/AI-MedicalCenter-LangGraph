@@ -38,7 +38,7 @@ class MedicalImageAnalyzer:
             model_name = os.getenv("DEFAULT_MODEL", "gpt-4.1")
         
         self.model_name = model_name
-        self.backup_model = os.getenv("BACKUP_MODEL", "gpt-4-vision-preview")
+        self.backup_model = os.getenv("BACKUP_MODEL", "gpt-4o")  # gpt-4o como respaldo
         
         # Verificar que tenemos API key
         api_key = os.getenv("OPENAI_API_KEY")
@@ -152,7 +152,7 @@ class MedicalImageAnalyzer:
                 else:
                     system_message = "Eres un asistente médico especializado en análisis de imágenes."
                 
-                # Preparar el mensaje con la imagen para gpt-4.1
+                # Preparar el mensaje con la imagen para gpt-4.1.1
                 messages = [
                     {"role": "system", "content": system_message},
                     {"role": "user", "content": [
@@ -202,7 +202,21 @@ class MedicalImageAnalyzer:
         
         except Exception as e:
             logger.error(f"Error durante el análisis de la imagen: {str(e)}")
-            return "Lo sentimos, hubo un error al analizar la imagen. Por favor, intente con otra imagen o más tarde."
+            
+            # Proporcionar errores más específicos según el tipo de error
+            error_message = str(e).lower()
+            
+            if "invalid request" in error_message or "model" in error_message:
+                return f"Error de configuración del modelo: {str(e)}. Por favor, contacte al administrador del sistema."
+            elif "rate limit" in error_message:
+                return "Se ha alcanzado el límite de solicitudes. Por favor, intente nuevamente en unos minutos."
+            elif "api" in error_message or "token" in error_message:
+                return "Error de autenticación con el servicio de análisis. Por favor, contacte al administrador."
+            elif "connection" in error_message or "timeout" in error_message:
+                return "Error de conexión. Por favor, verifique su conexión a internet e intente nuevamente."
+            else:
+                logger.error(f"Error detallado: {str(e)}")
+                return f"Error técnico durante el análisis: {str(e)}. Si persiste, contacte al soporte técnico."
     
     def is_medical_image(self, image_path, confidence_threshold=0.7):
         """
