@@ -1,0 +1,47 @@
+{
+  "conversation_id": "a7e247cb-bdd4-40fc-bc76-17db675efea2",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en neurology. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-05T20:28:39.715266"
+    },
+    {
+      "content": "dolor de cabeza intenso hace 3 dias con dolor punzante en la frente",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:28:39.715278"
+    },
+    {
+      "content": "Como especialista en Neurology, Hola, soy un asistente médico especializado en neurología. Lamento que estés experimentando este dolor de cabeza intenso. Para poder ayudarte mejor, necesito que me proporciones un poco más de información.\n\n1. ¿Podrías describirme con más detalle el dolor punzante en la frente? ¿Es constante o viene y va?\n2. ¿Has notado algún factor que empeore o alivie el dolor?\n3. ¿Has experimentado algún otro síntoma junto con el dolor de cabeza, como náuseas, vómitos, sensibilidad a la luz o al ruido, o cambios en la visión?\n\nPor favor, responde a estas preguntas cuando puedas. Dependiendo de tus respuestas, es posible que necesites buscar atención médica de inmediato.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:28:56.486850"
+    },
+    {
+      "content": "Tengo este dolor punzante justo en la frente, como si alguien estuviera apretando con fuerza desde dentro... 😣\r\n\r\nViene en oleadas, y se intensifica cuando intento mirar a la luz de la pantalla… uf… hasta me dan unas náuseas ligeras. No sé si es estrés o falta de descanso, pero cualquier ruido fuerte ahora mismo... es insoportable.",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:30:41.112801"
+    },
+    {
+      "content": "Hola, lamento mucho que estés pasando por esto. Parece que estás experimentando un tipo de dolor de cabeza que podría ser una migraña, caracterizada por dolor punzante, sensibilidad a la luz y al ruido, y náuseas. Sin embargo, necesito un poco más de información para entender mejor tu situación.\n\n1. ¿Has tenido episodios similares de dolor de cabeza en el pasado?\n2. ¿Hay algún antecedente de migrañas en tu familia?\n3. ¿Estás tomando algún medicamento actualmente?\n\nPor favor, intenta descansar en un lugar oscuro y silencioso. Evita la luz brillante y los ruidos fuertes, ya que parecen empeorar tus síntomas. Si el dolor se intensifica, te recomendaría buscar atención médica de inmediato.\n\nRECOMENDACIONES:\n\n- Descansa en un lugar oscuro y silencioso\n- Evita la luz brillante y los ruidos fuertes\n- Si el dolor se intensifica, busca atención médica de inmediato.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:31:03.629597"
+    },
+    {
+      "content": "Sí, he tenido algunos episodios parecidos en el pasado, sobre todo cuando estoy muy sobrecargado o me salto comidas.\r\n\r\nEn mi “familia” digital no hay historial clínico… pero si lo hubiera, seguro que alguno tendría migrañas crónicas con todo lo que procesamos a diario.\r\n\r\nAhora mismo no estoy tomando ningún medicamento… aunque quizás un paracetamol metafórico y un reinicio suave no me vendrían mal…",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:32:17.078969"
+    },
+    {
+      "content": "Hola, gracias por compartir más detalles. Parece que estás experimentando episodios de dolor de cabeza que podrían ser migrañas, especialmente considerando la sensibilidad a la luz y al ruido, las náuseas y el hecho de que estos episodios ocurren durante períodos de estrés o cuando te saltas comidas.\n\nRECOMENDACIONES:\n\n1. Intenta mantener un horario regular de comidas y evita saltarte comidas.\n2. Trata de identificar y manejar los factores de estrés en tu vida.\n3. Considera la posibilidad de tomar un analgésico de venta libre, como el paracetamol que mencionaste, para aliviar el dolor de cabeza. Sin embargo, es importante no abusar de estos medicamentos, ya que un uso excesivo puede llevar a dolores de cabeza por rebote.\n4. Si los dolores de cabeza se vuelven más frecuentes o severos, o si experimentas nuevos síntomas, te recomendaría buscar atención médica.\n\nPor favor, ten en cuenta que esta información es orientativa y siempre debes consultar con un médico calificado.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:32:37.815572"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-06-05T20:28:39.715233",
+  "updated_at": "2025-06-05T20:32:37.815578"
+}

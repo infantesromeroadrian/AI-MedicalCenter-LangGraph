@@ -8,8 +8,7 @@ import traceback
 
 from src.models.data_models import InteractiveConversation, MessageType, UserQuery
 from src.utils.helpers import generate_id
-from src.agents.base_agent import BaseMedicalAgent
-from src.agents.agent_factory import AgentFactory
+from src.agents.medical_system_integration import MedicalSystemManager
 from src.services.llm_service import LLMService
 from src.config.config import BASE_DIR
 
@@ -34,13 +33,12 @@ class ConversationService:
             return
             
         self.conversations: Dict[str, InteractiveConversation] = {}
-        self.agent_factory = AgentFactory()
-        self.agents: Dict[str, BaseMedicalAgent] = {}
+        self.medical_system = MedicalSystemManager(use_advanced_system=True, fast_mode=True)
         self.conversation_dir = BASE_DIR / "data" / "conversations"
         self.llm_service = LLMService()  # Para clasificación de especialidad
         
-        # Umbral de confianza para cambios automáticos de especialidad (ajustado a un valor más estricto)
-        self.specialty_confidence_threshold = 0.85
+        # Umbral de confianza para cambios automáticos de especialidad (valor muy estricto para evitar cambios innecesarios)
+        self.specialty_confidence_threshold = 0.95
         
         # Tracking para cambios de especialidad
         self.specialty_changes = {}  # Dict[conversation_id, Dict[info]]
@@ -56,7 +54,7 @@ class ConversationService:
         
         # Mark as initialized
         ConversationService._initialized = True
-        logger.info("ConversationService singleton initialized")
+        logger.info("ConversationService singleton initialized with ADVANCED medical system")
     
     def _cleanup_corrupted_files(self):
         """Clean up any corrupted files from previous runs."""
@@ -202,19 +200,21 @@ class ConversationService:
         if initial_query:
             conversation.add_message(content=initial_query, sender="user")
             
-            # Process the message to get the initial response from the specialist
+            # Process the message to get the initial response from the specialist using advanced system
             try:
                 specialty = conversation.active_specialty
-                agent = self._get_agent(specialty)
                 
                 # Create context of the conversation
                 context = {
                     "conversation_history": [conversation.messages[0].dict()]  # Only the welcome message
                 }
                 
-                # Process the query with the current specialist
-                response = await agent.process_query(initial_query, context=context)
-                agent_message = response.response
+                # Process the query with the advanced system
+                agent_message = await self._process_with_advanced_system(
+                    query=initial_query,
+                    specialty=specialty,
+                    context=context
+                )
                 
                 # Add specialist's response
                 conversation.add_message(content=agent_message, sender=specialty)
@@ -260,11 +260,19 @@ class ConversationService:
         """Get all conversations."""
         return list(self.conversations.values())
     
-    def _get_agent(self, specialty: str) -> BaseMedicalAgent:
-        """Get or create an agent for a specific specialty."""
-        if specialty not in self.agents:
-            self.agents[specialty] = self.agent_factory.create_agent(specialty)
-        return self.agents[specialty]
+    async def _process_with_advanced_system(self, query: str, specialty: str = None, context: Dict = None):
+        """Process query using the advanced medical system."""
+        try:
+            response = await self.medical_system.process_medical_query(
+                query=query,
+                specialty=specialty,
+                medical_criteria="Interactive conversation",
+                context=context
+            )
+            return response.primary_response
+        except Exception as e:
+            logger.error(f"Error with advanced system: {e}")
+            return f"Lo siento, he experimentado un problema técnico. ¿Podrías reformular tu consulta?"
     
     async def process_message(self, conversation_id: str, message: str) -> Optional[str]:
         """Process a user message in a conversation."""
@@ -302,9 +310,15 @@ class ConversationService:
                         can_switch = False
                         logger.info(f"Bloqueando cambio automático de especialidad - demasiados cambios recientes")
             
+            # Verificar si el paciente está proporcionando información adicional sobre el mismo tema
+            is_follow_up = self._is_follow_up_message(message, conversation)
+            
             # Si el especialista recomendado es diferente al actual y hay buena confianza, hacer un cambio
-            # Usamos el umbral configurado en self.specialty_confidence_threshold (ahora 0.85)
-            if recommended_specialty != current_specialty and confidence >= self.specialty_confidence_threshold and can_switch:
+            # PERO NO si es una respuesta de seguimiento del mismo tema
+            if (recommended_specialty != current_specialty and 
+                confidence >= self.specialty_confidence_threshold and 
+                can_switch and 
+                not is_follow_up):
                 logger.info(f"Orquestador cambiando automáticamente de {current_specialty} a {recommended_specialty} (confianza: {confidence})")
                 
                 # Registrar el cambio de especialidad
@@ -328,18 +342,18 @@ class ConversationService:
                 # Cambiar a la nueva especialidad
                 conversation.switch_specialty(recommended_specialty)
                 
-                # Obtener el nuevo agente
+                # Procesar con el sistema avanzado usando la nueva especialidad
                 try:
-                    new_agent = self._get_agent(recommended_specialty)
+                    # El sistema avanzado maneja automáticamente la especialidad
+                    pass  # Se procesará más abajo
                 except Exception as agent_error:
-                    logger.error(f"Error al obtener agente para {recommended_specialty}: {agent_error}")
-                    # Si falla la creación del agente, volver a la especialidad anterior
+                    logger.error(f"Error al cambiar a especialidad {recommended_specialty}: {agent_error}")
+                    # Si falla el cambio, volver a la especialidad anterior
                     conversation.switch_specialty(current_specialty)
                     conversation.add_message(
                         content=f"Lo siento, no se pudo conectar con el especialista en {recommended_specialty}. Continuando con {current_specialty}.",
                         sender="system"
                     )
-                    new_agent = self._get_agent(current_specialty)
                 
                 # Crear contexto relevante
                 context = {
@@ -350,10 +364,13 @@ class ConversationService:
                     "reasoning": reasoning
                 }
                 
-                # Generar respuesta del nuevo especialista
+                # Generar respuesta del nuevo especialista usando sistema avanzado
                 try:
-                    specialist_response = await new_agent.process_query(message, context=context)
-                    specialist_message = specialist_response.response
+                    specialist_message = await self._process_with_advanced_system(
+                        query=message,
+                        specialty=recommended_specialty,
+                        context=context
+                    )
                 except Exception as agent_response_error:
                     logger.error(f"Error al procesar consulta con {recommended_specialty}: {agent_response_error}")
                     specialist_message = f"Como especialista en {recommended_specialty}, me gustaría responder a tu consulta, pero estoy experimentando algunas dificultades técnicas. ¿Podrías reformular tu pregunta?"
@@ -366,19 +383,21 @@ class ConversationService:
                 
                 return specialist_message
             else:
-                # Si no hay cambio de especialidad, proceder como antes
+                # Si no hay cambio de especialidad, proceder con sistema avanzado
                 specialty = conversation.active_specialty
-                agent = self._get_agent(specialty)
                 
                 # Crear contexto de la conversación
                 context = {
                     "conversation_history": [msg.dict() for msg in conversation.messages[:-1]]  # Todos los mensajes excepto el actual
                 }
                 
-                # Procesar la consulta con el especialista actual
+                # Procesar la consulta con el sistema avanzado
                 try:
-                    response = await agent.process_query(message, context=context)
-                    agent_message = response.response
+                    agent_message = await self._process_with_advanced_system(
+                        query=message,
+                        specialty=specialty,
+                        context=context
+                    )
                 except Exception as agent_error:
                     logger.error(f"Error al procesar consulta con {specialty}: {agent_error}")
                     agent_message = f"Lo siento, como especialista en {specialty}, estoy experimentando algunas dificultades para procesar tu consulta. ¿Podrías reformular tu pregunta o intentarlo de nuevo más tarde?"
@@ -405,6 +424,59 @@ class ConversationService:
             
             return error_message
     
+    def _is_follow_up_message(self, message: str, conversation: InteractiveConversation) -> bool:
+        """Detectar si el mensaje es una respuesta de seguimiento al mismo tema médico"""
+        
+        # Si hay menos de 2 mensajes, no puede ser follow-up
+        if len(conversation.messages) < 2:
+            return False
+        
+        # Obtener los últimos mensajes del especialista
+        recent_specialist_messages = []
+        for msg in reversed(conversation.messages[-5:]):  # Últimos 5 mensajes
+            if msg.sender == conversation.active_specialty:
+                recent_specialist_messages.append(msg.content.lower())
+                if len(recent_specialist_messages) >= 2:  # Solo necesitamos los últimos 2
+                    break
+        
+        if not recent_specialist_messages:
+            return False
+        
+        # Palabras clave que indican que el especialista está pidiendo información adicional
+        follow_up_indicators = [
+            "podrías describirme", "me gustaría preguntarte", "necesito que me des",
+            "¿podrías", "¿has notado", "¿tienes", "¿existe", "¿hay algo",
+            "más información", "más detalles", "cuéntame más", "dime si",
+            "responde", "pregunta", "información adicional"
+        ]
+        
+        # Verificar si el último mensaje del especialista contenía solicitud de información
+        last_specialist_message = recent_specialist_messages[0]
+        specialist_asking_for_info = any(indicator in last_specialist_message for indicator in follow_up_indicators)
+        
+        # Palabras clave que indican que el paciente está respondiendo/proporcionando información
+        patient_response_indicators = [
+            "es un dolor", "tengo", "siento", "me duele", "principalemnte", "principalmente",
+            "no tengo", "sí", "no", "desde hace", "hace", "cuando", "al", "con",
+            "irrada", "irradia", "hacia", "en", "también", "además", "pero",
+            "vision borrosa", "visión", "trabajo", "pantalla", "nada mas", "nada más"
+        ]
+        
+        message_lower = message.lower()
+        patient_providing_info = any(indicator in message_lower for indicator in patient_response_indicators)
+        
+        # Es follow-up si:
+        # 1. El especialista pidió información Y el paciente está respondiendo
+        # 2. O si el mensaje es muy corto (típico de respuestas)
+        is_short_response = len(message.split()) <= 10
+        
+        is_follow_up = (specialist_asking_for_info and patient_providing_info) or is_short_response
+        
+        if is_follow_up:
+            logger.info(f"Detectado mensaje de seguimiento - evitando cambio de especialidad")
+        
+        return is_follow_up
+    
     async def switch_specialty(self, conversation_id: str, new_specialty: str) -> Optional[str]:
         """Switch the specialty in a conversation."""
         conversation = self.get_conversation(conversation_id)
@@ -417,9 +489,6 @@ class ConversationService:
             old_specialty = conversation.active_specialty
             conversation.switch_specialty(new_specialty)
             
-            # Get the new specialist agent
-            agent = self._get_agent(new_specialty)
-            
             # Create a summary of the conversation for context
             context = {
                 "conversation_history": [msg.dict() for msg in conversation.messages],
@@ -427,18 +496,21 @@ class ConversationService:
                 "manual_transfer": True  # Indicar que fue un cambio manual
             }
             
-            # Generate a transition response
+            # Generate a transition response using advanced system
             query = f"Este paciente estaba hablando con un especialista en {old_specialty} y ahora quiere hablar contigo. " \
                    f"Por favor, revisa la conversación anterior y preséntate como especialista en {new_specialty}."
             
-            response = await agent.process_query(query, context=context)
+            agent_message = await self._process_with_advanced_system(
+                query=query,
+                specialty=new_specialty,
+                context=context
+            )
             
             # Add the transition message
             system_message = f"Cambiando de especialista de {old_specialty} a {new_specialty} por solicitud del usuario..."
             conversation.add_message(content=system_message, sender="system")
             
             # Add the new specialist's greeting
-            agent_message = response.response
             conversation.add_message(content=agent_message, sender=new_specialty)
             
             # Save the updated conversation

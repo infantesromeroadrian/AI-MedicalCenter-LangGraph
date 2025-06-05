@@ -1,0 +1,27 @@
+{
+  "conversation_id": "5191c3a2-b474-4540-bd2a-1545e7a940bf",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en neurology. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-05T19:38:45.194296"
+    },
+    {
+      "content": "dolor de cabeza intenso hace tres dias principalmente en la frente de manera punzante",
+      "sender": "user",
+      "timestamp": "2025-06-05T19:38:45.194304"
+    },
+    {
+      "content": "As a Neurology specialist, Hola, soy un asistente médico especializado en neurología. Lamento escuchar que has estado experimentando dolores de cabeza intensos. Para poder ayudarte mejor, necesito hacerte algunas preguntas adicionales.\n\n1. ¿Podrías describirme un poco más sobre este dolor de cabeza? ¿Es constante o viene y va? ¿Has notado algún patrón en su aparición?\n\n2. ¿Has experimentado algún otro síntoma junto con el dolor de cabeza, como náuseas, vómitos, sensibilidad a la luz o al ruido, o cambios en la visión?\n\n3. ¿Hay algo que parezca desencadenar el dolor de cabeza o aliviarlo? Por ejemplo, ciertos alimentos, el estrés, la falta de sueño, o ciertas actividades físicas.\n\nPor favor, tómate tu tiempo para responder estas preguntas. La información que proporciones será muy útil para entender mejor lo que podría estar ocurriendo.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T19:38:54.781666"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-06-05T19:38:45.194280",
+  "updated_at": "2025-06-05T19:38:54.781674"
+}

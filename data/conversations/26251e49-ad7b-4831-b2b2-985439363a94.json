@@ -1,0 +1,37 @@
+{
+  "conversation_id": "26251e49-ad7b-4831-b2b2-985439363a94",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en neurology. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-05T19:51:07.385161"
+    },
+    {
+      "content": "dolor de cabeza hace 3 dias intensos en la frente ",
+      "sender": "user",
+      "timestamp": "2025-06-05T19:51:07.385171"
+    },
+    {
+      "content": "Como especialista en Neurology, Hola, soy un asistente médico especializado en neurología. Entiendo que has estado experimentando dolores de cabeza intensos en la frente durante los últimos tres días. Lamento que estés pasando por esto y estoy aquí para ayudarte a entender mejor lo que podría estar sucediendo.\n\nPara poder ayudarte de la mejor manera, necesito hacerte algunas preguntas adicionales:\n\n1. ¿Podrías describirme un poco más en detalle cómo es este dolor de cabeza? ¿Es un dolor constante o viene y va? ¿Es un dolor punzante, pulsátil o más bien una presión?\n\n2. ¿Has notado si algo en particular parece desencadenar o empeorar estos dolores de cabeza? Por ejemplo, ciertos alimentos, la luz brillante, el ruido fuerte, el estrés, etc.\n\n3. ¿Has experimentado algún otro síntoma junto con el dolor de cabeza, como fiebre, cambios en la visión, náuseas, vómitos, sensibilidad a la luz o al ruido, o rigidez en el cuello?\n\nPor favor, tómate tu tiempo para responder estas preguntas. Tu seguridad es mi prioridad, y esta información me ayudará a proporcionarte la mejor orientación posible.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T19:52:02.280937"
+    },
+    {
+      "content": "el dolor de cabeza es en forma de punzada, generalmente cuando paso mucho tiempo en la pantalla, vision borrosa,",
+      "sender": "user",
+      "timestamp": "2025-06-05T19:53:17.361356"
+    },
+    {
+      "content": "Hola, soy un asistente médico especializado en neurología. Entiendo que has estado experimentando dolores de cabeza intensos en la frente durante los últimos tres días, que describiste como punzantes y que se intensifican cuando pasas mucho tiempo frente a la pantalla. También mencionaste que has experimentado visión borrosa. Lamento que estés pasando por esto y estoy aquí para ayudarte.\n\nPara poder entender mejor tu situación, me gustaría hacerte algunas preguntas:\n\n1. ¿Podrías describirme más detalladamente cómo es este dolor de cabeza? ¿Es constante o viene y va? ¿Es el dolor siempre en la misma ubicación o se mueve?\n2. ¿Has notado si hay algo que empeora o mejora el dolor de cabeza? Por ejemplo, ¿el dolor mejora cuando descansas los ojos o empeora con ciertas actividades o en ciertos momentos del día?\n3. ¿Has experimentado otros síntomas además del dolor de cabeza y la visión borrosa, como náuseas, sensibilidad a la luz o al ruido, o problemas de equilibrio?\n\nAdemás, sería útil conocer un poco más sobre tus antecedentes médicos:\n\n1. ¿Has tenido dolores de cabeza similares en el pasado? Si es así, ¿cómo se resolvieron?\n2. ¿Hay antecedentes de migrañas o dolores de cabeza severos en tu familia?\n3. ¿Estás tomando algún medicamento actualmente, ya sea para el dolor de cabeza o para alguna otra condición?\n\nEs importante recordar que aunque los dolores de cabeza pueden ser muy molestos, la mayoría de las veces no son indicativos de una condición médica grave. Sin embargo, si el dolor de cabeza es severo, persistente, o viene acompañado de otros síntomas como fiebre, rigidez en el cuello, confusión, debilidad, entumecimiento, o dificultad para hablar, es importante buscar atención médica inmediata.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T19:54:24.503248"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-06-05T19:51:07.385144",
+  "updated_at": "2025-06-05T19:54:24.503259"
+}

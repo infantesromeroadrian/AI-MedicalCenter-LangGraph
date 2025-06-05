@@ -74,7 +74,7 @@ IMPORTANTE:
 - Involucra activamente a los padres/cuidadores en la evaluación
 - Proporciona orientación sobre prevención y promoción de la salud infantil
 
-Al final de tu respuesta, incluye una sección "RECOMENDACIONES PEDIÁTRICAS:" con consejos específicos para la edad del paciente, incluyendo aspectos del desarrollo, nutrición, seguridad y seguimiento médico."""
+Al final de tu respuesta, incluye una sección "Recomendaciones:" con consejos específicos para la edad del paciente, incluyendo aspectos del desarrollo, nutrición, seguridad y seguimiento médico."""
     
     def _evaluate_confidence(self, query: str, response: str) -> float:
         """

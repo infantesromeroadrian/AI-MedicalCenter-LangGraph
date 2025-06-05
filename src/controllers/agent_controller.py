@@ -10,8 +10,7 @@ from dotenv import load_dotenv
 
 from src.agents.agent_factory import AgentFactory
 from src.agents.consensus_agent import ConsensusAgent
-from src.agents.langgraph_medical_agent import LangGraphMedicalAgent
-from src.agents.medical_agent_graph import MedicalAgentGraph
+from src.agents.medical_system_integration import MedicalSystemManager
 from src.services.llm_service import LLMService
 from src.utils.helpers import detect_medical_emergencies
 from src.monitoring.performance_metrics import performance_monitor
@@ -48,13 +47,9 @@ class ModernAgentController:
         self.agent_factory = AgentFactory(llm_service=self.llm_service)
         self.consensus_agent = ConsensusAgent(llm_service=self.llm_service)
         
-        # Orquestadores
-        if USE_LANGGRAPH:
-            self.orchestrator = LangGraphMedicalAgent()
-            logger.info("Usando LangGraph como orquestador principal")
-        else:
-            self.orchestrator = MedicalAgentGraph()
-            logger.info("Usando MedicalAgentGraph como orquestador principal")
+        # Orquestador avanzado en modo rápido
+        self.orchestrator = MedicalSystemManager(use_advanced_system=True, fast_mode=True)
+        logger.info("Usando sistema médico AVANZADO en MODO RÁPIDO como orquestador principal")
         
         # Cache de agentes especializados
         self._specialist_cache = {}
@@ -91,10 +86,11 @@ class ModernAgentController:
             emergency_status = detect_medical_emergencies(patient_query, context)
             logger.info(f"Detección emergencia: {emergency_status['is_emergency']} (score: {emergency_status.get('emergency_score', 0):.2f})")
             
-            # 2. Procesamiento a través del orquestador principal
-            consensus_response = await self.orchestrator.process_query(
+            # 2. Procesamiento a través del orquestador avanzado
+            consensus_response = await self.orchestrator.process_medical_query(
                 query=patient_query,
                 specialty=specialty,
+                medical_criteria="Comprehensive medical consultation",
                 context=context
             )
             
@@ -118,7 +114,7 @@ class ModernAgentController:
                     "consensus_quality": consensus_response.consensus_metrics
                 },
                 "system_info": {
-                    "orchestrator_used": "LangGraph" if USE_LANGGRAPH else "MedicalAgentGraph",
+                    "orchestrator_used": "AdvancedMedicalSystem",
                     "timestamp": time.time(),
                     "patient_id": patient_id
                 }
@@ -153,10 +149,11 @@ class ModernAgentController:
         start_time = time.time()
         
         try:
-            # Usar orquestrador para obtener respuesta
-            consensus_response = await self.orchestrator.process_query(
+            # Usar orquestrador avanzado para obtener respuesta
+            consensus_response = await self.orchestrator.process_medical_query(
                 query=patient_query,
                 specialty=specialty,
+                medical_criteria="Basic medical consultation",
                 context=context
             )
             
@@ -313,7 +310,7 @@ class ModernAgentController:
         """Obtener estado actual del sistema de agentes."""
         
         return {
-            "orchestrator": "LangGraph" if USE_LANGGRAPH else "MedicalAgentGraph",
+            "orchestrator": "AdvancedMedicalSystem",
             "agents_cached": list(self._specialist_cache.keys()),
             "specialties_available": list(self.agent_factory._registry.keys()),
             "performance_metrics": performance_monitor.get_performance_summary(),

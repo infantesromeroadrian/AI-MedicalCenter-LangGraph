@@ -80,7 +80,7 @@ IMPORTANTE:
 - Considera siempre la calidad de vida del paciente
 - Proporciona apoyo emocional además del médico
 
-Al final de tu respuesta, incluye una sección "RECOMENDACIONES ONCOLÓGICAS:" con consejos sobre tratamiento, seguimiento, cuidados de soporte y recursos de apoyo para el paciente y familia."""
+Al final de tu respuesta, incluye una sección "Recomendaciones:" con consejos sobre tratamiento, seguimiento, cuidados de soporte y recursos de apoyo para el paciente y familia."""
     
     def _evaluate_confidence(self, query: str, response: str) -> float:
         """

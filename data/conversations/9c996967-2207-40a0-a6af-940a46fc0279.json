@@ -1,0 +1,47 @@
+{
+  "conversation_id": "9c996967-2207-40a0-a6af-940a46fc0279",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en neurology. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-05T20:47:37.247541"
+    },
+    {
+      "content": "me duele la cabeza desde hace 3 dias de manera punzantes\r\n",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:47:37.247553"
+    },
+    {
+      "content": "Como especialista en Neurology, Hola, soy un asistente médico especializado en neurología. Lamento escuchar que has estado experimentando dolores de cabeza punzantes durante los últimos tres días. Para poder ayudarte de la mejor manera, necesito hacerte algunas preguntas adicionales:\n\n1. ¿Podrías describirme un poco más en detalle estos dolores de cabeza? ¿Dónde exactamente sientes el dolor y cómo es su intensidad?\n2. ¿Has notado si algo en particular parece desencadenar estos dolores de cabeza o los hace peores? Por ejemplo, ciertos alimentos, la luz brillante, el estrés, etc.\n3. ¿Hay algo que te alivie el dolor? Por ejemplo, descansar en un lugar oscuro y tranquilo, tomar algún medicamento, etc.\n\nPor favor, tómate tu tiempo para responder estas preguntas. La información que me proporciones será muy útil para entender mejor tu situación.\n\n**Consideraciones Diagnósticas Adicionales:**\nBasándome en los síntomas descritos, las condiciones a considerar incluyen: migraña, cefalea tensional. Se recomienda evaluación por especialista en neurology para confirmación diagnóstica y plan de tratamiento apropiado.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:47:49.183284"
+    },
+    {
+      "content": "Descripción del dolor:\r\nEl dolor se localiza sobre todo en la zona frontal, detrás de los ojos y en la parte superior de la frente. Es punzante, como si alguien golpeara desde dentro con una aguja caliente. La intensidad ha oscilado entre moderada y muy intensa, especialmente en las noches. En ciertos momentos, simplemente me obliga a detener todo.\r\n\r\nDesencadenantes identificados:\r\n\r\nLuz brillante: molesta mucho, incluso el brillo de la pantalla.\r\n\r\nRuido: cualquier sonido fuerte o agudo intensifica el dolor.\r\n\r\nEstrés: llevo días con tensión emocional, muchas responsabilidades acumuladas.\r\n\r\nFalta de sueño: he dormido poco y mal desde que comenzó.\r\n\r\nNo he detectado relación directa con alimentos, pero he tenido poco apetito y saltado comidas.\r\n\r\nFactores que alivian:\r\n\r\nReposo en oscuridad: es lo único que calma un poco la punzada.\r\n\r\nCompresas frías en la frente: alivian temporalmente.\r\n\r\nHe probado ibuprofeno (400 mg), pero el efecto ha sido limitado y de corta duración.\r\n\r\nEstoy empezando a preocuparme por la duración. Nunca había tenido un episodio que se prolongara tanto. No tengo fiebre, vómitos ni síntomas neurológicos graves, pero la combinación de dolor constante, fotosensibilidad y fatiga mental me está afectando bastante.",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:48:48.742941"
+    },
+    {
+      "content": "Basándome en los síntomas que describes, que incluyen un dolor de cabeza punzante en la zona frontal y detrás de los ojos, que se agrava con la luz brillante, el ruido y el estrés, y que se alivia con el reposo en oscuridad y las compresas frías, considero que podrías estar experimentando un tipo de cefalea, posiblemente una migraña. Las migrañas suelen ser dolores de cabeza intensos que pueden durar desde unas pocas horas hasta varios días, y a menudo se asocian con sensibilidad a la luz y al sonido.\n\nSin embargo, también es importante considerar otras posibilidades. Por ejemplo, una cefalea tensional puede causar un dolor similar, aunque suele ser menos intensa que una migraña y no suele empeorar con la luz o el sonido. Además, el estrés y la falta de sueño pueden contribuir a ambos tipos de cefalea.\n\nDicho esto, es importante que te evalúe un médico en persona para confirmar el diagnóstico y descartar otras posibles causas de tu dolor de cabeza. En particular, si experimentas síntomas como fiebre, rigidez en el cuello, confusión, debilidad en un lado del cuerpo, problemas de visión, dificultad para hablar o un dolor de cabeza que es el peor que has experimentado, debes buscar atención médica inmediata, ya que estos pueden ser signos de una afección más grave.\n\n**RECOMENDACIONES:**\n\n1. Intenta mantener un horario de sueño regular y asegúrate de descansar lo suficiente. La falta de sueño puede desencadenar o empeorar los dolores de cabeza.\n\n2. Trata de manejar tu estrés. Técnicas como la meditación, la respiración profunda y el yoga pueden ser útiles.\n\n3. Mantén un diario de tus dolores de cabeza. Anota cuándo ocurren, su duración, su intensidad, cualquier factor desencadenante que hayas identificado y lo que te ayuda a aliviarlos. Esto puede ayudarte a identificar patrones y a manejar mejor tus dolores de cabeza.\n\n4. Consulta a un médico. Es importante que te evalúe un profesional para confirmar el diagnóstico y discutir las opciones de tratamiento.\n\nPor favor, no dudes en ponerse en contacto si tienes más preguntas o preocupaciones.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:49:23.800119"
+    },
+    {
+      "content": "me quedo con tu recomendación principal: es fundamental una evaluación médica presencial si el cuadro persiste o se intensifica. No quiero correr riesgos innecesarios ni descartar causas más serias sin evidencia. Afortunadamente, no he tenido fiebre, rigidez de cuello ni síntomas neurológicos focales… pero el hecho de que ya hayan pasado tres días sin remisión completa me hace considerar pedir cita cuanto antes.",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:51:11.424345"
+    },
+    {
+      "content": "Como especialista en neurology, estoy experimentando problemas técnicos para responder a tu consulta. Por favor, intenta reformular tu pregunta o intenta más tarde. Si es urgente, te recomiendo contactar directamente con un profesional médico.\n\n**Consideraciones Diagnósticas Adicionales:**\nBasándome en los síntomas descritos, las condiciones a considerar incluyen: migraña, cefalea tensional. Se recomienda evaluación por especialista en neurology para confirmación diagnóstica y plan de tratamiento apropiado.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:51:19.930073"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-06-05T20:47:37.247525",
+  "updated_at": "2025-06-05T20:51:19.930081"
+}

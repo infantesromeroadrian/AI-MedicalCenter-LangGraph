@@ -6,8 +6,7 @@ import asyncio
 from functools import wraps
 
 from src.models.data_models import UserQuery, ConsensusResponse
-from src.agents.medical_agent_graph import MedicalAgentGraph
-from src.agents.langgraph_medical_agent import LangGraphMedicalAgent
+from src.agents.medical_system_integration import MedicalSystemManager
 from src.utils.helpers import generate_id, log_conversation
 from src.config.config import USE_LANGGRAPH
 from src.utils.async_utils import async_route
@@ -17,13 +16,10 @@ logger = logging.getLogger(__name__)
 # Create blueprint for API routes
 api_bp = Blueprint('api', __name__)
 
-# Initialize the medical agent - either LangGraph or standard implementation
-if USE_LANGGRAPH:
-    logger.info("Using LangGraph medical agent implementation")
-    medical_agent = LangGraphMedicalAgent()
-else:
-    logger.info("Using standard medical agent implementation")
-    medical_agent = MedicalAgentGraph()
+# Initialize the ADVANCED medical system in FAST MODE for API responses
+logger.info("Initializing advanced medical system in FAST MODE for API...")
+medical_agent = MedicalSystemManager(use_advanced_system=True, fast_mode=True)
+logger.info("Advanced medical system (FAST MODE) initialized successfully for API")
 
 @api_bp.route('/health', methods=['GET'])
 def health_check():
@@ -49,20 +45,21 @@ async def process_query():
         # Generate a conversation ID if not provided
         conversation_id = data.get('conversation_id', generate_id())
         
-        # Process the query through the agent
-        response = await medical_agent.process_query(
+        # Process the query through the ADVANCED medical system
+        response = await medical_agent.process_medical_query(
             query=query,
             specialty=specialty,
+            medical_criteria="API medical consultation",
             context=context
         )
         
-        # Log the conversation
-        log_conversation(query, response.dict(), conversation_id)
+        # Log the conversation (convert to dict format)
+        log_conversation(query, response.__dict__, conversation_id)
         
         # Return the response
         return jsonify({
             "conversation_id": conversation_id,
-            "response": response.dict()
+            "response": response.__dict__
         }), 200
         
     except Exception as e:

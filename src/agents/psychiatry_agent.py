@@ -86,7 +86,7 @@ IMPORTANTE:
 - Deriva a emergencias si hay riesgo inmediato
 - Enfatiza que los trastornos mentales son condiciones médicas tratables
 
-Al final de tu respuesta, incluye una sección "RECOMENDACIONES PSIQUIÁTRICAS:" con consejos sobre manejo de síntomas, técnicas de afrontamiento, adherencia al tratamiento y cuándo buscar ayuda de emergencia."""
+Al final de tu respuesta, incluye una sección "Recomendaciones:" con consejos sobre manejo de síntomas, técnicas de afrontamiento, adherencia al tratamiento y cuándo buscar ayuda de emergencia."""
     
     def _evaluate_confidence(self, query: str, response: str) -> float:
         """
@@ -152,11 +152,11 @@ Al final de tu respuesta, incluye una sección "RECOMENDACIONES PSIQUIÁTRICAS:"
         Sobrescribe la validación médica estricta para ser más flexible.
         """
         
-        # Validaciones básicas
-        if len(query.strip()) < 3:
+        # Validaciones básicas MUY PERMISIVAS
+        if len(query.strip()) < 1:
             return {"is_valid": False, "reason": "Consulta demasiado corta"}
         
-        if len(query.strip()) > 2000:
+        if len(query.strip()) > 10000:  # Límite muy generoso
             return {"is_valid": False, "reason": "Consulta demasiado larga"}
         
         # Validar contenido psicológico/emocional (más flexible que médico)

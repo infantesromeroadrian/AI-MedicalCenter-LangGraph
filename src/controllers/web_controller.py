@@ -4,8 +4,7 @@ import asyncio
 from datetime import datetime
 from functools import wraps
 
-from src.agents.medical_agent_graph import MedicalAgentGraph
-from src.agents.langgraph_medical_agent import LangGraphMedicalAgent
+from src.agents.medical_system_integration import MedicalSystemManager
 from src.config.config import MEDICAL_SPECIALTIES, USE_LANGGRAPH
 from src.utils.helpers import generate_id
 from src.services.conversation_service import ConversationService
@@ -24,13 +23,10 @@ conversation_service = ConversationService()
 # Initialize the user service
 user_service = UserService()
 
-# Initialize the medical agent for compatibility with old code
-if USE_LANGGRAPH:
-    logger.info("Using LangGraph medical agent implementation")
-    medical_agent = LangGraphMedicalAgent()
-else:
-    logger.info("Using standard medical agent implementation")
-    medical_agent = MedicalAgentGraph()
+# Initialize the ADVANCED medical system in FAST MODE for quick responses
+logger.info("Initializing advanced medical system in FAST MODE...")
+medical_agent = MedicalSystemManager(use_advanced_system=True, fast_mode=True)
+logger.info("Advanced medical system (FAST MODE) initialized successfully")
 
 def ensure_serializable(obj):
     """Ensure that the given object is JSON serializable."""

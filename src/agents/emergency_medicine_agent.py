@@ -109,7 +109,7 @@ IMPORTANTE:
 - Considera siempre los diagnósticos diferenciales más graves primero
 - Si hay duda sobre la gravedad, siempre err del lado de la precaución
 
-Al final de tu respuesta, incluye una sección "RECOMENDACIONES DE EMERGENCIA:" con indicaciones claras sobre cuándo buscar atención inmediata, qué hacer mientras llega ayuda médica, y signos de alarma a vigilar."""
+Al final de tu respuesta, incluye una sección "Recomendaciones:" con indicaciones claras sobre cuándo buscar atención inmediata, qué hacer mientras llega ayuda médica, y signos de alarma a vigilar."""
     
     def _evaluate_confidence(self, query: str, response: str) -> float:
         """

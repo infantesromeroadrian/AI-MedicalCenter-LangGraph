@@ -6,18 +6,18 @@ Test básico del sistema de agentes médicos mejorado.
 import sys
 import os
 
-# Agregar src al path
-sys.path.insert(0, 'src')
+# Add the parent directory to the path so we can import from src
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def test_basic_imports():
     """Test de imports básicos."""
     print("🧪 Testando imports básicos...")
     try:
-        from agents.agent_factory import AgentFactory
-        from agents.consensus_agent import ConsensusAgent
-        from controllers.agent_controller import ModernAgentController, AgentController
-        from monitoring.performance_metrics import performance_monitor
-        from utils.emergency_detector import AdvancedEmergencyDetector
+        from src.agents.agent_factory import AgentFactory
+        from src.agents.consensus_agent import ConsensusAgent
+        from src.controllers.agent_controller import ModernAgentController, AgentController
+        from src.monitoring.performance_metrics import performance_monitor
+        from src.utils.emergency_detector import AdvancedEmergencyDetector
         print("✅ Todos los imports básicos exitosos")
         return True
     except ImportError as e:
@@ -28,7 +28,7 @@ def test_agent_factory():
     """Test del AgentFactory."""
     print("\n🏭 Testando AgentFactory...")
     try:
-        from agents.agent_factory import AgentFactory
+        from src.agents.agent_factory import AgentFactory
         
         factory = AgentFactory()
         
@@ -53,7 +53,7 @@ def test_modern_controller():
     """Test del controlador moderno."""
     print("\n🎛️ Testando ModernAgentController...")
     try:
-        from controllers.agent_controller import ModernAgentController
+        from src.controllers.agent_controller import ModernAgentController
         
         controller = ModernAgentController()
         
@@ -72,7 +72,7 @@ def test_emergency_detection():
     """Test del sistema de detección de emergencias."""
     print("\n🚨 Testando detección de emergencias...")
     try:
-        from utils.emergency_detector import AdvancedEmergencyDetector
+        from src.utils.emergency_detector import AdvancedEmergencyDetector
         
         detector = AdvancedEmergencyDetector()
         
@@ -96,7 +96,7 @@ def test_performance_metrics():
     """Test del sistema de métricas."""
     print("\n📊 Testando métricas de performance...")
     try:
-        from monitoring.performance_metrics import performance_monitor
+        from src.monitoring.performance_metrics import performance_monitor
         
         # Test registro de respuesta
         performance_monitor.record_response(

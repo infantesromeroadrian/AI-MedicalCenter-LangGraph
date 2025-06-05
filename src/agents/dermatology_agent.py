@@ -83,7 +83,7 @@ IMPORTANTE:
 - Aborda tanto aspectos médicos como estéticos de las condiciones dermatológicas
 - Considera el impacto psicológico de las enfermedades de la piel
 
-Al final de tu respuesta, incluye una sección "RECOMENDACIONES DERMATOLÓGICAS:" con consejos sobre cuidado de la piel, tratamientos recomendados, prevención y cuándo buscar atención especializada."""
+Al final de tu respuesta, incluye una sección "Recomendaciones:" con consejos sobre cuidado de la piel, tratamientos recomendados, prevención y cuándo buscar atención especializada."""
     
     def _evaluate_confidence(self, query: str, response: str) -> float:
         """

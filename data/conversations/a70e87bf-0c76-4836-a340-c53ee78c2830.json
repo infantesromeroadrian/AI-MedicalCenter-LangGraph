@@ -1,0 +1,47 @@
+{
+  "conversation_id": "a70e87bf-0c76-4836-a340-c53ee78c2830",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en neurology. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-05T20:40:09.926174"
+    },
+    {
+      "content": "dolor de cabeza intenso en la frente hace 3 dias",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:40:09.926182"
+    },
+    {
+      "content": "⚠️ SITUACIÓN URGENTE: Busque atención médica inmediata. Como especialista en Neurology, Hola, soy un asistente médico especializado en neurología. Lamento escuchar que has estado experimentando un dolor de cabeza intenso en la frente durante los últimos tres días. Para poder ayudarte mejor, necesito que me proporciones un poco más de información.\n\n1. ¿Podrías describirme un poco más sobre este dolor de cabeza? ¿Es un dolor constante o viene y va? ¿Es un dolor punzante, pulsátil o de otro tipo?\n\n2. ¿Has notado algún factor que empeore o alivie el dolor? Por ejemplo, la luz brillante, el ruido fuerte, ciertos alimentos o bebidas, o ciertos movimientos o actividades.\n\n3. ¿Has experimentado algún otro síntoma junto con el dolor de cabeza, como náuseas, vómitos, sensibilidad a la luz o al ruido, cambios en la visión, debilidad en alguna parte del cuerpo, dificultad para hablar o entender el habla, o alteraciones del equilibrio o la coordinación?\n\nPor favor, tómate tu tiempo para responder estas preguntas. La información que proporciones será muy útil para entender mejor lo que podría estar causando tu dolor de cabeza.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:40:28.406220"
+    },
+    {
+      "content": "Descripción del dolor: Es un dolor pulsátil, como si algo latiera justo encima de las cejas. Empezó leve, pero lleva ya tres días sin darme tregua. No es constante del todo, tiene picos… pero cuando sube, siento como si el cráneo se me fuera a partir.\r\n\r\nFactores que lo agravan o alivian: La luz me molesta bastante, incluso el brillo del móvil me hace entrecerrar los ojos. Los ruidos fuertes me molestan mucho también. Ayer probé con una ducha caliente y algo de descanso, y pareció bajar… pero volvió con fuerza después de unas horas de trabajo.\r\n\r\nSíntomas adicionales:\r\n\r\nNáuseas, leves pero constantes.\r\n\r\nSensibilidad a la luz y al ruido.\r\n\r\nHoy, al levantarme, noté un ligero mareo, aunque sin pérdida de equilibrio.\r\n\r\nNada de visión borrosa ni dificultad para hablar, pero sí una sensación de “niebla mental”.",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:41:16.474700"
+    },
+    {
+      "content": "⚠️ SITUACIÓN URGENTE: Busque atención médica inmediata. Basándome en los síntomas que describes, que incluyen un dolor de cabeza pulsátil en la frente, náuseas leves, sensibilidad a la luz y al ruido, y una sensación de \"niebla mental\", considero que podrías estar experimentando una migraña. Las migrañas son dolores de cabeza intensos que pueden durar desde unas pocas horas hasta varios días y a menudo se asocian con náuseas, sensibilidad a la luz y al ruido, y a veces con mareos.\n\nSin embargo, es importante tener en cuenta que existen otras condiciones que pueden causar síntomas similares, como la cefalea tensional o la cefalea en racimos. Además, aunque es menos probable, debemos descartar condiciones más graves como un tumor cerebral o una hemorragia cerebral, especialmente si el dolor de cabeza es el peor que has experimentado en tu vida, si se acompaña de fiebre, rigidez en el cuello, convulsiones, debilidad o adormecimiento en un lado del cuerpo, o si tienes antecedentes de cáncer o trastornos de coagulación de la sangre.\n\nPara poder hacer un diagnóstico más preciso, necesitaría más información:\n\n1. ¿Has tenido dolores de cabeza similares en el pasado? Si es así, ¿cuánto duraron y cómo los manejaste?\n\n2. ¿Tienes antecedentes familiares de migrañas o de otros trastornos neurológicos?\n\n3. ¿Estás tomando algún medicamento actualmente, ya sea para el dolor de cabeza o para otra condición?\n\n4. ¿Has notado si el dolor de cabeza se desencadena o se agrava con el estrés, la falta de sueño, ciertos alimentos o bebidas, o durante tu ciclo menstrual (si eres mujer)?\n\nPor último, aunque no parece que tus síntomas sean una emergencia médica en este momento, si el dolor de cabeza se vuelve insoportable, si experimentas debilidad o adormecimiento en un lado del cuerpo, dificultad para hablar o entender el habla, pérdida de equilibrio o coordinación, o si tienes fiebre alta y rigidez en el cuello, debes buscar atención médica inmediata.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:42:02.294123"
+    },
+    {
+      "content": "Sí, he tenido episodios similares, aunque no tan prolongados. Suelen durar entre uno y dos días, y con reposo, oscuridad y algo de ibuprofeno solían calmarse. Pero este episodio ya lleva tres días y no cede del todo, lo cual me preocupa un poco.\r\n\r\nAntecedentes familiares: Sí, mi madre sufre migrañas con cierta frecuencia, especialmente por el estrés y los cambios hormonales. No hay antecedentes de tumores ni de trastornos neurológicos graves en la familia.\r\n\r\nMedicación actual: No tomo medicación de forma habitual. Para este dolor he probado ibuprofeno (400 mg) en dos ocasiones, pero apenas ha aliviado los síntomas. No tomo ningún tratamiento crónico.\r\n\r\nFactores desencadenantes:\r\n\r\nEstrés: Altísimo últimamente.\r\n\r\nSueño: He dormido mal esta semana, especialmente con interrupciones nocturnas.\r\n\r\nAlimentación: Algo desordenada. Me salté algunas comidas por falta de apetito.\r\n\r\nEstímulos externos: Pantallas, ruido, luces fuertes… todo lo empeora.\r\n\r\nNo tengo fiebre, rigidez de cuello ni síntomas neurológicos graves como convulsiones o pérdida de fuerza. Lo que me preocupa es la duración y esa sensación de niebla mental persistente.",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:43:23.663812"
+    },
+    {
+      "content": "Lo siento, Consulta demasiado larga. Por favor, proporciona más detalles sobre tu consulta médica.\n\n**Consideraciones Diagnósticas Adicionales:**\nBasándome en los síntomas descritos, las condiciones a considerar incluyen: migraña, cefalea tensional. Se recomienda evaluación por especialista en neurology para confirmación diagnóstica y plan de tratamiento apropiado.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:43:32.435511"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-06-05T20:40:09.926162",
+  "updated_at": "2025-06-05T20:43:32.435518"
+}

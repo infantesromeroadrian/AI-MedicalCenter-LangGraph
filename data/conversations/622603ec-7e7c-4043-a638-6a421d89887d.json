@@ -1,0 +1,17 @@
+{
+  "conversation_id": "622603ec-7e7c-4043-a638-6a421d89887d",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en internal_medicine. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-03T10:11:02.450705"
+    }
+  ],
+  "active_specialty": "internal_medicine",
+  "all_specialties": [
+    "internal_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-06-03T10:11:02.450186",
+  "updated_at": "2025-06-03T10:11:02.450719"
+}

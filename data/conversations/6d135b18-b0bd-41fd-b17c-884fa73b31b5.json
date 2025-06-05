@@ -1,0 +1,67 @@
+{
+  "conversation_id": "6d135b18-b0bd-41fd-b17c-884fa73b31b5",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en neurology. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-05T20:07:12.617604"
+    },
+    {
+      "content": "Me duele mucho la cabeza hace 3 dias, con un dolor punzante en la frente",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:07:12.617616"
+    },
+    {
+      "content": "Como especialista en Neurology, Hola, soy un asistente médico especializado en neurología. Lamento que estés experimentando este dolor de cabeza. Para entender mejor tu situación, me gustaría hacerte algunas preguntas:\n\n1. ¿Podrías describirme más detalladamente cómo es este dolor punzante? ¿Es constante o viene y va?\n2. ¿Has notado si algo en particular parece empeorar o aliviar el dolor?\n3. ¿Has experimentado algún otro síntoma junto con el dolor de cabeza, como náuseas, sensibilidad a la luz o al ruido, o cambios en la visión?\n\nEstas preguntas nos ayudarán a entender mejor la naturaleza de tu dolor de cabeza y a determinar los próximos pasos adecuados.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:07:26.483320"
+    },
+    {
+      "content": "es un dolor punzante desde hace 3 dias, y viene principalmente al entrar en contacto con las pantallas, lo empeora la luz blanca, ",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:08:54.032414"
+    },
+    {
+      "content": "Hola, lamento que estés pasando por esto. Para poder ayudarte mejor, necesito que me des un poco más de información. ¿Podrías describirme si el dolor se irradia a alguna otra parte de tu cabeza o cuello? ¿Has notado si hay algo, además de la luz blanca y las pantallas, que empeore tu dolor de cabeza? ¿Tienes algún antecedente de migrañas o dolores de cabeza similares? ¿Estás tomando alguna medicación actualmente? \n\nRECOMENDACIONES:\n\n1. Intenta evitar la exposición a la luz blanca y las pantallas, ya que mencionaste que empeoran tu dolor.\n2. Si el dolor es muy intenso o persiste, te recomendaría buscar atención médica inmediata.\n3. Mantén un registro de tus dolores de cabeza, incluyendo cuándo ocurren, su duración, su intensidad y cualquier factor desencadenante que notes. Esto puede ser útil para tu médico.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:09:11.589668"
+    },
+    {
+      "content": "principalemnte irrada hacia las sienes, no tengo antecedentes",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:10:38.836429"
+    },
+    {
+      "content": "Entiendo que estás experimentando un dolor de cabeza punzante que se intensifica con la luz blanca y el uso de pantallas. Para poder ayudarte de la mejor manera, necesito que me respondas un par de preguntas:\n\n1. ¿Has notado algún otro síntoma asociado, como náuseas, vómitos, sensibilidad al ruido, o alteraciones en la visión?\n2. ¿El dolor interfiere con tus actividades diarias o te impide realizar alguna tarea?\n\nPor último, aunque mencionaste que no tienes antecedentes, ¿hay algún historial de migrañas o dolores de cabeza intensos en tu familia? \n\nEstas preguntas me ayudarán a entender mejor tu situación y a proporcionarte las recomendaciones más adecuadas.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:10:58.939810"
+    },
+    {
+      "content": "tengo vision borrosa, el dolor me incapacita trabajar mucho con la pantalla, ",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:11:35.574066"
+    },
+    {
+      "content": "Entiendo que estás experimentando un dolor de cabeza punzante que se intensifica con la luz blanca y el uso de pantallas, y que se irradia hacia las sienes. Me gustaría preguntarte un par de cosas más para entender mejor tu situación:\n\n1. ¿Has notado algún otro síntoma asociado, como náuseas, vómitos, sensibilidad al ruido, o cambios en tu visión?\n2. ¿Has tenido episodios similares en el pasado o es la primera vez que experimentas este tipo de dolor de cabeza?\n3. ¿Existe algún factor que alivie el dolor, como descansar en un lugar oscuro o tomar algún medicamento?\n\nEstas preguntas nos ayudarán a entender mejor la naturaleza de tu dolor de cabeza y a determinar los siguientes pasos adecuados.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:11:50.679188"
+    },
+    {
+      "content": "nada mas",
+      "sender": "user",
+      "timestamp": "2025-06-05T20:12:24.417819"
+    },
+    {
+      "content": "Como especialista en Internal Medicine, Hola, soy un asistente médico especializado en medicina interna. Para poder ayudarte mejor, necesito que me proporciones más detalles sobre tu situación. \n\n1. ¿Podrías describirme los síntomas que estás experimentando? \n2. ¿Cuánto tiempo llevas con estos síntomas? \n3. ¿Hay algo que parezca empeorar o mejorar tus síntomas?\n\nPor favor, responde a estas preguntas lo mejor que puedas. Esto me ayudará a entender mejor tu situación y a proporcionarte las recomendaciones más adecuadas.\n\n⚕️ Nota: Esta información es orientativa. Consulte siempre con un médico calificado.",
+      "sender": "neurology",
+      "timestamp": "2025-06-05T20:12:41.687020"
+    }
+  ],
+  "active_specialty": "neurology",
+  "all_specialties": [
+    "neurology"
+  ],
+  "context": {},
+  "created_at": "2025-06-05T20:07:12.617585",
+  "updated_at": "2025-06-05T20:12:41.687026"
+}

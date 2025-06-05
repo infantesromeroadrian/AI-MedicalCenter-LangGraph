@@ -1,0 +1,32 @@
+{
+  "conversation_id": "c778fff9-b3cf-41a4-ba87-474044f36fd5",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en emergency_medicine. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-03T10:11:32.633339"
+    },
+    {
+      "content": "Me ha mordido un perro y tengo una herida sangrante en la mano",
+      "sender": "user",
+      "timestamp": "2025-06-03T10:11:32.633349"
+    },
+    {
+      "content": "As a Emergency Medicine specialist, Entiendo que debes estar preocupado por la mordedura de perro. Vamos a recopilar más información para poder ayudarte de la mejor manera posible.\n\n1. ¿Cuánto tiempo ha pasado desde que te mordió el perro?\n2. ¿Podrías describirme con más detalle la herida? ¿Es profunda? ¿Está muy sucia?\n3. ¿Has notado algo que empeore el sangrado, como el movimiento o la presión?\n\nPor favor, mientras respondes a estas preguntas, intenta mantener la herida elevada por encima del nivel de tu corazón y aplica presión directa con un paño limpio para ayudar a detener el sangrado.",
+      "sender": "emergency_medicine",
+      "timestamp": "2025-06-03T10:11:41.512621"
+    },
+    {
+      "content": "[IMAGEN ANALIZADA:http://127.0.0.1:3567/static/uploads/images/c40af4303ee64cb8949a5df53874f7a4_fig1.webp] **Análisis preliminar de imagen médica (contexto: Medicina de Urgencias)**\n\n---\n\n### 1. Descripción de lo que observo en la imagen\nSe observa una herida profunda y abierta en la base del pulgar de la mano, con bordes irregulares y sangrado activo. La lesión parece comprometer piel, tejido subcutáneo y posiblemente estructuras más profundas.\n\n---\n\n### 2. Posibles observaciones relevantes desde el punto de vista médico\n- **Herida lacerante profunda**: Posible afectación de tendones, nervios o vasos sanguíneos de la región tenar.\n- **Riesgo de infección**: Por la exposición del tejido y posible contaminación.\n- **Compromiso funcional**: Potencial afectación de la movilidad y sensibilidad del pulgar.\n- **Hemorragia activa**: Puede requerir control inmediato.\n\n---\n\n### 3. Sugerencias de información adicional que el paciente debería proporcionar verbalmente\n- Mecanismo de la lesión (¿cómo ocurrió? ¿objeto cortante, accidente, mordedura, etc.?).\n- Tiempo transcurrido desde la lesión.\n- Síntomas asociados: dolor, pérdida de sensibilidad, dificultad para mover el pulgar o la mano.\n- Estado de vacunación antitetánica.\n- Presencia de enfermedades previas (diabetes, inmunosupresión, etc.).\n- Si ha intentado algún tipo de limpieza o tratamiento previo.\n\n---\n\n### 4. Limitaciones claras de este análisis visual\n- **La imagen es solo un complemento**: No permite evaluar profundidad real de la herida ni compromiso de estructuras internas.\n- **No se puede valorar función motora o sensitiva**: Es fundamental la exploración física y la conversación con el paciente.\n- **No se puede descartar daño vascular o tendinoso solo con la imagen**.\n- **No se puede evaluar signos sistémicos de infección o shock**.\n\n---\n\n### Recomendaciones finales\n\n- **Esta imagen es solo un complemento y NO sustituye una evaluación médica completa.**\n- **El diagnóstico final requerirá conversación adicional con el paciente y exploración física directa.**\n- **Es fundamental que continúe describiendo verbalmente sus síntomas, antecedentes y detalles relevantes del accidente.**\n- **Este es SOLO un análisis preliminar, no un diagnóstico definitivo.**\n- **Acuda a un servicio de urgencias de inmediato para valoración y tratamiento adecuado.**\n\n---\n\n**IMPORTANTE:** Si presenta sangrado abundante, pérdida de sensibilidad, imposibilidad de mover el pulgar o signos de shock (palidez, sudoración, confusión), busque atención médica urgente.",
+      "sender": "system",
+      "timestamp": "2025-06-03T10:12:38.113027"
+    }
+  ],
+  "active_specialty": "emergency_medicine",
+  "all_specialties": [
+    "emergency_medicine"
+  ],
+  "context": {},
+  "created_at": "2025-06-03T10:11:32.633322",
+  "updated_at": "2025-06-03T10:12:38.113034"
+}

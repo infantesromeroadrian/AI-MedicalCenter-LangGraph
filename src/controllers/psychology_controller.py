@@ -193,8 +193,13 @@ OBJETIVO FINAL: Que el paciente termine la sesión pensando "Necesito hablar má
                 }
             )
             
-            # Analizar respuesta para insights
-            insights = self._extract_psychological_insights(message, psychology_response.response)
+            # Analizar respuesta para insights (evitando repeticiones)
+            existing_insights = consultation_session.get('patient_insights', [])
+            insights = self._extract_psychological_insights(
+                message, 
+                psychology_response.response, 
+                existing_insights
+            )
             
             # Actualizar sesión
             consultation_session['messages'].append({
@@ -291,12 +296,31 @@ OBJETIVO FINAL: Que el paciente termine la sesión pensando "Necesito hablar má
         
         return "\n".join(context_parts)
     
-    def _extract_psychological_insights(self, message: str, response: str) -> list:
-        """Extraer insights psicológicos del intercambio."""
+    def _extract_psychological_insights(self, message: str, response: str, 
+                                      existing_insights: list) -> list:
+        """Extraer insights psicológicos del intercambio evitando repeticiones."""
         
-        insights = []
+        new_insights = []
         
-        # Detectar patrones emocionales
+        # Convertir insights existentes a un conjunto para búsqueda eficiente
+        existing_insight_types = set()
+        for insight in existing_insights:
+            if 'ansiedad' in insight.lower():
+                existing_insight_types.add('ansiedad')
+            elif 'depresión' in insight.lower():
+                existing_insight_types.add('depresión')
+            elif 'estrés' in insight.lower():
+                existing_insight_types.add('estrés')
+            elif 'ira' in insight.lower():
+                existing_insight_types.add('ira')
+            elif 'pensamiento dicotómico' in insight.lower():
+                existing_insight_types.add('pensamiento_dicotomico')
+            elif 'autoexigencia' in insight.lower():
+                existing_insight_types.add('autoexigencia')
+            elif 'fortalezas' in insight.lower() or 'recursos' in insight.lower():
+                existing_insight_types.add('fortalezas')
+        
+        # Detectar patrones emocionales (solo si no fueron identificados antes)
         emotion_patterns = {
             'ansiedad': ['nervioso', 'preocupado', 'ansiedad', 'miedo', 'pánico'],
             'depresión': ['triste', 'deprimido', 'sin energía', 'vacío', 'desesperanza'],
@@ -305,31 +329,115 @@ OBJETIVO FINAL: Que el paciente termine la sesión pensando "Necesito hablar má
         }
         
         for emotion, keywords in emotion_patterns.items():
-            if any(keyword in message.lower() for keyword in keywords):
-                insights.append(f"Indicadores de {emotion} identificados")
+            if emotion not in existing_insight_types:
+                if any(keyword in message.lower() for keyword in keywords):
+                    new_insights.append(f"Indicadores de {emotion} identificados")
         
-        # Detectar patrones cognitivos
-        if any(phrase in message.lower() for phrase in ['siempre', 'nunca', 'todo', 'nada']):
-            insights.append("Posible pensamiento dicotómico detectado")
+        # Detectar patrones cognitivos (solo si no fueron identificados antes)
+        if 'pensamiento_dicotomico' not in existing_insight_types:
+            if any(phrase in message.lower() for phrase in ['siempre', 'nunca', 'todo', 'nada']):
+                new_insights.append("Posible pensamiento dicotómico detectado")
         
-        if any(phrase in message.lower() for phrase in ['debería', 'tengo que', 'debo']):
-            insights.append("Patrones de autoexigencia identificados")
+        if 'autoexigencia' not in existing_insight_types:
+            if any(phrase in message.lower() for phrase in ['debería', 'tengo que', 'debo']):
+                new_insights.append("Patrones de autoexigencia identificados")
         
-        # Detectar fortalezas
-        if any(phrase in message.lower() for phrase in ['logré', 'pude', 'conseguí', 'superé']):
-            insights.append("Recursos y fortalezas personales evidenciados")
+        # Detectar fortalezas (permitir múltiples identificaciones pero con más especificidad)
+        strength_keywords = {
+            'logré': 'capacidad de logro',
+            'pude': 'autoeficacia',
+            'conseguí': 'persistencia',
+            'superé': 'resiliencia'
+        }
         
-        return insights
+        for keyword, strength_type in strength_keywords.items():
+            if keyword in message.lower():
+                strength_insight = f"Evidencia de {strength_type} personal"
+                if strength_insight not in existing_insights:
+                    new_insights.append(strength_insight)
+        
+        return new_insights
     
     def _calculate_therapeutic_bond(self, consultation_session: dict) -> float:
-        """Calcular el nivel de vínculo terapéutico basado en la sesión."""
+        """Calcular el nivel de vínculo terapéutico de forma realista."""
         
         messages_count = len(consultation_session['messages'])
         insights_count = len(consultation_session['patient_insights'])
+        session_duration = datetime.now() - consultation_session['start_time']
         
-        # Fórmula simple para calcular vínculo terapéutico
-        bond_score = min(1.0, (messages_count * 0.1) + (insights_count * 0.15))
-        return round(bond_score, 2)
+        # Componentes del vínculo terapéutico más realistas
+        
+        # 1. Factor tiempo (máximo 20% - se desarrolla lentamente)
+        duration_minutes = session_duration.total_seconds() / 60
+        time_factor = min(0.20, duration_minutes / 100)  # 20% después de 100 minutos
+        
+        # 2. Factor de participación (máximo 25% - basado en intercambios)
+        # Progresión logarítmica para evitar crecimiento lineal
+        import math
+        participation_factor = min(0.25, 0.05 * math.log(messages_count + 1, 2))
+        
+        # 3. Factor de apertura emocional (máximo 30% - basado en insights genuinos)
+        # Valora la calidad sobre la cantidad
+        if insights_count == 0:
+            openness_factor = 0.0
+        elif insights_count <= 2:
+            openness_factor = insights_count * 0.08  # 16% máximo con 2 insights
+        elif insights_count <= 5:
+            openness_factor = 0.16 + (insights_count - 2) * 0.04  # hasta 28%
+        else:
+            openness_factor = min(0.30, 0.28 + (insights_count - 5) * 0.01)
+        
+        # 4. Factor de confianza (máximo 25% - evaluado por patrones de respuesta)
+        trust_factor = self._evaluate_trust_indicators(consultation_session)
+        
+        # Combinación realista de factores
+        bond_score = time_factor + participation_factor + openness_factor + trust_factor
+        
+        # Aplicar curva de crecimiento realista (vínculo se desarrolla gradualmente)
+        # Los primeros encuentros raramente superan 40%
+        if messages_count < 5:
+            bond_score = min(bond_score, 0.35)
+        elif messages_count < 10:
+            bond_score = min(bond_score, 0.55)
+        elif messages_count < 20:
+            bond_score = min(bond_score, 0.75)
+        
+        return round(min(bond_score, 1.0), 2)
+    
+    def _evaluate_trust_indicators(self, consultation_session: dict) -> float:
+        """Evaluar indicadores de confianza en la relación terapéutica."""
+        
+        trust_score = 0.0
+        messages = consultation_session.get('messages', [])
+        
+        if not messages:
+            return 0.0
+        
+        # Indicadores de confianza creciente
+        trust_keywords = {
+            'vulnerability': ['me siento', 'siento que', 'me da miedo', 'tengo miedo', 'me cuesta'],
+            'self_reflection': ['me doy cuenta', 'creo que', 'pienso que', 'tal vez', 'quizás'],
+            'personal_sharing': ['nunca había', 'nunca he', 'primera vez', 'no suelo'],
+            'therapeutic_alliance': ['ayuda', 'comprende', 'entiendo', 'me ayuda', 'me hace sentir']
+        }
+        
+        total_messages = len(messages)
+        trust_indicators_found = 0
+        
+        for message_data in messages:
+            patient_message = message_data.get('patient_message', '').lower()
+            
+            for category, keywords in trust_keywords.items():
+                if any(keyword in patient_message for keyword in keywords):
+                    trust_indicators_found += 1
+                    break  # Solo contar una vez por mensaje
+        
+        # Factor de confianza basado en la proporción de mensajes con indicadores
+        if total_messages > 0:
+            trust_ratio = trust_indicators_found / total_messages
+            trust_score = min(0.25, trust_ratio * 0.4)  # Máximo 25%
+        
+        return trust_score
     
     def get_psychology_session_summary(self):
         """Obtener resumen de la sesión psicológica."""

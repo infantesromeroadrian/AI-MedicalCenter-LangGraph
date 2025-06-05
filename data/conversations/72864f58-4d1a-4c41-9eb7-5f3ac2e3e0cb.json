@@ -1,0 +1,103 @@
+{
+  "conversation_id": "72864f58-4d1a-4c41-9eb7-5f3ac2e3e0cb",
+  "messages": [
+    {
+      "content": "Bienvenido a la consulta médica interactiva. Estás hablando con un especialista en neurology. ¿En qué puedo ayudarte hoy? (El sistema automáticamente te dirigirá al especialista más adecuado según tu consulta)",
+      "sender": "system",
+      "timestamp": "2025-06-03T08:40:46.536741"
+    },
+    {
+      "content": "me duele la cabeza",
+      "sender": "user",
+      "timestamp": "2025-06-03T08:40:46.536751"
+    },
+    {
+      "content": "As a Neurology specialist, Hola, soy un asistente médico especializado en neurología. Lamento escuchar que estás experimentando dolor de cabeza. Para poder ayudarte de la mejor manera, necesito entender un poco más sobre tu situación.\n\n1. ¿Podrías describirme un poco más sobre este dolor de cabeza? ¿Dónde exactamente sientes el dolor y cómo es (por ejemplo, pulsátil, constante, punzante)?\n\n2. ¿Cuánto tiempo llevas experimentando este dolor de cabeza y cómo ha evolucionado? ¿Es un dolor que apareció de repente o ha sido gradual?\n\n3. ¿Hay algo que parezca desencadenar el dolor de cabeza o empeorarlo, como ciertos alimentos, actividades, o situaciones de estrés?\n\nPor favor, tómate tu tiempo para responder estas preguntas. La información que me proporciones será muy útil para entender mejor lo que podría estar sucediendo.",
+      "sender": "neurology",
+      "timestamp": "2025-06-03T08:40:58.279799"
+    },
+    {
+      "content": "el dolor lo siento principalmente en la frente en forma de punzada, llevo con el dolor unos 3 dias, en principio me ha empezado con el calor climatico del verano,",
+      "sender": "user",
+      "timestamp": "2025-06-03T08:52:33.885154"
+    },
+    {
+      "content": "Hola, lamento escuchar que estás experimentando este dolor de cabeza. Me gustaría hacer algunas preguntas adicionales para entender mejor tu situación.\n\n1. ¿Podrías describirme con más detalle cómo es este dolor en la frente? ¿Es constante o viene y va? ¿Es un dolor punzante constante o tiene momentos de mayor intensidad?\n\n2. ¿Has notado si hay algo que empeora el dolor, como ciertas actividades, posturas o momentos del día? \n\n3. ¿Has experimentado algún otro síntoma junto con el dolor de cabeza, como náuseas, sensibilidad a la luz o al ruido, o cambios en la visión?\n\nPor último, es importante conocer tus antecedentes médicos. ¿Has tenido dolores de cabeza similares en el pasado? ¿Hay antecedentes de migrañas o dolores de cabeza severos en tu familia? \n\nPor favor, tómate tu tiempo para responder estas preguntas. Tu información es muy valiosa para poder ayudarte de la mejor manera.",
+      "sender": "neurology",
+      "timestamp": "2025-06-03T08:52:51.552204"
+    },
+    {
+      "content": "el dolor viene y va de manera punzante, empeora en la noche, si he experimentado sensibilidad al ruido y la luz, no he tenido dolor similares en el pasado,",
+      "sender": "user",
+      "timestamp": "2025-06-03T08:54:25.918025"
+    },
+    {
+      "content": "Hola, gracias por compartir más detalles sobre tu dolor de cabeza. Me gustaría hacer un par de preguntas más para entender mejor tu situación.\n\n1. ¿Has notado algún cambio en tu visión o habla durante estos episodios de dolor de cabeza?\n2. ¿Has experimentado náuseas, vómitos o mareos junto con el dolor de cabeza?\n3. ¿Has tenido algún episodio de pérdida de conciencia o convulsiones en el pasado?\n\nAdemás, sería útil saber si tienes antecedentes familiares de migrañas o dolores de cabeza severos. También, ¿podrías compartir si estás tomando alguna medicación actualmente, ya sea para el dolor de cabeza u otra condición? \n\nPor último, ¿cómo dirías que este dolor de cabeza está afectando tus actividades diarias? ¿Has tenido que faltar al trabajo o dejar de hacer tus actividades habituales debido a este dolor? \n\nEstas preguntas me ayudarán a entender mejor tu situación y a ofrecerte las recomendaciones más adecuadas.",
+      "sender": "neurology",
+      "timestamp": "2025-06-03T08:54:41.385877"
+    },
+    {
+      "content": "he notado algo de vision borrosa, ningun sintoma mas y si he tenido que faltar al trabaj porque trabajo con pantallas",
+      "sender": "user",
+      "timestamp": "2025-06-03T08:56:02.276327"
+    },
+    {
+      "content": "⚕️ El orquestador médico ha determinado que un especialista en ophthalmology puede responder mejor a tu consulta. Motivo: The patient is experiencing blurred vision, which is primarily dealt with by an ophthalmologist. The fact that the patient works with screens could suggest a strain-related issue.. Transfiriendo...",
+      "sender": "system",
+      "timestamp": "2025-06-03T08:56:08.824597"
+    },
+    {
+      "content": "As a Internal Medicine specialist, Hola, gracias por venir a la consulta hoy. Lamento escuchar que has estado experimentando visión borrosa. Para entender mejor tu situación, me gustaría hacerte algunas preguntas.\n\n1. ¿Podrías decirme cuánto tiempo has estado experimentando esta visión borrosa?\n2. ¿Es la visión borrosa constante o viene y va?\n3. ¿Has notado si algo en particular parece empeorar tu visión borrosa, como la luz brillante, el esfuerzo visual o después de un largo período de trabajo frente a la pantalla?\n\nPor favor, tómate tu tiempo para responder estas preguntas. Tu información es muy valiosa para ayudarnos a entender lo que podría estar sucediendo.",
+      "sender": "ophthalmology",
+      "timestamp": "2025-06-03T08:56:17.397202"
+    },
+    {
+      "content": "3 dias, dura todo el dia",
+      "sender": "user",
+      "timestamp": "2025-06-03T08:57:40.729364"
+    },
+    {
+      "content": "Hola, lamento escuchar que has estado experimentando visión borrosa. Para entender mejor tu situación, me gustaría hacerte algunas preguntas adicionales.\n\n1. ¿Podrías describirme un poco más sobre esta visión borrosa? ¿Afecta a uno o ambos ojos?\n2. ¿Has notado algún otro cambio en tu visión, como ver halos alrededor de las luces, dificultad para ver de noche, o pérdida de la visión periférica?\n3. ¿Has experimentado algún otro síntoma como dolor de cabeza, náuseas, o mareos?\n\nPor favor, tómate tu tiempo para responder. Estoy aquí para ayudarte.",
+      "sender": "ophthalmology",
+      "timestamp": "2025-06-03T08:57:54.713853"
+    },
+    {
+      "content": "si afecta a ambos ojos principalmente es sensibilidad a la luz he notado comomuchas manchas en la vision,",
+      "sender": "user",
+      "timestamp": "2025-06-03T08:58:40.556876"
+    },
+    {
+      "content": "Entiendo que estás pasando por un momento difícil. Para poder ayudarte de la mejor manera, necesito que me des un poco más de detalles sobre tus síntomas.\n\n1. ¿Podrías describirme las manchas que ves? ¿Son negras, blancas, de colores? ¿Están en un lugar específico de tu campo de visión o se mueven?\n2. ¿La sensibilidad a la luz es constante o varía durante el día? ¿Algún tipo de luz en particular te molesta más?\n3. ¿Has notado algún cambio en tu visión de colores?\n\nPor favor, tómate tu tiempo para responder. Tu información es muy valiosa para poder entender mejor lo que está sucediendo.",
+      "sender": "ophthalmology",
+      "timestamp": "2025-06-03T08:58:51.746003"
+    },
+    {
+      "content": "son negras como bichitos, se mueven constantemente, ls sensibilidad cambia durante el dia, la luz blanca me molesta mas que la amarilla,",
+      "sender": "user",
+      "timestamp": "2025-06-03T09:01:39.431626"
+    },
+    {
+      "content": "Entiendo que estás experimentando sensibilidad a la luz y ves manchas en tu visión, lo cual debe ser bastante incómodo. Para poder ayudarte mejor, necesito un poco más de información.\n\n1. ¿Podrías describirme cómo son estas manchas? ¿Son flotantes, fijas, negras, blancas o de colores?\n2. ¿Has notado si hay algo que empeore o mejore estos síntomas? Por ejemplo, ¿los síntomas mejoran cuando descansas los ojos o empeoran después de usar la computadora por un largo período de tiempo?\n\nTu información es muy valiosa para poder entender mejor lo que está sucediendo.",
+      "sender": "ophthalmology",
+      "timestamp": "2025-06-03T09:01:51.609646"
+    },
+    {
+      "content": "son flotantes si, no hay algo que lo empeore como tal mas que la luz blanca,",
+      "sender": "user",
+      "timestamp": "2025-06-03T09:02:25.126820"
+    },
+    {
+      "content": "Basándome en la información que me has proporcionado, parece que estás experimentando un fenómeno conocido como \"miodesopsias\" o \"moscas volantes\". Estas son pequeñas manchas oscuras que parecen flotar en tu campo de visión y son más notables cuando miras un fondo claro, como un cielo azul o una pantalla de computadora. Las moscas volantes son causadas por pequeñas partículas flotando en el gel que llena el ojo, y son bastante comunes, especialmente a medida que envejecemos.\n\nAdemás, la sensibilidad a la luz que describes se conoce como \"fotofobia\". Hay varias causas posibles para esto, que van desde condiciones relativamente benignas como la migraña o la irritación ocular, hasta condiciones más graves como la uveítis (inflamación del ojo).\n\nDicho esto, es importante recordar que aunque las moscas volantes son comunes y generalmente inofensivas, un aumento repentino en la cantidad o un cambio en su apariencia puede ser un signo de un problema más serio, como un desprendimiento de retina, que es una urgencia médica.\n\nPor lo tanto, aunque las moscas volantes y la fotofobia pueden ser síntomas de condiciones benignas, también podrían ser indicativos de condiciones más serias. Es importante que consultes a un oftalmólogo para una evaluación completa de tus síntomas.\n\nRECOMENDACIONES:\n\n1. Programa una cita con un oftalmólogo lo antes posible para una evaluación completa de tus síntomas.\n2. Intenta evitar la luz brillante siempre que sea posible, ya que esto puede empeorar tus síntomas.\n3. Si experimentas un aumento repentino en las moscas volantes, una disminución en la visión, o un \"velo\" que cubre tu visión, busca atención médica de inmediato.",
+      "sender": "ophthalmology",
+      "timestamp": "2025-06-03T09:02:49.187191"
+    }
+  ],
+  "active_specialty": "ophthalmology",
+  "all_specialties": [
+    "neurology",
+    "ophthalmology"
+  ],
+  "context": {},
+  "created_at": "2025-06-03T08:40:46.536723",
+  "updated_at": "2025-06-03T09:02:49.187195"
+}

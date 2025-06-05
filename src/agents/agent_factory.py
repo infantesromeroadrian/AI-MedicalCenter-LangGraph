@@ -12,6 +12,7 @@ from src.agents.oncology_agent import OncologyAgent
 from src.agents.dermatology_agent import DermatologyAgent
 from src.agents.psychiatry_agent import PsychiatryAgent
 from src.agents.emergency_medicine_agent import EmergencyMedicineAgent
+from src.agents.ophthalmology_agent import OphthalmologyAgent
 from src.services.llm_service import LLMService
 
 logger = logging.getLogger(__name__)
@@ -35,6 +36,7 @@ class AgentFactory:
             "dermatology": DermatologyAgent,
             "psychiatry": PsychiatryAgent,
             "emergency_medicine": EmergencyMedicineAgent,
+            "ophthalmology": OphthalmologyAgent,
         }
         
         # Log which specialties don't have specific agents yet

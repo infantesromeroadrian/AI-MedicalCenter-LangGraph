@@ -96,7 +96,8 @@ MEDICAL_SPECIALTIES = [
     "psychiatry",
     "internal_medicine",
     "emergency_medicine",
-    "traumatology"
+    "traumatology",
+    "ophthalmology"
 ]
 
 # Agent configuration
